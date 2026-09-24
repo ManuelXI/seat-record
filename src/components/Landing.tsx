@@ -4,9 +4,9 @@ import { HeroDeck } from "./HeroDeck";
 
 const STEPS = [
   { title: "Log it while it’s fresh", body: "Workers write a few lines about their client work whenever they like, with an optional monthly reminder." },
-  { title: "Screen it before it leaves", body: "A check in the browser removes client names, systems, people and figures. The model then flags what a word list can’t, and rewrites each line at skill level." },
+  { title: "Screen it before it leaves", body: "A check in the browser catches client names, systems, people and figures, with one-tap generic replacements. The model then flags what a word list can’t, and rewrites each line at skill level." },
   { title: "The client approves in an email they already get", body: "At each extension and before roll-off, the lines ride on the extension reply or the testimonial request. Approve, edit or decline, line by line." },
-  { title: "Signed, on the profile, kept for good", body: "Approved lines are signed by Bonarda Works and land on the dev profile. Workers keep a copy, and can share an unlisted link." },
+  { title: "Signed, on the profile, kept for good", body: "Approved lines are signed by Bonarda Works and land on the dev profile, across every engagement, bench projects included. Workers keep a copy and can share an unlisted link." },
 ];
 
 export function Landing() {
@@ -61,6 +61,40 @@ export function Landing() {
         </ol>
       </section>
 
+      <section className="grid items-center gap-8 md:grid-cols-[1fr_1.1fr]" aria-labelledby="next-brief">
+        <div className="space-y-3">
+          <p className="eyebrow">When the next brief lands</p>
+          <h2 id="next-brief" className="text-2xl font-semibold">Find people by what they&rsquo;ve actually done</h2>
+          <p className="text-ink-2">
+            A manager pastes the client&rsquo;s request. Seat Record breaks it into requirements and shows who has client-approved evidence for each one,
+            quoted in full and labelled with the engagement it came from. Only approved lines are searched; a worker&rsquo;s private log never is.
+          </p>
+          <p className="text-sm text-ink-3">The record follows people across clients and time on the bench, so evidence from two projects ago still counts.</p>
+        </div>
+        <div className="card overflow-hidden text-sm" aria-label="Example search result">
+          <div className="border-b border-line bg-surface-2 px-4 py-2.5 text-ink-2">&ldquo;Java developer who has handled Kafka failures and run incident reviews&rdquo;</div>
+          <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5">
+            <span className="font-display text-base font-semibold">Efua Mensah</span>
+            <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-accent-ink">3 of 3 requirements evidenced</span>
+          </div>
+          <dl className="divide-y divide-line">
+            {([
+              ["Java backend development", "Rebuilt a failing nightly reconciliation job in Java and Spring Boot so it runs unattended", "Global investment bank"],
+              ["Handling failures in Kafka", "Added consumer-side retries and dead-letter handling to Kafka event processing", "Global investment bank"],
+              ["Running incident reviews", "Ran the team’s incident review for a failed overnight run", "Global investment bank"],
+            ] as const).map(([req, quote, from]) => (
+              <div key={req} className="grid gap-1 px-4 py-2.5 sm:grid-cols-[140px_1fr]">
+                <dt className="text-ink-3">{req}</dt>
+                <dd>
+                  <span className="block">&ldquo;{quote}&rdquo;</span>
+                  <span className="text-xs text-ink-3">From {from} · client-approved</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="grid gap-8 md:grid-cols-2">
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Three honest tiers</h2>
@@ -79,7 +113,7 @@ export function Landing() {
           <ul className="space-y-2 text-sm text-ink-2">
             <li><strong className="text-ink">It does:</strong> flag confidential detail a word list can&rsquo;t catch, and rewrite a true, specific sentence into a true, generic one.</li>
             <li><strong className="text-ink">Code does:</strong> the first screen, the check that every claim is in the worker&rsquo;s own words, tiers, signing and storage.</li>
-            <li><strong className="text-ink">Nobody is scored:</strong> no model rates, ranks or compares a person. Workers decide what a client sees.</li>
+            <li><strong className="text-ink">No scores:</strong> no model rates a person. Find people orders by how many requirements have approved evidence, a count anyone can check. Workers decide what a client sees.</li>
           </ul>
         </div>
       </section>
@@ -87,7 +121,7 @@ export function Landing() {
       <section className="card flex flex-wrap items-center justify-between gap-4 p-6">
         <div>
           <h2 className="text-xl font-semibold">See it from each side</h2>
-          <p className="text-sm text-ink-2">Workers, managers and client leads each get their own view. No passwords; everything is fictional.</p>
+          <p className="text-sm text-ink-2">Workers log and approve, managers open checkpoints and find people, client leads only see an email. No passwords; everything is fictional.</p>
         </div>
         <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
       </section>

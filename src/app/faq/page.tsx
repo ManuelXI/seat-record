@@ -17,6 +17,7 @@ const GROUPS: { title: string; items: QA[] }[] = [
     title: "Confidentiality and control",
     items: [
       { q: "What stops confidential client detail getting into a record?", a: "Three layers. A check in the browser catches client names, system names, people, figures, tickets and hostnames before anything is sent, with one-tap generic replacements. The model then flags subtler signals, such as domain terms, with a reason. Finally the client lead approves every line, so nothing they object to survives." },
+      { q: "What are the replacement suggestions?", a: "When the screen catches something, it offers generic alternatives you can tap, such as “a production bug” for a ticket number or “upstream” for a system name, and adjusts the wording around it. They come from a fixed list, not the AI, because nothing leaves your browser until the screen is clear. You can always write your own instead." },
       { q: "Does my raw text ever reach the AI?", a: "No. Only text that has passed the browser check is sent. Your original wording is discarded when you approve an entry." },
       { q: "Can my manager read my log?", a: "No. A manager sees engagement status, what the client approved, and a count of lines you have not shared. They can open a checkpoint with a note, but only you choose and send lines." },
       { q: "Who can see my record, and can I share it?", a: "Your seat history is private to you and Bonarda Works. From My profile you can turn on an unlisted share link, copy it, or replace it so the old link stops working. Shared pages are not indexed by search engines." },
@@ -47,6 +48,8 @@ const GROUPS: { title: string; items: QA[] }[] = [
     title: "This demo",
     items: [
       { q: "Is any of this real data?", a: "No. Bonarda Works, every person and every client are fictional." },
+      { q: "Who should I sign in as?", a: "Start as Efua, a worker whose engagement is ending: log an entry, then send lines for approval and approve them as the client. Switch to Ama, her manager, to open a checkpoint or use Find people. Switch users any time from the card at the bottom of the sidebar." },
+      { q: "Why is there a list of shared records if links are unlisted?", a: "The Shared records page exists so you can see shared records in this demo. In the product there is no directory: a record is only visible to people its owner sends the link to." },
       { q: "What is real and what is mocked?", a: <>The screen, grounding check, tiers, signing and share links are real. Client emails, the placement list and reminder delivery are mocked. The full table is on <Link href="/about" className="text-accent hover:underline">How it works</Link>.</> },
       { q: "Why doesn’t a link I created work on another device?", a: "The demo keeps changes in your browser. Records and links in the seed data work anywhere; ones you create while trying the demo live in that browser only." },
       { q: "How do I start again?", a: "Use Reset demo data in the sidebar, then sign out from the switch-user menu." },
