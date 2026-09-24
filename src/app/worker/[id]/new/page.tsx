@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { engagementsFor, useStore } from "@/lib/store";
 import { screenText } from "@/lib/screen";
+import { applySuggestion, suggestionsFor } from "@/lib/suggest";
 import { checkGrounding } from "@/lib/grounding";
 import { Button, Crumbs, Loading } from "@/components/ui";
 import { Highlighted } from "@/components/Highlighted";
@@ -147,16 +148,29 @@ function LogYourWork() {
             </div>
             {text ? <Highlighted text={text} hits={hits} /> : <p className="text-sm text-ink-3">Your entry will appear here with anything confidential marked.</p>}
             {hits.length > 0 && (
-              <ul className="space-y-2 border-t border-line pt-3">
-                {hits.map((h, i) => (
-                  <li key={`${h.text}-${i}`} className="space-y-1.5">
+              <ul className="space-y-4 border-t border-line pt-3">
+                {hits.map((h) => (
+                  <li key={`${h.start}-${h.text}`} className="space-y-2">
                     <p className="text-sm"><span className="font-mono text-danger">{h.text}</span> <span className="text-ink-3">· {h.reason}</span></p>
+                    <div className="flex flex-wrap gap-1.5" role="group" aria-label={`Suggested replacements for ${h.text}`}>
+                      {suggestionsFor(h, text).map((sg) => (
+                        <button
+                          key={sg.label}
+                          onClick={() => setText((t) => applySuggestion(t, sg))}
+                          className={`rounded-full border px-2.5 py-0.5 text-sm transition-[background-color,border-color,scale] duration-150 active:scale-[0.96] ${
+                            sg.label === "Remove" ? "border-dashed border-line-strong text-ink-3 hover:text-ink" : "border-line bg-surface-2 text-ink hover:border-accent hover:bg-accent-soft"
+                          }`}
+                        >
+                          {sg.label}
+                        </button>
+                      ))}
+                    </div>
                     <div className="flex gap-2">
                       <input
-                        aria-label={`Replacement for ${h.text}`}
+                        aria-label={`Your own replacement for ${h.text}`}
                         value={replacements[h.text] ?? ""}
                         onChange={(e) => setReplacements((r) => ({ ...r, [h.text]: e.target.value }))}
-                        placeholder="Replace with a generic phrase"
+                        placeholder="Or write your own"
                         className="min-w-0 flex-1 rounded-md border border-line bg-surface-2 px-2 py-1 text-sm"
                       />
                       <Button variant="secondary" className="py-1" disabled={!replacements[h.text]?.trim()} onClick={() => setText((t) => replaceAll(t, h.text, replacements[h.text].trim()))}>Replace</Button>
