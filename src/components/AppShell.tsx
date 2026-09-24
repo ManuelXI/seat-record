@@ -86,7 +86,7 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   };
 
   return (
-    <div className="flex h-full flex-col gap-6 px-4 py-5">
+    <div className="flex h-full flex-col gap-6 overflow-y-auto px-4 py-5">
       <div className="px-2"><Brand /></div>
 
       <nav aria-label="Main" className="space-y-1">

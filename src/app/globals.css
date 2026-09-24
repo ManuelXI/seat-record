@@ -119,6 +119,21 @@ h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; letter-spacin
 
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
 
+/* Scrollbars follow the theme tokens: a slim thumb on the page's own surface. */
+html, * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-strong);
+  border-radius: 999px;
+  border: 3px solid var(--canvas);
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--ink-3); }
+::-webkit-scrollbar-corner { background: transparent; }
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
