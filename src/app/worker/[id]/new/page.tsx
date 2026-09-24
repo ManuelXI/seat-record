@@ -9,8 +9,7 @@ import { Button, Crumbs, Loading } from "@/components/ui";
 import { Highlighted } from "@/components/Highlighted";
 import { Guard } from "@/components/Guard";
 import type { ModelFlag, RewriteResult } from "@/lib/types";
-
-const EXAMPLE = "I rebuilt their overnight VaR batch so it stopped failing on the Aurora ledger feed, and set up contract tests for the three upstream teams.";
+import { examplesFor } from "@/data/example-entries";
 
 interface Draft { text: string; band: string; source: string; include: boolean }
 
@@ -104,10 +103,7 @@ function LogYourWork() {
       {stage === "write" && (
         <div className="grid gap-6 lg:grid-cols-2">
           <section className="space-y-3">
-            <div className="flex items-baseline justify-between">
-              <label htmlFor="entry" className="font-medium">What did you work on?</label>
-              <button onClick={() => setText(EXAMPLE)} className="text-xs text-ink-3 hover:text-ink">Fill example</button>
-            </div>
+            <label htmlFor="entry" className="block font-medium">What did you work on?</label>
             <textarea
               id="entry"
               value={text}
@@ -116,6 +112,24 @@ function LogYourWork() {
               placeholder="What you built or changed, what you had to work around, how the team worked day to day…"
               className="w-full resize-y rounded-xl border border-line bg-surface-1 px-4 py-3 text-base leading-relaxed text-ink placeholder:text-ink-3"
             />
+            <div className="space-y-2">
+              <p className="text-xs text-ink-3">Try an example entry. Each one shows a different check.</p>
+              <ul className="grid gap-2 sm:grid-cols-2">
+                {examplesFor(client.id).map((ex) => (
+                  <li key={ex.label}>
+                    <button
+                      onClick={() => setText(ex.text)}
+                      title={ex.shows}
+                      aria-pressed={text === ex.text}
+                      className={`h-full w-full rounded-lg border px-3 py-1.5 text-left transition-colors ${text === ex.text ? "border-accent bg-accent-soft" : "border-line hover:border-line-strong hover:bg-surface-2"}`}
+                    >
+                      <span className="block text-sm text-ink">{ex.label}</span>
+                      <span className="block text-[0.7rem] text-ink-3">{ex.shows}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="flex flex-wrap items-center gap-3">
               <Button onClick={draftLines} disabled={busy || !text.trim() || hits.length > 0}>
                 {busy ? "Checking…" : "Check and draft lines"}

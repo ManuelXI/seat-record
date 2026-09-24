@@ -99,9 +99,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="card p-5 sm:p-6" aria-labelledby="find">
+      <section id="find" className="card scroll-mt-6 p-5 sm:p-6" aria-labelledby="find-title">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 id="find" className="text-xl font-semibold">Find people for a client request</h2>
+          <h2 id="find-title" className="text-xl font-semibold">Find people for a client request</h2>
           <span className="text-xs text-ink-3">Filters by stack, sorts by availability. Never scores people.</span>
         </div>
         <label htmlFor="request" className="sr-only">Client request</label>
