@@ -1,0 +1,1010 @@
+{
+  "workers": [
+    {
+      "id": "w1",
+      "name": "Efua Mensah",
+      "title": "Senior Software Engineer",
+      "type": "employee",
+      "location": "Accra",
+      "about": "Backend-leaning engineer who likes making fragile batch systems boring.",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "React",
+        "PostgreSQL"
+      ],
+      "availableFrom": "2026-10-19",
+      "reminderOn": true
+    },
+    {
+      "id": "w2",
+      "name": "Kofi Asante",
+      "title": "Software Engineer",
+      "type": "contractor",
+      "location": "Accra",
+      "about": "Contract engineer across payments and fintech backends.",
+      "skills": [
+        "Kotlin",
+        "Spring Boot",
+        "PostgreSQL",
+        "AWS"
+      ],
+      "availableFrom": "2026-09-01",
+      "reminderOn": false
+    },
+    {
+      "id": "w3",
+      "name": "Abena Owusu",
+      "title": "Frontend Engineer",
+      "type": "employee",
+      "location": "Accra",
+      "about": "Frontend engineer focused on data-heavy trading screens.",
+      "skills": [
+        "TypeScript",
+        "React",
+        "Redux",
+        "Jest"
+      ],
+      "availableFrom": "2026-12-01",
+      "reminderOn": true
+    },
+    {
+      "id": "w4",
+      "name": "Kwame Boakye",
+      "title": "Data Engineer",
+      "type": "freelancer",
+      "location": "Kumasi",
+      "about": "Freelance data engineer building pipelines people trust.",
+      "skills": [
+        "Python",
+        "Airflow",
+        "Snowflake",
+        "SQL"
+      ],
+      "availableFrom": "2026-10-05",
+      "reminderOn": false
+    },
+    {
+      "id": "w5",
+      "name": "Adjoa Tetteh",
+      "title": "Full-stack Engineer",
+      "type": "employee",
+      "location": "Accra",
+      "about": "Full-stack engineer currently on an internal Bonarda project.",
+      "skills": [
+        "TypeScript",
+        "Next.js",
+        "Node.js",
+        "PostgreSQL"
+      ],
+      "availableFrom": "2026-09-29",
+      "reminderOn": true
+    },
+    {
+      "id": "w6",
+      "name": "Yaw Mensimah",
+      "title": "Platform Engineer",
+      "type": "contractor",
+      "location": "Takoradi",
+      "about": "Platform contractor who automates the release path.",
+      "skills": [
+        "Kubernetes",
+        "Terraform",
+        "AWS",
+        "Go"
+      ],
+      "availableFrom": "2026-11-02",
+      "reminderOn": false
+    },
+    {
+      "id": "w7",
+      "name": "Esi Quaye",
+      "title": "QA Engineer",
+      "type": "employee",
+      "location": "Accra",
+      "about": "Test automation engineer who writes the tests nobody else wants to.",
+      "skills": [
+        "Playwright",
+        "TypeScript",
+        "Java",
+        "JUnit"
+      ],
+      "availableFrom": "2026-10-26",
+      "reminderOn": true
+    },
+    {
+      "id": "w8",
+      "name": "Nii Armah",
+      "title": "Backend Engineer",
+      "type": "freelancer",
+      "location": "Accra",
+      "about": "Freelance backend engineer, Python and Go.",
+      "skills": [
+        "Python",
+        "FastAPI",
+        "Go",
+        "PostgreSQL"
+      ],
+      "availableFrom": "2026-09-28",
+      "reminderOn": false
+    },
+    {
+      "id": "w9",
+      "name": "Akosua Frimpong",
+      "title": "Software Engineer",
+      "type": "employee",
+      "location": "Accra",
+      "about": "Engineer on streaming and event-driven systems.",
+      "skills": [
+        "Java",
+        "Kafka",
+        "Spring Boot",
+        "Docker"
+      ],
+      "availableFrom": "2027-01-15",
+      "reminderOn": true
+    },
+    {
+      "id": "w10",
+      "name": "Kojo Antwi",
+      "title": "Mobile Engineer",
+      "type": "contractor",
+      "location": "Accra",
+      "about": "Contract mobile engineer, iOS and Android.",
+      "skills": [
+        "Kotlin",
+        "Android",
+        "iOS",
+        "React"
+      ],
+      "availableFrom": "2026-10-12",
+      "reminderOn": false
+    },
+    {
+      "id": "w11",
+      "name": "Afia Donkor",
+      "title": "Frontend Engineer",
+      "type": "freelancer",
+      "location": "Cape Coast",
+      "about": "Freelance frontend engineer, design systems and accessibility.",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Tailwind",
+        "Figma"
+      ],
+      "availableFrom": "2026-10-01",
+      "reminderOn": true
+    },
+    {
+      "id": "w12",
+      "name": "Selorm Agbeko",
+      "title": "Software Engineer",
+      "type": "employee",
+      "location": "Accra",
+      "about": "Java engineer, recently rolled off a markets engagement.",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "Angular"
+      ],
+      "availableFrom": "2026-09-22",
+      "reminderOn": false
+    }
+  ],
+  "clients": [
+    {
+      "id": "c1",
+      "name": "Harrow & Vale",
+      "type": "Global investment bank",
+      "protectedTerms": [
+        "Harrow",
+        "Vale",
+        "HVB",
+        "Aurora",
+        "Sentinel",
+        "RiskHub",
+        "Priya",
+        "Whitfield"
+      ]
+    },
+    {
+      "id": "c2",
+      "name": "Tagus Pay",
+      "type": "Payments fintech",
+      "protectedTerms": [
+        "Tagus",
+        "TagusPay",
+        "Caravela",
+        "Marta"
+      ]
+    },
+    {
+      "id": "c3",
+      "name": "Northgate Capital",
+      "type": "Asset manager",
+      "protectedTerms": [
+        "Northgate",
+        "NGC",
+        "Lodestar",
+        "Oakes"
+      ]
+    },
+    {
+      "id": "c4",
+      "name": "Meridian Health",
+      "type": "Health technology company",
+      "protectedTerms": [
+        "Meridian",
+        "CarePath",
+        "Halden"
+      ]
+    },
+    {
+      "id": "c5",
+      "name": "Bonarda Sales",
+      "type": "Internal Bonarda project",
+      "protectedTerms": []
+    }
+  ],
+  "engagements": [
+    {
+      "id": "e1",
+      "clientId": "c1",
+      "clientLabel": "Global investment bank, risk technology",
+      "role": "Backend engineer",
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Kafka",
+        "React"
+      ],
+      "start": "2025-08-18",
+      "end": "2026-10-16",
+      "clientLead": "Team lead, risk technology",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w1"
+    },
+    {
+      "id": "e2",
+      "clientId": "c2",
+      "clientLabel": "Payments fintech, Lisbon",
+      "role": "Backend contractor",
+      "stack": [
+        "Kotlin",
+        "Spring Boot",
+        "PostgreSQL",
+        "AWS"
+      ],
+      "start": "2026-03-02",
+      "end": "2026-08-28",
+      "clientLead": "Engineering manager, payments",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w2"
+    },
+    {
+      "id": "e3",
+      "clientId": "c3",
+      "clientLabel": "Asset manager, London",
+      "role": "Frontend engineer",
+      "stack": [
+        "TypeScript",
+        "React",
+        "Redux"
+      ],
+      "start": "2025-11-03",
+      "end": "2026-11-27",
+      "clientLead": "Head of portfolio tooling",
+      "engagementOwner": "Yaw Darko",
+      "workerId": "w3"
+    },
+    {
+      "id": "e4",
+      "clientId": "c4",
+      "clientLabel": "Health technology company, Berlin",
+      "role": "Data engineer",
+      "stack": [
+        "Python",
+        "Airflow",
+        "Snowflake"
+      ],
+      "start": "2026-04-06",
+      "end": "2026-10-02",
+      "clientLead": "Data platform lead",
+      "engagementOwner": "Yaw Darko",
+      "workerId": "w4"
+    },
+    {
+      "id": "e5",
+      "clientId": "c5",
+      "clientLabel": "Internal Bonarda project, sales tooling",
+      "role": "Full-stack engineer",
+      "stack": [
+        "TypeScript",
+        "Next.js",
+        "PostgreSQL"
+      ],
+      "start": "2026-06-01",
+      "end": "2026-12-18",
+      "clientLead": "Product owner, Bonarda Sales",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w5"
+    },
+    {
+      "id": "e6",
+      "clientId": "c3",
+      "clientLabel": "Asset manager, London",
+      "role": "Platform engineer",
+      "stack": [
+        "Kubernetes",
+        "Terraform",
+        "AWS"
+      ],
+      "start": "2026-01-12",
+      "end": "2026-10-30",
+      "clientLead": "Infrastructure lead",
+      "engagementOwner": "Yaw Darko",
+      "workerId": "w6"
+    },
+    {
+      "id": "e7",
+      "clientId": "c1",
+      "clientLabel": "Global investment bank, markets technology",
+      "role": "Test automation engineer",
+      "stack": [
+        "Playwright",
+        "Java",
+        "JUnit"
+      ],
+      "start": "2025-10-06",
+      "end": "2026-10-23",
+      "clientLead": "QA manager, markets",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w7"
+    },
+    {
+      "id": "e8",
+      "clientId": "c4",
+      "clientLabel": "Health technology company, Berlin",
+      "role": "Backend engineer",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "start": "2026-02-02",
+      "end": "2026-09-25",
+      "clientLead": "Engineering lead, patient services",
+      "engagementOwner": "Yaw Darko",
+      "workerId": "w8"
+    },
+    {
+      "id": "e9",
+      "clientId": "c2",
+      "clientLabel": "Payments fintech, Lisbon",
+      "role": "Backend engineer",
+      "stack": [
+        "Java",
+        "Kafka",
+        "Spring Boot"
+      ],
+      "start": "2026-01-19",
+      "end": "2027-01-15",
+      "clientLead": "Engineering manager, ledger",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w9"
+    },
+    {
+      "id": "e10",
+      "clientId": "c4",
+      "clientLabel": "Health technology company, Berlin",
+      "role": "Mobile engineer",
+      "stack": [
+        "Kotlin",
+        "Android",
+        "iOS"
+      ],
+      "start": "2026-05-04",
+      "end": "2026-10-09",
+      "clientLead": "Mobile lead",
+      "engagementOwner": "Yaw Darko",
+      "workerId": "w10"
+    },
+    {
+      "id": "e11",
+      "clientId": "c5",
+      "clientLabel": "Internal Bonarda project, HR tooling",
+      "role": "Frontend engineer",
+      "stack": [
+        "React",
+        "TypeScript",
+        "Tailwind"
+      ],
+      "start": "2026-07-06",
+      "end": "2026-10-30",
+      "clientLead": "Product owner, Bonarda HR",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w11"
+    },
+    {
+      "id": "e12",
+      "clientId": "c1",
+      "clientLabel": "Global investment bank, markets technology",
+      "role": "Backend engineer",
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "Angular"
+      ],
+      "start": "2025-06-02",
+      "end": "2026-09-19",
+      "clientLead": "Tech lead, markets",
+      "engagementOwner": "Ama Boateng",
+      "workerId": "w12"
+    }
+  ],
+  "entries": [
+    {
+      "id": "en1",
+      "engagementId": "e1",
+      "date": "2025-11-20",
+      "lines": [
+        {
+          "id": "l1",
+          "text": "Rebuilt a failing nightly reconciliation job in Java and Spring Boot so it runs unattended",
+          "band": "reliability",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cp1"
+        },
+        {
+          "id": "l2",
+          "text": "Added consumer-side retries and dead-letter handling to Kafka event processing",
+          "band": "reliability",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cp1"
+        },
+        {
+          "id": "l3",
+          "text": "Paired with two newer team members on code review practice",
+          "band": "mentoring",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cp1"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "en2",
+      "engagementId": "e1",
+      "date": "2026-05-12",
+      "lines": [
+        {
+          "id": "l4",
+          "text": "Moved a React risk dashboard onto a shared component library",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "en3",
+      "engagementId": "e1",
+      "date": "2026-07-30",
+      "lines": [
+        {
+          "id": "l5",
+          "text": "Ran the team's incident review for a failed overnight run and wrote the follow-up actions",
+          "band": "practice",
+          "status": "approved-by-worker",
+          "tier": "manager-witnessed"
+        }
+      ],
+      "managerSaw": true
+    },
+    {
+      "id": "en4",
+      "engagementId": "e2",
+      "date": "2026-05-18",
+      "lines": [
+        {
+          "id": "l6",
+          "text": "Built a payment reconciliation service in Kotlin",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cp2"
+        },
+        {
+          "id": "l7",
+          "text": "Paired with the client's QA lead to shape the release checklist",
+          "band": "collaboration",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cp2"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "en5",
+      "engagementId": "e2",
+      "date": "2026-08-10",
+      "lines": [
+        {
+          "id": "l8",
+          "text": "Wrote the runbook for the settlement service handover",
+          "band": "practice",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex0",
+      "engagementId": "e3",
+      "date": "2026-04-14",
+      "lines": [
+        {
+          "id": "l10",
+          "text": "Built virtualised grids for large portfolio views in React",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx0"
+        },
+        {
+          "id": "l11",
+          "text": "Introduced component tests with Jest for trading screens",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx0"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex1",
+      "engagementId": "e4",
+      "date": "2026-07-02",
+      "lines": [
+        {
+          "id": "l12",
+          "text": "Built Airflow pipelines loading clinical operations data into Snowflake",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        },
+        {
+          "id": "l13",
+          "text": "Added data quality checks that block bad loads",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex2",
+      "engagementId": "e5",
+      "date": "2026-08-04",
+      "lines": [
+        {
+          "id": "l14",
+          "text": "Built lead pipeline views in Next.js for the sales team",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        },
+        {
+          "id": "l15",
+          "text": "Set up PostgreSQL migrations with review in CI",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex3",
+      "engagementId": "e6",
+      "date": "2026-05-20",
+      "lines": [
+        {
+          "id": "l16",
+          "text": "Moved release infrastructure to Terraform-managed Kubernetes on AWS",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx3"
+        },
+        {
+          "id": "l17",
+          "text": "Cut manual steps from the release path",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx3"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex4",
+      "engagementId": "e7",
+      "date": "2026-06-09",
+      "lines": [
+        {
+          "id": "l18",
+          "text": "Built a Playwright regression suite for markets screens",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        },
+        {
+          "id": "l19",
+          "text": "Stabilised flaky Java integration tests",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex5",
+      "engagementId": "e8",
+      "date": "2026-07-21",
+      "lines": [
+        {
+          "id": "l20",
+          "text": "Built FastAPI services for patient scheduling",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx5"
+        },
+        {
+          "id": "l21",
+          "text": "Designed PostgreSQL schemas with the product team",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx5"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex6",
+      "engagementId": "e9",
+      "date": "2026-06-30",
+      "lines": [
+        {
+          "id": "l22",
+          "text": "Built Kafka consumers for ledger events in Spring Boot",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        },
+        {
+          "id": "l23",
+          "text": "Containerised services with Docker for local testing",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex7",
+      "engagementId": "e10",
+      "date": "2026-08-18",
+      "lines": [
+        {
+          "id": "l24",
+          "text": "Built appointment booking flows in Kotlin for Android",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        },
+        {
+          "id": "l25",
+          "text": "Shared a component approach across iOS and Android",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex8",
+      "engagementId": "e11",
+      "date": "2026-09-01",
+      "lines": [
+        {
+          "id": "l26",
+          "text": "Built accessible form components in React and Tailwind",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        },
+        {
+          "id": "l27",
+          "text": "Ran a design system review with the product owner",
+          "band": "delivery",
+          "status": "approved-by-worker",
+          "tier": "engineer-account"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ex9",
+      "engagementId": "e12",
+      "date": "2026-04-02",
+      "lines": [
+        {
+          "id": "l28",
+          "text": "Maintained Spring Boot trade enrichment services",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx9"
+        },
+        {
+          "id": "l29",
+          "text": "Built Angular screens for trade exceptions",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpx9"
+        }
+      ],
+      "managerSaw": false
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "engagementId": "e1",
+      "reason": "extension",
+      "openedBy": "system",
+      "periodFrom": "2025-08-18",
+      "periodTo": "2026-02-13",
+      "status": "approved",
+      "lineIds": [
+        "l1",
+        "l2",
+        "l3"
+      ],
+      "approver": "Previous team lead, risk technology",
+      "approvedAt": "2026-02-20",
+      "signedRecordId": "rec-cp1"
+    },
+    {
+      "id": "cp2",
+      "engagementId": "e2",
+      "reason": "roll-off",
+      "openedBy": "system",
+      "periodFrom": "2026-03-02",
+      "periodTo": "2026-08-28",
+      "status": "approved",
+      "lineIds": [
+        "l6",
+        "l7",
+        "l9"
+      ],
+      "approver": "Engineering manager, payments",
+      "approvedAt": "2026-09-02",
+      "signedRecordId": "rec-cp2"
+    },
+    {
+      "id": "cpx0",
+      "engagementId": "e3",
+      "reason": "extension",
+      "openedBy": "system",
+      "periodFrom": "2025-11-03",
+      "periodTo": "2026-04-14",
+      "status": "approved",
+      "lineIds": [
+        "l10",
+        "l11"
+      ],
+      "approver": "Head of portfolio tooling",
+      "approvedAt": "2026-04-14",
+      "signedRecordId": "rec-cpx0"
+    },
+    {
+      "id": "cpx3",
+      "engagementId": "e6",
+      "reason": "extension",
+      "openedBy": "system",
+      "periodFrom": "2026-01-12",
+      "periodTo": "2026-05-20",
+      "status": "approved",
+      "lineIds": [
+        "l16",
+        "l17"
+      ],
+      "approver": "Infrastructure lead",
+      "approvedAt": "2026-05-20",
+      "signedRecordId": "rec-cpx3"
+    },
+    {
+      "id": "cpx5",
+      "engagementId": "e8",
+      "reason": "extension",
+      "openedBy": "system",
+      "periodFrom": "2026-02-02",
+      "periodTo": "2026-07-21",
+      "status": "approved",
+      "lineIds": [
+        "l20",
+        "l21"
+      ],
+      "approver": "Engineering lead, patient services",
+      "approvedAt": "2026-07-21",
+      "signedRecordId": "rec-cpx5"
+    },
+    {
+      "id": "cpx9",
+      "engagementId": "e12",
+      "reason": "extension",
+      "openedBy": "system",
+      "periodFrom": "2025-06-02",
+      "periodTo": "2026-04-02",
+      "status": "approved",
+      "lineIds": [
+        "l28",
+        "l29"
+      ],
+      "approver": "Tech lead, markets",
+      "approvedAt": "2026-04-02",
+      "signedRecordId": "rec-cpx9"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec-cp1",
+      "workerId": "w1",
+      "engagementId": "e1",
+      "checkpointId": "cp1",
+      "approver": "Previous team lead, risk technology",
+      "approvedAt": "2026-02-20",
+      "lines": [
+        {
+          "text": "Rebuilt a failing nightly reconciliation job in Java and Spring Boot so it runs unattended",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Added consumer-side retries and dead-letter handling to Kafka event processing",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Paired with two newer team members on code review practice",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "AlEsHtZ5wEDsrjmM3N/RmzqOjh03J0PVjCQDmEuRDcNobZkYbIOAf772i3lM9aWJAgxQ66/6Lf+rKu8qvLIBAA==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cp2",
+      "workerId": "w2",
+      "engagementId": "e2",
+      "checkpointId": "cp2",
+      "approver": "Engineering manager, payments",
+      "approvedAt": "2026-09-02",
+      "lines": [
+        {
+          "text": "Built a payment reconciliation service in Kotlin",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Paired with the client's QA lead to shape the release checklist",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Kofi was dependable under release pressure and left us with a service our team could own on day one.",
+          "tier": "client-approved",
+          "clientWritten": true
+        }
+      ],
+      "signature": "JZvkMkDn0QIT7hSHAfpeP6dPspmwGTf3adwzN8mwAlYkGKvzAViVEoo6rmYGKJ/5SjlNtKuF20UQ0PISM4iYDw==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpx0",
+      "workerId": "w3",
+      "engagementId": "e3",
+      "checkpointId": "cpx0",
+      "approver": "Head of portfolio tooling",
+      "approvedAt": "2026-04-14",
+      "lines": [
+        {
+          "text": "Built virtualised grids for large portfolio views in React",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Introduced component tests with Jest for trading screens",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "k02qsAEF2cTzZKuVt2UBpzoFbjliEe2MC9R8e+gvv9Ro+yu1BwhYm9oLeh5bJW+y7Hh0CO/l9RJVtoYfma2wDQ==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpx3",
+      "workerId": "w6",
+      "engagementId": "e6",
+      "checkpointId": "cpx3",
+      "approver": "Infrastructure lead",
+      "approvedAt": "2026-05-20",
+      "lines": [
+        {
+          "text": "Moved release infrastructure to Terraform-managed Kubernetes on AWS",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Cut manual steps from the release path",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "/z5zOb7ALFz/+mROsO2/1JXjeHjieyZlRpELBw8nXTtYTPn0IOyc01KY2MLxBtfiPMzfNqr5EHlhaVluDTmOAQ==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpx5",
+      "workerId": "w8",
+      "engagementId": "e8",
+      "checkpointId": "cpx5",
+      "approver": "Engineering lead, patient services",
+      "approvedAt": "2026-07-21",
+      "lines": [
+        {
+          "text": "Built FastAPI services for patient scheduling",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Designed PostgreSQL schemas with the product team",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "JdYI69cvnfObT6HLr1OlPLiO+NkG00d009lkTAOiqzdM5JP3kT9pMKFC9Dwa+fN71ZdI4imlLYLAboN2Ct6zDg==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpx9",
+      "workerId": "w12",
+      "engagementId": "e12",
+      "checkpointId": "cpx9",
+      "approver": "Tech lead, markets",
+      "approvedAt": "2026-04-02",
+      "lines": [
+        {
+          "text": "Maintained Spring Boot trade enrichment services",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Built Angular screens for trade exceptions",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "273YrGTYntS6HNB3wFZlvq1ok696yz6baj/KfpKHZZXoTUViSlFC5+V934+bz4jNo31/hnyLYHEu7er/dKbMBA==",
+      "keyId": "bonarda-demo-2026"
+    }
+  ]
+}

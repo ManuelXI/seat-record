@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/*
+  Two themes, one token set. Light is the base; dark redefines the same tokens.
+  Dark mode builds depth with lighter surfaces, not shadows, and uses a desaturated
+  emerald accent. Surfaces carry a faint emerald tint for cohesion.
+  Theme resolution: explicit data-theme wins; otherwise the OS preference.
+*/
+:root {
+  color-scheme: light;
+  --canvas: oklch(97.6% 0.006 165);
+  --surface-1: oklch(100% 0 0);
+  --surface-2: oklch(95.8% 0.009 165);
+  --surface-3: oklch(93% 0.011 165);
+  --border: oklch(88.5% 0.012 165);
+  --border-strong: oklch(80% 0.015 165);
+  --ink: oklch(22% 0.02 170);
+  --ink-2: oklch(44% 0.02 170);
+  --ink-3: oklch(56% 0.018 170);
+  --accent: oklch(48% 0.095 168);
+  --accent-hover: oklch(42% 0.095 168);
+  --accent-ink: oklch(99% 0 0);
+  --accent-soft: oklch(94.5% 0.03 168);
+  --accent-soft-ink: oklch(38% 0.08 168);
+  --warn: oklch(47% 0.1 65);
+  --warn-soft: oklch(95% 0.045 82);
+  --danger: oklch(50% 0.16 27);
+  --danger-soft: oklch(95.5% 0.025 25);
+  --focus: oklch(55% 0.12 168);
+  --shadow: 0 1px 2px oklch(22% 0.02 170 / 0.06), 0 1px 1px oklch(22% 0.02 170 / 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --canvas: oklch(15.5% 0.01 170);
+    --surface-1: oklch(19% 0.012 170);
+    --surface-2: oklch(22.5% 0.013 170);
+    --surface-3: oklch(26.5% 0.014 170);
+    --border: oklch(29.5% 0.014 170);
+    --border-strong: oklch(37% 0.016 170);
+    --ink: oklch(93% 0.01 170);
+    --ink-2: oklch(76% 0.014 170);
+    --ink-3: oklch(64% 0.014 170);
+    --accent: oklch(76% 0.085 168);
+    --accent-hover: oklch(81% 0.08 168);
+    --accent-ink: oklch(17% 0.02 170);
+    --accent-soft: oklch(28% 0.04 168);
+    --accent-soft-ink: oklch(84% 0.07 168);
+    --warn: oklch(82% 0.1 78);
+    --warn-soft: oklch(29% 0.045 75);
+    --danger: oklch(75% 0.12 25);
+    --danger-soft: oklch(29% 0.05 25);
+    --focus: oklch(80% 0.09 168);
+    --shadow: none;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: oklch(15.5% 0.01 170);
+  --surface-1: oklch(19% 0.012 170);
+  --surface-2: oklch(22.5% 0.013 170);
+  --surface-3: oklch(26.5% 0.014 170);
+  --border: oklch(29.5% 0.014 170);
+  --border-strong: oklch(37% 0.016 170);
+  --ink: oklch(93% 0.01 170);
+  --ink-2: oklch(76% 0.014 170);
+  --ink-3: oklch(64% 0.014 170);
+  --accent: oklch(76% 0.085 168);
+  --accent-hover: oklch(81% 0.08 168);
+  --accent-ink: oklch(17% 0.02 170);
+  --accent-soft: oklch(28% 0.04 168);
+  --accent-soft-ink: oklch(84% 0.07 168);
+  --warn: oklch(82% 0.1 78);
+  --warn-soft: oklch(29% 0.045 75);
+  --danger: oklch(75% 0.12 25);
+  --danger-soft: oklch(29% 0.05 25);
+  --focus: oklch(80% 0.09 168);
+  --shadow: none;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-ink: var(--accent-soft-ink);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+html { background: var(--canvas); }
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  transition: background-color 200ms ease;
+}
+:root[data-theme="dark"] body { line-height: 1.62; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { line-height: 1.62; } }
+
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; letter-spacing: -0.01em; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

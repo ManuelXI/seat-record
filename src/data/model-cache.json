@@ -1,0 +1,173 @@
+{
+  "_note": "Cached model responses for the scripted demo entries, keyed by normalised screened text. Written by the team from real runs; used so the in-person demo survives a network failure.",
+  "i rebuilt their overnight var batch so it stopped failing on an upstream ledger feed, and set up contract tests for the three upstream teams": {
+    "flags": [
+      {
+        "term": "VaR",
+        "reason": "Value-at-Risk is a specific risk metric. Next to 'overnight batch' and 'ledger feed' it narrows down which client system this is.",
+        "suggestion": "risk"
+      }
+    ],
+    "lines": [
+      {
+        "text": "Rebuilt an overnight VaR batch job so it stopped failing on an upstream data feed",
+        "band": "reliability",
+        "source": "rebuilt their overnight VaR batch so it stopped failing on an upstream ledger feed"
+      },
+      {
+        "text": "Eliminated all failures in a business-critical overnight process",
+        "band": "reliability",
+        "source": "stopped failing"
+      },
+      {
+        "text": "Set up contract tests with three upstream teams so integration breaks surface before release",
+        "band": "testing",
+        "source": "set up contract tests for the three upstream teams"
+      },
+      {
+        "text": "Worked across team boundaries with upstream data providers",
+        "band": "collaboration",
+        "source": "the three upstream teams"
+      }
+    ]
+  },
+  "i built the payment reconciliation service in kotlin and paired with the client's qa lead on the release checklist": {
+    "flags": [],
+    "lines": [
+      {
+        "text": "Built a payment reconciliation service in Kotlin",
+        "band": "delivery",
+        "source": "built the payment reconciliation service in Kotlin"
+      },
+      {
+        "text": "Paired with the client's QA lead to shape the release checklist",
+        "band": "collaboration",
+        "source": "paired with the client's QA lead on the release checklist"
+      }
+    ]
+  },
+  "i rebuilt their overnight var batch so it stopped failing on the upstream ledger feed, and set up contract tests for the three upstream teams": {
+    "flags": [
+      {
+        "term": "VaR",
+        "reason": "Value-at-Risk is a specific risk metric. Next to 'overnight batch' and 'ledger feed' it narrows down which client system this is.",
+        "suggestion": "risk"
+      }
+    ],
+    "lines": [
+      {
+        "text": "Rebuilt an overnight VaR batch job so it stopped failing on an upstream data feed",
+        "band": "reliability",
+        "source": "rebuilt their overnight VaR batch so it stopped failing on an upstream ledger feed"
+      },
+      {
+        "text": "Eliminated all failures in a business-critical overnight process",
+        "band": "reliability",
+        "source": "stopped failing"
+      },
+      {
+        "text": "Set up contract tests with three upstream teams so integration breaks surface before release",
+        "band": "testing",
+        "source": "set up contract tests for the three upstream teams"
+      },
+      {
+        "text": "Worked across team boundaries with upstream data providers",
+        "band": "collaboration",
+        "source": "the three upstream teams"
+      }
+    ]
+  },
+  "i rebuilt their overnight var batch so it stopped failing on the an upstream ledger feed, and set up contract tests for the three upstream teams": {
+    "flags": [
+      {
+        "term": "VaR",
+        "reason": "Value-at-Risk is a specific risk metric. Next to 'overnight batch' and 'ledger feed' it narrows down which client system this is.",
+        "suggestion": "risk"
+      }
+    ],
+    "lines": [
+      {
+        "text": "Rebuilt an overnight VaR batch job so it stopped failing on an upstream data feed",
+        "band": "reliability",
+        "source": "rebuilt their overnight VaR batch so it stopped failing on an upstream ledger feed"
+      },
+      {
+        "text": "Eliminated all failures in a business-critical overnight process",
+        "band": "reliability",
+        "source": "stopped failing"
+      },
+      {
+        "text": "Set up contract tests with three upstream teams so integration breaks surface before release",
+        "band": "testing",
+        "source": "set up contract tests for the three upstream teams"
+      },
+      {
+        "text": "Worked across team boundaries with upstream data providers",
+        "band": "collaboration",
+        "source": "the three upstream teams"
+      }
+    ]
+  },
+  "i rebuilt their overnight var batch so it stopped failing on a ledger feed, and set up contract tests for the three upstream teams": {
+    "flags": [
+      {
+        "term": "VaR",
+        "reason": "Value-at-Risk is a specific risk metric. Next to 'overnight batch' and 'ledger feed' it narrows down which client system this is.",
+        "suggestion": "risk"
+      }
+    ],
+    "lines": [
+      {
+        "text": "Rebuilt an overnight VaR batch job so it stopped failing on an upstream data feed",
+        "band": "reliability",
+        "source": "rebuilt their overnight VaR batch so it stopped failing on an upstream ledger feed"
+      },
+      {
+        "text": "Eliminated all failures in a business-critical overnight process",
+        "band": "reliability",
+        "source": "stopped failing"
+      },
+      {
+        "text": "Set up contract tests with three upstream teams so integration breaks surface before release",
+        "band": "testing",
+        "source": "set up contract tests for the three upstream teams"
+      },
+      {
+        "text": "Worked across team boundaries with upstream data providers",
+        "band": "collaboration",
+        "source": "the three upstream teams"
+      }
+    ]
+  },
+  "i rebuilt their overnight var batch so it stopped failing on an upstream feed, and set up contract tests for the three upstream teams": {
+    "flags": [
+      {
+        "term": "VaR",
+        "reason": "Value-at-Risk is a specific risk metric. Next to 'overnight batch' and 'ledger feed' it narrows down which client system this is.",
+        "suggestion": "risk"
+      }
+    ],
+    "lines": [
+      {
+        "text": "Rebuilt an overnight VaR batch job so it stopped failing on an upstream data feed",
+        "band": "reliability",
+        "source": "rebuilt their overnight VaR batch so it stopped failing on an upstream ledger feed"
+      },
+      {
+        "text": "Eliminated all failures in a business-critical overnight process",
+        "band": "reliability",
+        "source": "stopped failing"
+      },
+      {
+        "text": "Set up contract tests with three upstream teams so integration breaks surface before release",
+        "band": "testing",
+        "source": "set up contract tests for the three upstream teams"
+      },
+      {
+        "text": "Worked across team boundaries with upstream data providers",
+        "band": "collaboration",
+        "source": "the three upstream teams"
+      }
+    ]
+  }
+}
