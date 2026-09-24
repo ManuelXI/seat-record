@@ -1,0 +1,27 @@
+{
+  "_note": "Cached model output for the demo's example requests, keyed by normalised request. Line ids are record id plus line index, so they are stable across seed regeneration. Keyword matching still runs on top, so lines approved later in the demo are found too.",
+  "java developer who has handled kafka failures and run incident reviews": {
+    "requirements": ["Java backend development", "Handling failures in Kafka event processing", "Running incident reviews"],
+    "matches": [
+      { "requirement": 0, "line_id": "rec-cp1#0", "reason": "A Java and Spring Boot backend job." },
+      { "requirement": 0, "line_id": "rec-cpx9#0", "reason": "Spring Boot services run on Java." },
+      { "requirement": 1, "line_id": "rec-cp1#1", "reason": "Retries and dead-letter handling are how Kafka processing recovers from failures." }
+    ]
+  },
+  "someone who has automated releases on kubernetes and built react screens for trading or portfolio data": {
+    "requirements": ["Automating releases on Kubernetes", "Building React screens for trading or portfolio data"],
+    "matches": [
+      { "requirement": 0, "line_id": "rec-cpx3#0", "reason": "Release infrastructure on Terraform-managed Kubernetes." },
+      { "requirement": 0, "line_id": "rec-cpx3#1", "reason": "Removing manual steps is release automation." },
+      { "requirement": 1, "line_id": "rec-cpx0#0", "reason": "React grids for portfolio views." },
+      { "requirement": 1, "line_id": "rec-cpx0#1", "reason": "Tests for trading screens, part of building them." }
+    ]
+  },
+  "python api developer for a patient booking product": {
+    "requirements": ["Building Python APIs", "Patient-facing or healthcare systems"],
+    "matches": [
+      { "requirement": 0, "line_id": "rec-cpx5#0", "reason": "FastAPI is a Python API framework." },
+      { "requirement": 1, "line_id": "rec-cpx5#0", "reason": "Patient scheduling is a patient-facing system." }
+    ]
+  }
+}

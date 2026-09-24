@@ -77,7 +77,7 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
       ]
     : [
         { href: "/", label: "Your engagements", icon: IconGrid, match: (p) => p === "/" || p.startsWith("/worker/") || p.startsWith("/profile/") || p.startsWith("/history/") },
-        { href: "/#find", label: "Find people", icon: IconSearch, match: () => false },
+        { href: "/search", label: "Find people", icon: IconSearch, match: (p) => p.startsWith("/search") },
       ];
   const reference: NavItem[] = [
     { href: "/eval", label: "Evaluation", icon: IconChart, match: (p) => p.startsWith("/eval") },

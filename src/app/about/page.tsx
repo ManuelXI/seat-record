@@ -7,6 +7,7 @@ const REAL = [
   ["Checkpoints, default-all selection, worker approval", "Real"],
   ["Ed25519 signing and verification of approved records", "Real, tested; demo key"],
   ["Tiers, seat history, profile Experience section, export", "Real"],
+  ["Find people: requirements from a request, matched to approved lines", `Real (${RUNTIME_MODEL} plus keyword matching); demo requests cached`],
   ["Placement list and contract end dates", "Mocked with seed data"],
   ["Extension and testimonial emails to the client", "Mocked as an on-screen email"],
   ["Monthly reminder delivery", "Mocked as an on-screen card"],

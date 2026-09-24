@@ -29,7 +29,8 @@ const GROUPS: { title: string; items: QA[] }[] = [
     title: "The AI",
     items: [
       { q: "What does the AI actually do?", a: "Two jobs a form can’t: flag confidential detail a word list misses, with a reason, and rewrite a true, specific sentence into a true, generic one at skill level. Everything else, including the first screen, the grounding check, tiers, signing and storage, is plain code with tests." },
-      { q: "Does the AI score or rank people?", a: "Never. There is no score field anywhere. Finding people for a client request filters by stack and sorts by availability." },
+      { q: "Does the AI score or rank people?", a: "Never. There is no score field anywhere. Find people shows, for each requirement, the approved lines that support it, and sorts people by availability. The manager reads the quotes and decides." },
+      { q: "How does Find people work?", a: "A manager describes what the client needs. The model breaks it into requirements and points at client-approved lines that support each one, with a short reason; it can only cite lines that exist. Keyword matching runs alongside, so nothing depends on the model alone. Only client-approved lines are searched; a worker’s private log never is." },
       { q: "What if the AI gets something wrong?", a: "A grounding check greys out any drafted line that claims a number or outcome you never wrote. You approve every line, and the client approves again. If the model is unavailable, you get a plain, clearly labelled draft instead." },
       { q: "Which model does it use?", a: "Claude Opus 5 through the Anthropic API, with structured output and a server-side fallback if a request is declined. The scripted demo entries use cached responses so the demo works offline." },
     ],

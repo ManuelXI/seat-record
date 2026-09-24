@@ -2,21 +2,17 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { engagementsFor, rollOffStatus, useStore } from "@/lib/store";
-import { extractStack } from "@/lib/match";
 import { formatDate } from "@/lib/dates";
 import { MANAGERS } from "@/lib/people";
 import { Loading, TypeBadge } from "@/components/ui";
 import { Landing } from "@/components/Landing";
 
-const EXAMPLES = ["Java developer, risk tech, Kafka a plus", "We have a patient booking product and need people to build it: Python, React, Kotlin"];
 
 export default function Home() {
   const { state, ready, session } = useStore();
   const router = useRouter();
-  const [request, setRequest] = useState("");
-  const stack = useMemo(() => extractStack(request), [request]);
 
   useEffect(() => {
     if (ready && session?.role === "worker") router.replace(`/worker/${session.personId}`);
@@ -31,15 +27,12 @@ export default function Home() {
     const eng = engagementsFor(state, w.id)[0];
     const lines = state.entries.filter((e) => e.engagementId === eng.id).flatMap((e) => e.lines);
     const approved = lines.filter((l) => l.status === "client-approved").length;
-    const skills = new Set([...w.skills, ...eng.stack].map((s) => s.toLowerCase()));
-    const matched = stack.filter((s) => skills.has(s.toLowerCase()));
     const pending = state.checkpoints.find((c) => c.engagementId === eng.id && c.status !== "approved");
     const rollOffDone = state.checkpoints.some((c) => c.engagementId === eng.id && c.reason === "roll-off" && c.status === "approved");
-    return { w, eng, approved, matched, roll: rollOffStatus(eng.end), pending, rollOffDone };
+    return { w, eng, approved, roll: rollOffStatus(eng.end), pending, rollOffDone };
   });
   const mine = rows.filter((r) => r.eng.engagementOwner === me.name);
   const attention = mine.filter((r) => r.pending || ((r.roll.windowOpen || r.roll.ended) && !r.rollOffDone));
-  const matches = stack.length ? rows.filter((r) => r.matched.length > 0).sort((a, b) => (a.w.availableFrom < b.w.availableFrom ? -1 : 1)) : [];
 
   const status = (r: (typeof rows)[number]) =>
     r.pending?.status === "sent" ? "With the client lead" : r.pending ? "Checkpoint open, waiting for the worker" : r.roll.ended ? (r.rollOffDone ? "Ended, record approved" : "Ended, no roll-off record yet") : r.roll.windowOpen ? (r.rollOffDone ? "Roll-off approved" : `Roll-off window open, ${r.roll.days} working days`) : `${r.roll.days} working days to contract end`;
@@ -100,43 +93,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="find" className="card scroll-mt-6 p-5 sm:p-6" aria-labelledby="find-title">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 id="find-title" className="text-xl font-semibold">Find people for a client request</h2>
-          <span className="text-xs text-ink-3">Filters by stack, sorts by availability. Never scores people.</span>
+      <section className="card flex flex-wrap items-center justify-between gap-4 p-5">
+        <div>
+          <h2 className="text-xl font-semibold">Find people for a client request</h2>
+          <p className="text-sm text-ink-2">Search client-approved evidence, not just skills lists. See exactly what each person has done, quoted.</p>
         </div>
-        <label htmlFor="request" className="sr-only">Client request</label>
-        <textarea
-          id="request" value={request} onChange={(e) => setRequest(e.target.value)} rows={2}
-          placeholder="Paste the client's request, e.g. “we need a Java developer with Kafka”"
-          className="mt-4 w-full resize-y rounded-lg border border-line bg-surface-2 px-3 py-2.5 text-ink placeholder:text-ink-3"
-        />
-        <div className="mt-2 flex flex-wrap gap-2 text-xs">
-          <span className="text-ink-3">Try:</span>
-          {EXAMPLES.map((ex) => (
-            <button key={ex} onClick={() => setRequest(ex)} className="rounded-full border border-line px-2.5 py-0.5 text-ink-2 hover:bg-surface-2 hover:text-ink">{ex}</button>
-          ))}
-        </div>
-        {stack.length > 0 && (
-          <div className="mt-5 space-y-3">
-            <p className="text-sm text-ink-2">Stack in request: {stack.map((s) => <span key={s} className="mr-1.5 rounded bg-accent-soft px-1.5 py-0.5 font-mono text-xs text-accent-soft-ink">{s}</span>)}</p>
-            {matches.length === 0 ? (
-              <p className="text-sm text-ink-3">Nobody has that stack on their profile yet.</p>
-            ) : (
-              <ul className="divide-y divide-line rounded-lg border border-line">
-                {matches.map(({ w, matched, approved }) => (
-                  <li key={w.id} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3">
-                    <Link href={`/profile/${w.id}`} className="font-medium hover:text-accent">{w.name}</Link>
-                    <TypeBadge type={w.type} />
-                    <span className="text-sm text-ink-3">Available {formatDate(w.availableFrom)}</span>
-                    <span className="text-sm text-ink-2">{matched.join(", ")}</span>
-                    <span className="ml-auto text-sm text-ink-2">{approved} client-approved {approved === 1 ? "line" : "lines"}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
+        <Link href="/search" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Find people →</Link>
       </section>
     </div>
   );

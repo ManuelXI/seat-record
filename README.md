@@ -56,6 +56,10 @@ A worker's seat history (`/history/:id`) is private to them and Bonarda Works. F
 5. **Client approval** (`/client/:id`, mocked). The link rides on an email the client already sends: the extension reply or the end-of-engagement testimonial request. Approve, edit or decline per line; an optional testimonial is screened too.
 6. **Signed record.** Approved lines are signed with Ed25519, tiered, and shown on the **dev profile** (`/profile/w1`) with a link to the private **seat history** (`/history/w1`). Workers can **export** their record or share an unlisted link.
 
+## Find people
+
+Managers describe a client request at `/search`. The model splits it into requirements and cites client-approved lines that support each one; keyword matching runs alongside and a manager can filter to people with evidence for every requirement. Results are sorted by availability. Nothing is scored, and a worker's private log is never searched.
+
 ## Real and mocked
 
 | Part | Status |
