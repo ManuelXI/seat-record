@@ -10,6 +10,18 @@ const KEY = "seat-record-state-v1";
 const SESSION_KEY = "seat-record-session-v1";
 const initial = seed as AppState;
 
+/**
+ * Saved demo data can predate newer seed fields. Fill in anything the saved copy lacks
+ * (for example share links added later) without touching what the user changed.
+ */
+function migrate(saved: AppState): AppState {
+  const seedWorkers = new Map(initial.workers.map((w) => [w.id, w]));
+  return {
+    ...saved,
+    workers: saved.workers.map((w) => ("share" in w ? w : seedWorkers.get(w.id)?.share ? { ...w, share: seedWorkers.get(w.id)!.share } : w)),
+  };
+}
+
 let counter = 0;
 const uid = (p: string) => `${p}-${Date.now().toString(36)}-${(counter++).toString(36)}`;
 
@@ -44,7 +56,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     if (typeof window === "undefined") return initial;
     try {
       const saved = localStorage.getItem(KEY);
-      return saved ? (JSON.parse(saved) as AppState) : initial;
+      return saved ? migrate(JSON.parse(saved) as AppState) : initial;
     } catch {
       return initial;
     }

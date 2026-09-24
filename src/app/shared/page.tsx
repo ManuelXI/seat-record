@@ -27,6 +27,13 @@ export default function SharedShowcase() {
         </p>
       </header>
 
+      {shared.length === 0 && (
+        <div className="card space-y-2 p-6">
+          <p className="font-medium">No shared records right now</p>
+          <p className="text-sm text-ink-2">Nobody has sharing turned on in this browser&rsquo;s demo data. Sign in as a worker and turn on sharing from My profile, or reset the demo data to restore the five example records.</p>
+        </div>
+      )}
+
       <ul className="grid gap-4 sm:grid-cols-2">
         {shared.map((w) => {
           const eng = engagementsFor(state, w.id)[0];

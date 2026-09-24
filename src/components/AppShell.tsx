@@ -38,7 +38,17 @@ function PublicShell({ children }: { children: React.ReactNode }) {
               <Link key={href} href={href} className={`rounded-md px-2.5 py-1.5 ${path.startsWith(href) ? "bg-surface-2 text-ink" : "text-ink-2 hover:text-ink"}`}>{label}</Link>
             ))}
           </nav>
-          <div className="ml-auto sm:ml-2"><ThemeToggle /></div>
+          <div className="ml-auto flex items-center gap-2 sm:ml-2">
+            <ThemeToggle />
+            {path !== "/signin" && (
+              <Link
+                href="/signin"
+                className="inline-flex h-9 items-center rounded-lg bg-accent px-3.5 text-sm font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]"
+              >
+                Try it
+              </Link>
+            )}
+          </div>
         </div>
       </header>
       <main className="mx-auto w-full max-w-5xl px-4 pb-24 pt-8 sm:px-6">{children}</main>

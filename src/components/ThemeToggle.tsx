@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { IconMonitor, IconMoon, IconSun } from "./icons";
 
 type Mode = "system" | "light" | "dark";
 const THEME_KEY = "seat-record-theme";
@@ -44,23 +45,31 @@ function subscribeMode(cb: () => void) {
   };
 }
 
+const OPTIONS: { mode: Mode; label: string; Icon: () => React.JSX.Element }[] = [
+  { mode: "system", label: "System", Icon: IconMonitor },
+  { mode: "light", label: "Light", Icon: IconSun },
+  { mode: "dark", label: "Dark", Icon: IconMoon },
+];
+
+/** Icon-only in the top bar; icons with labels when `compact` (the full-width sidebar version). */
 export function ThemeToggle({ compact = false }: { compact?: boolean }) {
   const mode = useSyncExternalStore(subscribeMode, readMode, () => "system" as Mode);
-  const apply = applyMode;
   return (
-    <div role="radiogroup" aria-label="Colour theme" className={`flex rounded-lg border border-line bg-surface-1 p-0.5 text-xs ${compact ? "w-full" : ""}`}>
-      {(["system", "light", "dark"] as Mode[]).map((m) => (
+    <div role="radiogroup" aria-label="Colour theme" className={`flex rounded-lg border border-line bg-surface-1 p-0.5 ${compact ? "w-full text-xs" : ""}`}>
+      {OPTIONS.map(({ mode: m, label, Icon }) => (
         <button
           key={m}
           role="radio"
           aria-checked={mode === m}
-          onClick={() => apply(m)}
-          className={`${compact ? "flex-1" : ""} rounded-md px-2 py-1 capitalize transition-colors ${mode === m ? "bg-surface-3 text-ink" : "text-ink-3 hover:text-ink"}`}
+          aria-label={`${label} theme`}
+          title={`${label} theme`}
+          onClick={() => applyMode(m)}
+          className={`flex items-center justify-center gap-1.5 rounded-md transition-colors duration-150 ${compact ? "flex-1 px-2 py-1" : "h-8 w-8"} ${mode === m ? "bg-surface-3 text-ink" : "text-ink-3 hover:text-ink"}`}
         >
-          {m}
+          <Icon />
+          {compact && <span>{label}</span>}
         </button>
       ))}
     </div>
   );
 }
-

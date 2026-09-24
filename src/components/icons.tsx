@@ -14,3 +14,6 @@ export const IconReset = () => (<svg {...base}><path d="M4 10a6 6 0 1 0 2-4.5M4 
 export const IconHelp = () => (<svg {...base}><circle cx="10" cy="10" r="7" /><path d="M8 8a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2v.5M10 14v.01" /></svg>);
 export const IconShare = () => (<svg {...base}><circle cx="5.5" cy="10" r="2" /><circle cx="14.5" cy="5" r="2" /><circle cx="14.5" cy="15" r="2" /><path d="M7.3 9l5.4-3M7.3 11l5.4 3" /></svg>);
 export const IconSearch = () => (<svg {...base}><circle cx="9" cy="9" r="5" /><path d="M13 13l3.5 3.5" /></svg>);
+export const IconSun = () => (<svg {...base}><circle cx="10" cy="10" r="3.2" /><path d="M10 2.5v1.8M10 15.7v1.8M2.5 10h1.8M15.7 10h1.8M4.7 4.7l1.3 1.3M14 14l1.3 1.3M4.7 15.3L6 14M14 6l1.3-1.3" /></svg>);
+export const IconMoon = () => (<svg {...base}><path d="M15.5 12.2A6 6 0 0 1 7.8 4.5a6 6 0 1 0 7.7 7.7z" /></svg>);
+export const IconMonitor = () => (<svg {...base}><rect x="2.5" y="3.5" width="15" height="10" rx="1.5" /><path d="M7 17h6M10 13.5V17" /></svg>);
