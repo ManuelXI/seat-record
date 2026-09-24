@@ -74,7 +74,7 @@ export default function FAQ() {
       </nav>
 
       {GROUPS.map((g) => (
-        <section key={g.title} id={g.title.toLowerCase().replace(/[^a-z]+/g, "-")} className="scroll-mt-20 space-y-3">
+        <section key={g.title} id={g.title.toLowerCase().replace(/[^a-z]+/g, "-")} className="scroll-mt-24 space-y-3">
           <h2 className="text-2xl font-semibold">{g.title}</h2>
           <div className="divide-y divide-line rounded-xl border border-line bg-surface-1">
             {g.items.map((it) => (

@@ -19,7 +19,7 @@ const themeScript = `try{var t=localStorage.getItem('seat-record-theme');if(t===
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${fraunces.variable}`} suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" className={`${plexSans.variable} ${plexMono.variable} ${fraunces.variable}`} suppressHydrationWarning>
       <body className="min-h-screen antialiased">
         <Script id="theme" strategy="beforeInteractive">{themeScript}</Script>
         <StoreProvider>

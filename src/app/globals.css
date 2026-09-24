@@ -105,6 +105,11 @@
 }
 
 html { background: var(--canvas); }
+/* Smooth scrolling for in-page links (FAQ sections). Next.js reads data-scroll-behavior on <html>
+   so route changes still jump to the top instantly. Reduced motion keeps the instant jump. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 body {
   background: var(--canvas);
   color: var(--ink);
