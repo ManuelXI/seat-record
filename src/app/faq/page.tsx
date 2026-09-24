@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AccordionItem } from "@/components/Accordion";
 
 type QA = { q: string; a: React.ReactNode };
 
@@ -75,13 +76,7 @@ export default function FAQ() {
           <h2 className="text-2xl font-semibold">{g.title}</h2>
           <div className="divide-y divide-line rounded-xl border border-line bg-surface-1">
             {g.items.map((it) => (
-              <details key={it.q} className="group px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-medium text-ink">
-                  <span>{it.q}</span>
-                  <span aria-hidden className="mt-0.5 shrink-0 font-mono text-ink-3 transition-transform duration-150 group-open:rotate-45">+</span>
-                </summary>
-                <div className="pt-3 text-ink-2">{it.a}</div>
-              </details>
+              <AccordionItem key={it.q} question={it.q}>{it.a}</AccordionItem>
             ))}
           </div>
         </section>
