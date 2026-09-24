@@ -4,8 +4,10 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, u
 import seed from "@/data/seed.json";
 import { DEMO_TODAY, ROLL_OFF_WINDOW_WORKING_DAYS, workingDaysBetween } from "./dates";
 import type { AppState, Checkpoint, CheckpointReason, Entry, Line, SignedRecord, Tier } from "./types";
+import type { Session } from "./people";
 
 const KEY = "seat-record-state-v1";
+const SESSION_KEY = "seat-record-session-v1";
 const initial = seed as AppState;
 
 let counter = 0;
@@ -20,6 +22,9 @@ export interface ClientDecision {
 interface Store {
   state: AppState;
   ready: boolean;
+  session: Session | null;
+  signIn: (s: Session) => void;
+  signOut: () => void;
   addEntry: (engagementId: string, lines: Pick<Line, "text" | "band" | "source">[]) => void;
   setReminder: (workerId: string, on: boolean) => void;
   openCheckpoint: (engagementId: string, openedBy: Checkpoint["openedBy"], reason: CheckpointReason, note?: string) => Checkpoint;
@@ -44,6 +49,24 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     }
   });
   const ready = useSyncExternalStore(noopSubscribe, () => true, () => false);
+
+  const [session, setSession] = useState<Session | null>(() => {
+    if (typeof window === "undefined") return null;
+    try {
+      const saved = localStorage.getItem(SESSION_KEY);
+      return saved ? (JSON.parse(saved) as Session) : null;
+    } catch {
+      return null;
+    }
+  });
+  const signIn = useCallback((s: Session) => {
+    setSession(s);
+    try { localStorage.setItem(SESSION_KEY, JSON.stringify(s)); } catch {}
+  }, []);
+  const signOut = useCallback(() => {
+    setSession(null);
+    try { localStorage.removeItem(SESSION_KEY); } catch {}
+  }, []);
 
   useEffect(() => {
     if (!ready) return;
@@ -148,8 +171,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ state, ready, addEntry, setReminder, openCheckpoint, sendCheckpoint, completeClientReview, reset }),
-    [state, ready, addEntry, setReminder, openCheckpoint, sendCheckpoint, completeClientReview, reset],
+    () => ({ state, ready, session, signIn, signOut, addEntry, setReminder, openCheckpoint, sendCheckpoint, completeClientReview, reset }),
+    [state, ready, session, signIn, signOut, addEntry, setReminder, openCheckpoint, sendCheckpoint, completeClientReview, reset],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

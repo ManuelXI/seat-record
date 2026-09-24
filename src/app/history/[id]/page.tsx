@@ -61,7 +61,7 @@ export default function History() {
 
   return (
     <div className="space-y-8">
-      <Crumbs items={[{ href: "/", label: "People" }, { href: `/profile/${w.id}`, label: w.name }, { label: "Seat history" }]} />
+      <Crumbs items={[{ href: `/profile/${w.id}`, label: `${w.name}\u2019s profile` }, { label: "Seat history" }]} />
       <header className="space-y-2">
         <p className="eyebrow">Verifiable seat history · hosted by Bonarda Works</p>
         <h1 className="text-3xl font-semibold">{w.name}</h1>

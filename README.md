@@ -31,6 +31,18 @@ Use **Reset demo** in the header to return to the seed state.
 
 Hosted on Netlify (`netlify.toml`). Netlify builds with `npm run build` and applies its Next.js runtime automatically. To run the model live, set `ANTHROPIC_API_KEY` in the site's environment variables.
 
+## Roles
+
+Demo sign-in, no passwords (`/signin`). Real authentication is a next step.
+
+| Role | Sees | Can do |
+|---|---|---|
+| Worker (e.g. Efua, Kofi) | Own seat log, own profile | Log work, send lines for approval, export their record |
+| Manager (Ama, Yaw) | Their engagements, status, client-approved lines, a count of unshared lines | Open a checkpoint with a note; find people for a request |
+| Client lead | Only the approval email | Approve, edit or decline lines; add a testimonial |
+
+A manager can never read a worker's unshared lines or send anything to a client.
+
 ## The flow
 
 1. **Log your work** (`/worker/w1/new`). The worker writes a few lines. A deterministic screen in the browser marks protected terms, names, acronyms, figures and identifiers; each must be replaced before anything is sent.
@@ -49,6 +61,7 @@ Hosted on Netlify (`netlify.toml`). Netlify builds with `npm run build` and appl
 | Checkpoints, selection, profile, history, export | Real |
 | Placement list, client emails, reminder delivery | Mocked |
 | Storage | Browser `localStorage` for the demo |
+| Sign-in | Demo personas, no passwords |
 | Signing key | Committed demo key; production would use a secrets manager |
 
 ## Where the AI is, and is not

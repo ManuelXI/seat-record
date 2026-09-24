@@ -7,12 +7,13 @@ import { engagementsFor, entriesFor, lineTier, useStore } from "@/lib/store";
 import { formatDate, monthsBetween } from "@/lib/dates";
 import { Crumbs, Loading, TierChip, TypeBadge } from "@/components/ui";
 import type { Tier } from "@/lib/types";
+import { Guard } from "@/components/Guard";
 
 const ORDER: Record<Tier, number> = { "client-approved": 0, "manager-witnessed": 1, "engineer-account": 2 };
 
-export default function Profile() {
+function Profile() {
   const { id } = useParams<{ id: string }>();
-  const { state, ready } = useStore();
+  const { state, ready, session } = useStore();
   const [view, setView] = useState<"with" | "before">("with");
   const w = state.workers.find((x) => x.id === id);
   if (!ready) return <Loading />;
@@ -21,7 +22,7 @@ export default function Profile() {
 
   return (
     <div className="space-y-6">
-      <Crumbs items={[{ href: "/", label: "People" }, { href: `/worker/${w.id}`, label: w.name }, { label: "Dev profile" }]} />
+      <Crumbs items={session?.role === "manager" ? [{ href: "/", label: "Your engagements" }, { href: `/worker/${w.id}`, label: w.name }, { label: "Dev profile" }] : [{ href: `/worker/${w.id}`, label: "My seat log" }, { label: "My profile" }]} />
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-ink-2">The one-page profile sent to prospective clients. {w.name.split(" ")[0]} writes it; Seat Record fills the Experience section.</p>
@@ -108,4 +109,9 @@ export default function Profile() {
       </article>
     </div>
   );
+}
+
+export default function ProfilePage() {
+  const { id } = useParams<{ id: string }>();
+  return <Guard allow={(s) => s.role === "manager" || s.personId === id}><Profile /></Guard>;
 }

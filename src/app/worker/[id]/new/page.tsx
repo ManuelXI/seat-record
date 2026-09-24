@@ -7,6 +7,7 @@ import { screenText } from "@/lib/screen";
 import { checkGrounding } from "@/lib/grounding";
 import { Button, Crumbs, Loading } from "@/components/ui";
 import { Highlighted } from "@/components/Highlighted";
+import { Guard } from "@/components/Guard";
 import type { ModelFlag, RewriteResult } from "@/lib/types";
 
 const EXAMPLE = "I rebuilt their overnight VaR batch so it stopped failing on the Aurora ledger feed, and set up contract tests for the three upstream teams.";
@@ -17,7 +18,7 @@ function replaceAll(s: string, term: string, repl: string) {
   return s.replace(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), repl);
 }
 
-export default function LogYourWork() {
+function LogYourWork() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { state, ready, addEntry } = useStore();
@@ -81,7 +82,7 @@ export default function LogYourWork() {
 
   return (
     <div className="space-y-8">
-      <Crumbs items={[{ href: "/", label: "People" }, { href: `/worker/${w.id}`, label: w.name }, { label: "Log your work" }]} />
+      <Crumbs items={[{ href: `/worker/${w.id}`, label: "My seat log" }, { label: "Log your work" }]} />
 
       <header className="space-y-2">
         <p className="eyebrow">{eng.clientLabel}</p>
@@ -228,4 +229,9 @@ export default function LogYourWork() {
       )}
     </div>
   );
+}
+
+export default function LogYourWorkPage() {
+  const { id } = useParams<{ id: string }>();
+  return <Guard allow={(s) => s.role === "worker" && s.personId === id}><LogYourWork /></Guard>;
 }

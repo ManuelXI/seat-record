@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import { AppHeader } from "@/components/AppHeader";
@@ -19,10 +20,8 @@ const themeScript = `try{var t=localStorage.getItem('seat-record-theme');if(t===
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${fraunces.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="min-h-screen antialiased">
+        <Script id="theme" strategy="beforeInteractive">{themeScript}</Script>
         <StoreProvider>
           <AppHeader />
           <main className="mx-auto w-full max-w-5xl px-4 pb-24 pt-8 sm:px-6">{children}</main>

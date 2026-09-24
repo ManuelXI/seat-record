@@ -6,6 +6,7 @@ import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { engagementsFor, entriesFor, lineTier, rollOffStatus, useStore } from "@/lib/store";
 import { formatDate } from "@/lib/dates";
 import { Button, ButtonLink, Crumbs, Loading, TierChip } from "@/components/ui";
+import { Guard } from "@/components/Guard";
 
 const MAX_LINES = 8;
 
@@ -49,7 +50,7 @@ function CheckpointInner() {
   if (cp.status === "sent" || cp.status === "approved") {
     return (
       <div className="space-y-6">
-        <Crumbs items={[{ href: "/", label: "People" }, { href: `/worker/${w.id}`, label: w.name }, { label: "Checkpoint" }]} />
+        <Crumbs items={[{ href: `/worker/${w.id}`, label: "My seat log" }, { label: "Checkpoint" }]} />
         <div className="card space-y-3 p-6">
           <p className="eyebrow">{cp.status === "sent" ? "Sent" : "Approved"}</p>
           <h1 className="text-2xl font-semibold">{cp.status === "sent" ? `${cp.lineIds.length} lines are with the client lead` : "This checkpoint is approved"}</h1>
@@ -65,7 +66,7 @@ function CheckpointInner() {
 
   return (
     <div className="space-y-8">
-      <Crumbs items={[{ href: "/", label: "People" }, { href: `/worker/${w.id}`, label: w.name }, { label: "Checkpoint" }]} />
+      <Crumbs items={[{ href: `/worker/${w.id}`, label: "My seat log" }, { label: "Checkpoint" }]} />
       <header className="space-y-2">
         <p className="eyebrow">
           {cp.reason === "roll-off" ? "Roll-off checkpoint" : cp.reason === "lead-change" ? "Client lead is changing" : cp.reason === "extension" ? "Extension checkpoint" : "Checkpoint"} · opened by {cp.openedBy.replace("-", " ")}
@@ -75,7 +76,7 @@ function CheckpointInner() {
           Everything since {formatDate(cp.periodFrom)} that the client has not approved yet is selected. Untick anything you would rather keep to yourself.
           The link rides on {channel}.
         </p>
-        {cp.note && <p className="rounded-lg bg-warn-soft px-3 py-2 text-sm text-ink">Note from the {cp.openedBy.replace("-", " ")}: “{cp.note}”</p>}
+        {cp.note && <p className="rounded-lg bg-warn-soft px-3 py-2 text-sm text-ink">Note from your {cp.openedBy.replace("-", " ")}: “{cp.note}”</p>}
       </header>
 
       {candidates.length === 0 ? (
@@ -112,5 +113,10 @@ function CheckpointInner() {
 }
 
 export default function CheckpointPage() {
-  return <Suspense fallback={<Loading />}><CheckpointInner /></Suspense>;
+  return <Suspense fallback={<Loading />}><CheckpointGuarded /></Suspense>;
+}
+
+function CheckpointGuarded() {
+  const { id } = useParams<{ id: string }>();
+  return <Guard allow={(s) => s.role === "worker" && s.personId === id}><CheckpointInner /></Guard>;
 }

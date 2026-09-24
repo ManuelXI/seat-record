@@ -7,7 +7,9 @@ import { engagementsFor, entriesFor, lineTier, rollOffStatus, useStore } from "@
 import { formatDate, monthsBetween } from "@/lib/dates";
 import { Button, ButtonLink, Crumbs, Loading, TierChip, TypeBadge } from "@/components/ui";
 import { ExportButton } from "@/components/ExportButton";
-import type { Checkpoint, CheckpointReason } from "@/lib/types";
+import type { CheckpointReason } from "@/lib/types";
+import { Guard } from "@/components/Guard";
+import { ManagerEngagement } from "@/components/ManagerEngagement";
 
 const REASON_LABEL: Record<CheckpointReason, string> = {
   extension: "Extension checkpoint",
@@ -16,15 +18,13 @@ const REASON_LABEL: Record<CheckpointReason, string> = {
   manual: "Checkpoint",
 };
 
-export default function SeatLog() {
+function WorkerSeatLog() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const store = useStore();
   const { state, ready } = store;
   const [opening, setOpening] = useState(false);
-  const [who, setWho] = useState<Checkpoint["openedBy"]>("manager");
   const [reason, setReason] = useState<CheckpointReason>("lead-change");
-  const [note, setNote] = useState("");
 
   const w = state.workers.find((x) => x.id === id);
   if (!ready) return <Loading />;
@@ -43,13 +43,13 @@ export default function SeatLog() {
   ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
   const openManual = () => {
-    const cp = store.openCheckpoint(eng.id, who, reason, note.trim() || undefined);
+    const cp = store.openCheckpoint(eng.id, "worker", reason);
     router.push(`/worker/${w.id}/checkpoint?cp=${cp.id}`);
   };
 
   return (
     <div className="space-y-8">
-      <Crumbs items={[{ href: "/", label: "People" }, { label: w.name }]} />
+      <Crumbs items={[{ label: "My seat log" }]} />
 
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-1.5">
@@ -76,9 +76,9 @@ export default function SeatLog() {
       ) : (needsRollOff || pending) && (
         <div className="card flex flex-wrap items-center justify-between gap-3 bg-warn-soft p-4">
           <div>
-            <p className="font-medium text-ink">{pending ? REASON_LABEL[pending.reason] + " is open" : roll.ended ? "Engagement has ended" : `Roll-off checkpoint opened ${roll.days} working days before the contract end`}</p>
-            <p className="text-sm text-ink-2">Review your unapproved lines. The approval link rides on the testimonial email the client already sends.</p>
-            {pending?.note && <p className="mt-1 text-sm text-ink-2">Note from {pending.openedBy.replace("-", " ")}: “{pending.note}”</p>}
+            <p className="font-medium text-ink">{pending ? `${REASON_LABEL[pending.reason]} opened by ${pending.openedBy === "worker" ? "you" : pending.openedBy === "system" ? "the placement list" : `your ${pending.openedBy.replace("-", " ")}`}` : roll.ended ? "Engagement has ended" : `Roll-off checkpoint opened ${roll.days} working days before the contract end`}</p>
+            <p className="text-sm text-ink-2">Review your unapproved lines. Only you decide what the client sees.</p>
+            {pending?.note && <p className="mt-1 text-sm text-ink-2">Note from your {pending.openedBy.replace("-", " ")}: “{pending.note}”</p>}
           </div>
           <ButtonLink href={`/worker/${w.id}/checkpoint${pending ? `?cp=${pending.id}` : ""}`}>Review lines</ButtonLink>
         </div>
@@ -144,32 +144,20 @@ export default function SeatLog() {
           </div>
 
           <div className="card space-y-3 p-4">
-            <p className="text-sm font-medium">Open a checkpoint by hand</p>
+            <p className="text-sm font-medium">Ask for approval now</p>
             {!opening ? (
               <>
-                <p className="text-xs text-ink-3">For example when the client lead is about to leave. Only {w.name.split(" ")[0]} approves what is sent.</p>
+                <p className="text-xs text-ink-3">For example when your client lead is about to leave, or you just finished something worth capturing.</p>
                 <Button variant="secondary" onClick={() => setOpening(true)} disabled={!!pending}>{pending ? "A checkpoint is already open" : "Open checkpoint"}</Button>
               </>
             ) : (
               <div className="space-y-2 text-sm">
-                <label className="block">
-                  <span className="text-xs text-ink-3">Opened by</span>
-                  <select id="cp-who" value={who} onChange={(e) => setWho(e.target.value as Checkpoint["openedBy"])} className="mt-1 w-full rounded-md border border-line bg-surface-2 px-2 py-1.5">
-                    <option value="manager">Manager</option>
-                    <option value="engagement-owner">Engagement owner</option>
-                    <option value="worker">{w.name.split(" ")[0]}</option>
-                  </select>
-                </label>
                 <label className="block">
                   <span className="text-xs text-ink-3">Reason</span>
                   <select id="cp-reason" value={reason} onChange={(e) => setReason(e.target.value as CheckpointReason)} className="mt-1 w-full rounded-md border border-line bg-surface-2 px-2 py-1.5">
                     <option value="lead-change">Client lead is leaving</option>
                     <option value="manual">Worth capturing now</option>
                   </select>
-                </label>
-                <label className="block">
-                  <span className="text-xs text-ink-3">Note, visible to {w.name.split(" ")[0]}</span>
-                  <input id="cp-note" value={note} onChange={(e) => setNote(e.target.value)} placeholder="The lead moves on in March" className="mt-1 w-full rounded-md border border-line bg-surface-2 px-2 py-1.5" />
                 </label>
                 <div className="flex gap-2 pt-1">
                   <Button onClick={openManual}>Open</Button>
@@ -181,5 +169,15 @@ export default function SeatLog() {
         </aside>
       </div>
     </div>
+  );
+}
+
+export default function SeatLogPage() {
+  const { id } = useParams<{ id: string }>();
+  const { session } = useStore();
+  return (
+    <Guard allow={(s) => s.role === "manager" || s.personId === id}>
+      {session?.role === "manager" ? <ManagerEngagement workerId={id} /> : <WorkerSeatLog />}
+    </Guard>
   );
 }
