@@ -8,6 +8,7 @@ import { checkGrounding } from "@/lib/grounding";
 import { Button, Crumbs, Loading } from "@/components/ui";
 import { Highlighted } from "@/components/Highlighted";
 import { Guard } from "@/components/Guard";
+import { BottomActionBar } from "@/components/StickyBars";
 import type { ModelFlag, RewriteResult } from "@/lib/types";
 import { examplesFor } from "@/data/example-entries";
 
@@ -234,11 +235,11 @@ function LogYourWork() {
             </ul>
           </section>
 
-          <div className="flex flex-wrap items-center gap-3 border-t border-line pt-5">
+          <BottomActionBar>
             <Button onClick={approve} disabled={ready_.length === 0 || openFlags > 0}>Approve {ready_.length} {ready_.length === 1 ? "line" : "lines"}</Button>
             <Button variant="ghost" onClick={() => setStage("write")}>Back to editing</Button>
             {openFlags > 0 && <span className="text-sm text-warn">Decide on the highlighted term above first</span>}
-          </div>
+          </BottomActionBar>
         </div>
       )}
     </div>

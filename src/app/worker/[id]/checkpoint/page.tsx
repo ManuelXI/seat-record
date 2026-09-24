@@ -7,6 +7,7 @@ import { engagementsFor, entriesFor, lineTier, rollOffStatus, useStore } from "@
 import { formatDate } from "@/lib/dates";
 import { Button, ButtonLink, Crumbs, Loading, TierChip } from "@/components/ui";
 import { Guard } from "@/components/Guard";
+import { BottomActionBar } from "@/components/StickyBars";
 
 const MAX_LINES = 8;
 
@@ -100,12 +101,12 @@ function CheckpointInner() {
           {sel.size > MAX_LINES && (
             <p className="text-sm text-warn">That is {sel.size} lines. Client leads approve eight far more readily than {sel.size}. Consider trimming.</p>
           )}
-          <div className="flex flex-wrap items-center gap-3 border-t border-line pt-5">
+          <BottomActionBar>
             <Button disabled={sel.size === 0} onClick={() => store.sendCheckpoint(cp.id, [...sel])}>
               Approve and send {sel.size} {sel.size === 1 ? "line" : "lines"}
             </Button>
             <span className="text-sm text-ink-3">Only you can send this. The client sees these lines and nothing else.</span>
-          </div>
+          </BottomActionBar>
         </>
       )}
     </div>

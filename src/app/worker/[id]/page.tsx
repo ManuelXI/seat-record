@@ -10,6 +10,7 @@ import { ExportButton } from "@/components/ExportButton";
 import type { CheckpointReason } from "@/lib/types";
 import { Guard } from "@/components/Guard";
 import { ManagerEngagement } from "@/components/ManagerEngagement";
+import { CompactTopBar, useScrolledPast } from "@/components/StickyBars";
 
 const REASON_LABEL: Record<CheckpointReason, string> = {
   extension: "Extension checkpoint",
@@ -25,6 +26,7 @@ function WorkerSeatLog() {
   const { state, ready } = store;
   const [opening, setOpening] = useState(false);
   const [reason, setReason] = useState<CheckpointReason>("lead-change");
+  const { ref: headerRef, past } = useScrolledPast<HTMLElement>();
 
   const w = state.workers.find((x) => x.id === id);
   if (!ready) return <Loading />;
@@ -49,9 +51,22 @@ function WorkerSeatLog() {
 
   return (
     <div className="space-y-8">
+      <CompactTopBar show={past}>
+        <div className="min-w-0 leading-tight">
+          <p className="truncate font-display text-lg font-semibold">{w.name}</p>
+          <p className="truncate text-xs text-ink-3">Seat log · {eng.clientLabel}</p>
+        </div>
+        <div className="flex gap-2">
+          {(needsRollOff || pending?.status === "open") && (
+            <ButtonLink href={`/worker/${w.id}/checkpoint${pending ? `?cp=${pending.id}` : ""}`} variant="secondary" className="py-1.5">Review lines</ButtonLink>
+          )}
+          <ButtonLink href={`/worker/${w.id}/new`} className="py-1.5">Log your work</ButtonLink>
+        </div>
+      </CompactTopBar>
+
       <Crumbs items={[{ label: "My seat log" }]} />
 
-      <header className="flex flex-wrap items-start justify-between gap-4">
+      <header ref={headerRef} className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2"><TypeBadge type={w.type} /><span className="text-sm text-ink-3">{w.location}</span></div>
           <h1 className="text-3xl font-semibold">{w.name}</h1>
