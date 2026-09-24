@@ -21,7 +21,9 @@ export function ManagerEngagement({ workerId }: { workerId: string }) {
 
   const w = state.workers.find((x) => x.id === workerId);
   if (!w) return <p>Person not found.</p>;
-  const eng = engagementsFor(state, w.id)[0];
+  const all = engagementsFor(state, w.id);
+  const eng = all[0];
+  const previous = all.slice(1);
   const first = w.name.split(" ")[0];
   const me = MANAGERS.find((m) => m.id === session?.personId);
   const isOwner = me?.name === eng.engagementOwner;
@@ -94,6 +96,34 @@ export function ManagerEngagement({ workerId }: { workerId: string }) {
               </ol>
             )}
           </section>
+
+          {previous.length > 0 && (
+            <section className="space-y-3" aria-labelledby="previous">
+              <h2 id="previous" className="text-xl font-semibold">Previous engagements</h2>
+              <ul className="space-y-3">
+                {previous.map((pe) => {
+                  const recs = state.records.filter((r) => r.engagementId === pe.id);
+                  const lines = recs.flatMap((r) => r.lines);
+                  return (
+                    <li key={pe.id} className="card p-4">
+                      <p className="font-medium">{pe.role} · {pe.clientLabel}</p>
+                      <p className="mb-2 text-xs text-ink-3">{formatDate(pe.start)} to {formatDate(pe.end)} · {lines.length} client-approved {lines.length === 1 ? "line" : "lines"}</p>
+                      {lines.length > 0 && (
+                        <ul className="space-y-1.5">
+                          {lines.map((l, i) => (
+                            <li key={i} className="grid grid-cols-[1fr_auto] items-start gap-x-3 text-sm">
+                              <span className={l.clientWritten ? "italic text-ink-2" : ""}>{l.clientWritten ? `“${l.text}”` : l.text}</span>
+                              <TierChip tier={l.tier} />
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
 
           <section className="rounded-xl border border-dashed border-line-strong p-5">
             <p className="font-medium">{unshared} {unshared === 1 ? "line" : "lines"} in {first}&rsquo;s log not yet shared with the client</p>

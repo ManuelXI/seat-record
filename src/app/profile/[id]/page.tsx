@@ -83,7 +83,7 @@ function Profile() {
                   <div key={eng.id} className="space-y-2">
                     <div>
                       <h3 className="text-lg font-semibold">{eng.role}</h3>
-                      <p className="text-sm text-ink-2">{eng.clientLabel} · {w.type === "employee" ? "Placement" : "Contract"}</p>
+                      <p className="text-sm text-ink-2">{eng.clientLabel} · {eng.clientId === "c5" ? "Internal project" : w.type === "employee" ? "Placement" : "Contract"}</p>
                       <p className="text-sm tabular-nums text-ink-3">{formatDate(eng.start)} to {formatDate(eng.end)} · {monthsBetween(eng.start, eng.end)} months</p>
                     </div>
                     {view === "before" ? (

@@ -15,7 +15,7 @@ const EXAMPLES = [
   "Python API developer for a patient booking product",
 ];
 
-interface Line { id: string; text: string; tier: Tier; clientWritten?: boolean; workerId: string; approver: string; approvedAt: string }
+interface Line { id: string; text: string; tier: Tier; clientWritten?: boolean; workerId: string; engagementId: string; approver: string; approvedAt: string }
 
 function SearchPage() {
   const { state } = useStore();
@@ -27,7 +27,7 @@ function SearchPage() {
 
   // Only client-approved, signed lines are searchable. A worker's private log never enters.
   const lines: Line[] = useMemo(
-    () => state.records.flatMap((r) => r.lines.map((l, i) => ({ id: `${r.id}#${i}`, text: l.text, tier: l.tier, clientWritten: l.clientWritten, workerId: r.workerId, approver: r.approver, approvedAt: r.approvedAt }))),
+    () => state.records.flatMap((r) => r.lines.map((l, i) => ({ id: `${r.id}#${i}`, text: l.text, tier: l.tier, clientWritten: l.clientWritten, workerId: r.workerId, engagementId: r.engagementId, approver: r.approver, approvedAt: r.approvedAt }))),
     [state.records],
   );
   const byId = useMemo(() => new Map(lines.map((l) => [l.id, l])), [lines]);
@@ -139,7 +139,7 @@ function SearchPage() {
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-line bg-surface-2 px-5 py-3">
                       <Link href={`/profile/${worker.id}`} className="font-display text-lg font-semibold hover:text-accent">{worker.name}</Link>
                       <TypeBadge type={worker.type} />
-                      <span className="text-sm text-ink-3">{eng.clientLabel}</span>
+                      <span className="text-sm text-ink-3">Now: {eng.clientLabel}</span>
                       <span className="ml-auto text-sm text-ink-2">Available {formatDate(worker.availableFrom)}</span>
                     </div>
                     <dl className="divide-y divide-line">
@@ -158,7 +158,9 @@ function SearchPage() {
                                       <span className={line.clientWritten ? "italic" : ""}>“{line.text}”</span>
                                       <TierChip tier={line.tier} />
                                     </div>
-                                    <p className="text-xs text-ink-3">{reason} Approved by {line.approver}, {formatDate(line.approvedAt)}.</p>
+                                    <p className="text-xs text-ink-3">
+                                      <span className="text-ink-2">From {state.engagements.find((e) => e.id === line.engagementId)?.clientLabel ?? "an engagement"}.</span> {reason} Approved by {line.approver}, {formatDate(line.approvedAt)}.
+                                    </p>
                                   </div>
                                 ))
                               )}

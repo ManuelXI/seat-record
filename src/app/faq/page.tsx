@@ -22,6 +22,7 @@ const GROUPS: { title: string; items: QA[] }[] = [
       { q: "Who can see my record, and can I share it?", a: "Your seat history is private to you and Bonarda Works. From My profile you can turn on an unlisted share link, copy it, or replace it so the old link stops working. Shared pages are not indexed by search engines." },
       { q: "Can the client change what I wrote?", a: "They can approve, edit or decline each line. Declined lines are deleted. Edited lines are what gets signed, so the record reflects what the client actually stands behind." },
       { q: "What if the client lead never replies?", a: "Your lines stay in your record, clearly labelled as your own account, or as manager-witnessed if your manager saw them. A checkpoint can also be opened early, for example before a client lead leaves." },
+      { q: "What happens when I move to a new project?", a: "Your record follows you. Each engagement keeps its own log, checkpoints and signed lines. When one ends, its log closes and new entries go to your next engagement. Your profile, seat history and shared link show every engagement, newest first, and search shows which engagement each piece of evidence came from. Time on an internal Bonarda project between clients counts too, approved by its product owner." },
       { q: "Can I keep my record if I leave?", a: "Yes. Export my record downloads your client-approved lines with their signatures. Nothing in it belongs to a client, because it only contains screened, approved lines." },
     ],
   },

@@ -463,6 +463,69 @@
       "clientLead": "Tech lead, markets",
       "engagementOwner": "Ama Boateng",
       "workerId": "w12"
+    },
+    {
+      "id": "e1a",
+      "workerId": "w1",
+      "clientId": "c2",
+      "clientLabel": "Payments fintech, Lisbon",
+      "role": "Backend engineer",
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "PostgreSQL"
+      ],
+      "start": "2024-09-02",
+      "end": "2025-02-28",
+      "clientLead": "Engineering manager, settlements",
+      "engagementOwner": "Ama Boateng"
+    },
+    {
+      "id": "e1b",
+      "workerId": "w1",
+      "clientId": "c5",
+      "clientLabel": "Internal Bonarda project, HR tooling (bench)",
+      "role": "Backend engineer",
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "React"
+      ],
+      "start": "2025-03-10",
+      "end": "2025-07-25",
+      "clientLead": "Product owner, Bonarda HR",
+      "engagementOwner": "Ama Boateng"
+    },
+    {
+      "id": "e2a",
+      "workerId": "w2",
+      "clientId": "c3",
+      "clientLabel": "Asset manager, London",
+      "role": "Backend contractor",
+      "stack": [
+        "Kotlin",
+        "PostgreSQL"
+      ],
+      "start": "2025-06-02",
+      "end": "2026-01-30",
+      "clientLead": "Head of portfolio tooling",
+      "engagementOwner": "Yaw Darko"
+    },
+    {
+      "id": "e4a",
+      "workerId": "w4",
+      "clientId": "c3",
+      "clientLabel": "Asset manager, London",
+      "role": "Data engineer",
+      "stack": [
+        "Python",
+        "Airflow",
+        "SQL"
+      ],
+      "start": "2025-09-01",
+      "end": "2026-03-27",
+      "clientLead": "Data platform lead, risk",
+      "engagementOwner": "Yaw Darko"
     }
   ],
   "entries": [
@@ -568,12 +631,108 @@
       "managerSaw": false
     },
     {
+      "id": "ep0",
+      "engagementId": "e1a",
+      "date": "2025-01-15",
+      "lines": [
+        {
+          "id": "l10",
+          "text": "Built settlement reporting APIs in Java and Spring Boot",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp0"
+        },
+        {
+          "id": "l11",
+          "text": "Added contract tests between the payments and reporting services",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp0"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ep1",
+      "engagementId": "e1b",
+      "date": "2025-06-20",
+      "lines": [
+        {
+          "id": "l12",
+          "text": "Built the leave-request workflow for Bonarda HR in Spring Boot",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp1"
+        },
+        {
+          "id": "l13",
+          "text": "Paired with the product owner on acceptance criteria for each release",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp1"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ep2",
+      "engagementId": "e2a",
+      "date": "2025-11-12",
+      "lines": [
+        {
+          "id": "l14",
+          "text": "Built Kotlin services for portfolio rebalancing requests",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp2"
+        },
+        {
+          "id": "l15",
+          "text": "Set up PostgreSQL migrations reviewed in CI",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp2"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
+      "id": "ep3",
+      "engagementId": "e4a",
+      "date": "2026-02-10",
+      "lines": [
+        {
+          "id": "l16",
+          "text": "Built Airflow jobs for daily pricing data loads",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp3"
+        },
+        {
+          "id": "l17",
+          "text": "Documented data lineage for the risk reporting tables",
+          "band": "delivery",
+          "status": "client-approved",
+          "tier": "client-approved",
+          "checkpointId": "cpp3"
+        }
+      ],
+      "managerSaw": false
+    },
+    {
       "id": "ex0",
       "engagementId": "e3",
       "date": "2026-04-14",
       "lines": [
         {
-          "id": "l10",
+          "id": "l18",
           "text": "Built virtualised grids for large portfolio views in React",
           "band": "delivery",
           "status": "client-approved",
@@ -581,7 +740,7 @@
           "checkpointId": "cpx0"
         },
         {
-          "id": "l11",
+          "id": "l19",
           "text": "Introduced component tests with Jest for trading screens",
           "band": "delivery",
           "status": "client-approved",
@@ -597,14 +756,14 @@
       "date": "2026-07-02",
       "lines": [
         {
-          "id": "l12",
+          "id": "l20",
           "text": "Built Airflow pipelines loading clinical operations data into Snowflake",
           "band": "delivery",
           "status": "approved-by-worker",
           "tier": "engineer-account"
         },
         {
-          "id": "l13",
+          "id": "l21",
           "text": "Added data quality checks that block bad loads",
           "band": "delivery",
           "status": "approved-by-worker",
@@ -619,14 +778,14 @@
       "date": "2026-08-04",
       "lines": [
         {
-          "id": "l14",
+          "id": "l22",
           "text": "Built lead pipeline views in Next.js for the sales team",
           "band": "delivery",
           "status": "approved-by-worker",
           "tier": "engineer-account"
         },
         {
-          "id": "l15",
+          "id": "l23",
           "text": "Set up PostgreSQL migrations with review in CI",
           "band": "delivery",
           "status": "approved-by-worker",
@@ -641,7 +800,7 @@
       "date": "2026-05-20",
       "lines": [
         {
-          "id": "l16",
+          "id": "l24",
           "text": "Moved release infrastructure to Terraform-managed Kubernetes on AWS",
           "band": "delivery",
           "status": "client-approved",
@@ -649,7 +808,7 @@
           "checkpointId": "cpx3"
         },
         {
-          "id": "l17",
+          "id": "l25",
           "text": "Cut manual steps from the release path",
           "band": "delivery",
           "status": "client-approved",
@@ -665,14 +824,14 @@
       "date": "2026-06-09",
       "lines": [
         {
-          "id": "l18",
+          "id": "l26",
           "text": "Built a Playwright regression suite for markets screens",
           "band": "delivery",
           "status": "approved-by-worker",
           "tier": "engineer-account"
         },
         {
-          "id": "l19",
+          "id": "l27",
           "text": "Stabilised flaky Java integration tests",
           "band": "delivery",
           "status": "approved-by-worker",
@@ -687,7 +846,7 @@
       "date": "2026-07-21",
       "lines": [
         {
-          "id": "l20",
+          "id": "l28",
           "text": "Built FastAPI services for patient scheduling",
           "band": "delivery",
           "status": "client-approved",
@@ -695,7 +854,7 @@
           "checkpointId": "cpx5"
         },
         {
-          "id": "l21",
+          "id": "l29",
           "text": "Designed PostgreSQL schemas with the product team",
           "band": "delivery",
           "status": "client-approved",
@@ -711,14 +870,14 @@
       "date": "2026-06-30",
       "lines": [
         {
-          "id": "l22",
+          "id": "l30",
           "text": "Built Kafka consumers for ledger events in Spring Boot",
           "band": "delivery",
           "status": "approved-by-worker",
           "tier": "engineer-account"
         },
         {
-          "id": "l23",
+          "id": "l31",
           "text": "Containerised services with Docker for local testing",
           "band": "delivery",
           "status": "approved-by-worker",
@@ -733,14 +892,14 @@
       "date": "2026-08-18",
       "lines": [
         {
-          "id": "l24",
+          "id": "l32",
           "text": "Built appointment booking flows in Kotlin for Android",
           "band": "delivery",
           "status": "approved-by-worker",
           "tier": "engineer-account"
         },
         {
-          "id": "l25",
+          "id": "l33",
           "text": "Shared a component approach across iOS and Android",
           "band": "delivery",
           "status": "approved-by-worker",
@@ -755,14 +914,14 @@
       "date": "2026-09-01",
       "lines": [
         {
-          "id": "l26",
+          "id": "l34",
           "text": "Built accessible form components in React and Tailwind",
           "band": "delivery",
           "status": "approved-by-worker",
           "tier": "engineer-account"
         },
         {
-          "id": "l27",
+          "id": "l35",
           "text": "Ran a design system review with the product owner",
           "band": "delivery",
           "status": "approved-by-worker",
@@ -777,7 +936,7 @@
       "date": "2026-04-02",
       "lines": [
         {
-          "id": "l28",
+          "id": "l36",
           "text": "Maintained Spring Boot trade enrichment services",
           "band": "delivery",
           "status": "client-approved",
@@ -785,7 +944,7 @@
           "checkpointId": "cpx9"
         },
         {
-          "id": "l29",
+          "id": "l37",
           "text": "Built Angular screens for trade exceptions",
           "band": "delivery",
           "status": "client-approved",
@@ -832,6 +991,70 @@
       "signedRecordId": "rec-cp2"
     },
     {
+      "id": "cpp0",
+      "engagementId": "e1a",
+      "reason": "roll-off",
+      "openedBy": "system",
+      "periodFrom": "2024-09-02",
+      "periodTo": "2025-02-28",
+      "status": "approved",
+      "lineIds": [
+        "l10",
+        "l11"
+      ],
+      "approver": "Engineering manager, settlements",
+      "approvedAt": "2025-03-05",
+      "signedRecordId": "rec-cpp0"
+    },
+    {
+      "id": "cpp1",
+      "engagementId": "e1b",
+      "reason": "roll-off",
+      "openedBy": "system",
+      "periodFrom": "2025-03-10",
+      "periodTo": "2025-07-25",
+      "status": "approved",
+      "lineIds": [
+        "l12",
+        "l13"
+      ],
+      "approver": "Product owner, Bonarda HR",
+      "approvedAt": "2025-07-30",
+      "signedRecordId": "rec-cpp1"
+    },
+    {
+      "id": "cpp2",
+      "engagementId": "e2a",
+      "reason": "roll-off",
+      "openedBy": "system",
+      "periodFrom": "2025-06-02",
+      "periodTo": "2026-01-30",
+      "status": "approved",
+      "lineIds": [
+        "l14",
+        "l15"
+      ],
+      "approver": "Head of portfolio tooling",
+      "approvedAt": "2026-02-04",
+      "signedRecordId": "rec-cpp2"
+    },
+    {
+      "id": "cpp3",
+      "engagementId": "e4a",
+      "reason": "roll-off",
+      "openedBy": "system",
+      "periodFrom": "2025-09-01",
+      "periodTo": "2026-03-27",
+      "status": "approved",
+      "lineIds": [
+        "l16",
+        "l17"
+      ],
+      "approver": "Data platform lead, risk",
+      "approvedAt": "2026-04-01",
+      "signedRecordId": "rec-cpp3"
+    },
+    {
       "id": "cpx0",
       "engagementId": "e3",
       "reason": "extension",
@@ -840,8 +1063,8 @@
       "periodTo": "2026-04-14",
       "status": "approved",
       "lineIds": [
-        "l10",
-        "l11"
+        "l18",
+        "l19"
       ],
       "approver": "Head of portfolio tooling",
       "approvedAt": "2026-04-14",
@@ -856,8 +1079,8 @@
       "periodTo": "2026-05-20",
       "status": "approved",
       "lineIds": [
-        "l16",
-        "l17"
+        "l24",
+        "l25"
       ],
       "approver": "Infrastructure lead",
       "approvedAt": "2026-05-20",
@@ -872,8 +1095,8 @@
       "periodTo": "2026-07-21",
       "status": "approved",
       "lineIds": [
-        "l20",
-        "l21"
+        "l28",
+        "l29"
       ],
       "approver": "Engineering lead, patient services",
       "approvedAt": "2026-07-21",
@@ -888,8 +1111,8 @@
       "periodTo": "2026-04-02",
       "status": "approved",
       "lineIds": [
-        "l28",
-        "l29"
+        "l36",
+        "l37"
       ],
       "approver": "Tech lead, markets",
       "approvedAt": "2026-04-02",
@@ -944,6 +1167,86 @@
         }
       ],
       "signature": "JZvkMkDn0QIT7hSHAfpeP6dPspmwGTf3adwzN8mwAlYkGKvzAViVEoo6rmYGKJ/5SjlNtKuF20UQ0PISM4iYDw==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpp0",
+      "workerId": "w1",
+      "engagementId": "e1a",
+      "checkpointId": "cpp0",
+      "approver": "Engineering manager, settlements",
+      "approvedAt": "2025-03-05",
+      "lines": [
+        {
+          "text": "Built settlement reporting APIs in Java and Spring Boot",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Added contract tests between the payments and reporting services",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "cZjm4udkdt/QeDWv2pxysoZD57B9P7ZW34ENYKPER9QhUvmgGk+gSwc5qjfZY8rVhErxpfZCFMYM6CPDHgiHDg==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpp1",
+      "workerId": "w1",
+      "engagementId": "e1b",
+      "checkpointId": "cpp1",
+      "approver": "Product owner, Bonarda HR",
+      "approvedAt": "2025-07-30",
+      "lines": [
+        {
+          "text": "Built the leave-request workflow for Bonarda HR in Spring Boot",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Paired with the product owner on acceptance criteria for each release",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "6Txhs8g90JWaWF8K4NrIEdDz+czr/PzTq6QjnKej71sR/yhOf38hhAT+ri1oe6oMScdUZAZxoOh8ziyfv7ogDw==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpp2",
+      "workerId": "w2",
+      "engagementId": "e2a",
+      "checkpointId": "cpp2",
+      "approver": "Head of portfolio tooling",
+      "approvedAt": "2026-02-04",
+      "lines": [
+        {
+          "text": "Built Kotlin services for portfolio rebalancing requests",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Set up PostgreSQL migrations reviewed in CI",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "yctETZE9l8xwqoEmkQg/zDlnemmXmJx9SbjwONiw2p7CcS8Ih2ZhwD7mru26Jp+BzprUe0aBUM6h6n0ZlHICCQ==",
+      "keyId": "bonarda-demo-2026"
+    },
+    {
+      "id": "rec-cpp3",
+      "workerId": "w4",
+      "engagementId": "e4a",
+      "checkpointId": "cpp3",
+      "approver": "Data platform lead, risk",
+      "approvedAt": "2026-04-01",
+      "lines": [
+        {
+          "text": "Built Airflow jobs for daily pricing data loads",
+          "tier": "client-approved"
+        },
+        {
+          "text": "Documented data lineage for the risk reporting tables",
+          "tier": "client-approved"
+        }
+      ],
+      "signature": "Z7L+DKwkXlMmzO/7gTMjNlYUjodBH9078Wb9k+2uRB/VvFdy7mPaVeUHpGdwnRZkFiaguM2+lez6gRmL0o4uDQ==",
       "keyId": "bonarda-demo-2026"
     },
     {

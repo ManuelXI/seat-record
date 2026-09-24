@@ -69,6 +69,15 @@ const people: [Worker, Omit<Engagement, "workerId">][] = [
 const workers: Worker[] = people.map(([w]) => w);
 const engagements: Engagement[] = people.map(([w, e]) => ({ ...e, workerId: w.id }));
 
+// Past engagements: people move between clients and the bench, and their record follows them.
+const past: Engagement[] = [
+  { id: "e1a", workerId: "w1", clientId: "c2", clientLabel: "Payments fintech, Lisbon", role: "Backend engineer", stack: ["Java", "Spring Boot", "PostgreSQL"], start: "2024-09-02", end: "2025-02-28", clientLead: "Engineering manager, settlements", engagementOwner: "Ama Boateng" },
+  { id: "e1b", workerId: "w1", clientId: "c5", clientLabel: "Internal Bonarda project, HR tooling (bench)", role: "Backend engineer", stack: ["Java", "Spring Boot", "React"], start: "2025-03-10", end: "2025-07-25", clientLead: "Product owner, Bonarda HR", engagementOwner: "Ama Boateng" },
+  { id: "e2a", workerId: "w2", clientId: "c3", clientLabel: "Asset manager, London", role: "Backend contractor", stack: ["Kotlin", "PostgreSQL"], start: "2025-06-02", end: "2026-01-30", clientLead: "Head of portfolio tooling", engagementOwner: "Yaw Darko" },
+  { id: "e4a", workerId: "w4", clientId: "c3", clientLabel: "Asset manager, London", role: "Data engineer", stack: ["Python", "Airflow", "SQL"], start: "2025-09-01", end: "2026-03-27", clientLead: "Data platform lead, risk", engagementOwner: "Yaw Darko" },
+];
+engagements.push(...past);
+
 let lineN = 0;
 const line = (text: string, band: string, tier: Tier, status: Line["status"], checkpointId?: string, clientWritten?: boolean): Line => ({
   id: `l${++lineN}`, text, band, status, tier, checkpointId, clientWritten,
@@ -123,6 +132,20 @@ approveCheckpoint(
   koA, "Engineering manager, payments", "2026-09-02",
   [line("Kofi was dependable under release pressure and left us with a service our team could own on day one.", "collaboration", "client-approved", "client-approved", undefined, true)],
 );
+
+// Past engagements, each closed with an approved roll-off checkpoint.
+const pastLog: [string, string, string, string[], string][] = [
+  ["e1a", "2025-01-15", "2025-03-05", ["Built settlement reporting APIs in Java and Spring Boot", "Added contract tests between the payments and reporting services"], "Engineering manager, settlements"],
+  ["e1b", "2025-06-20", "2025-07-30", ["Built the leave-request workflow for Bonarda HR in Spring Boot", "Paired with the product owner on acceptance criteria for each release"], "Product owner, Bonarda HR"],
+  ["e2a", "2025-11-12", "2026-02-04", ["Built Kotlin services for portfolio rebalancing requests", "Set up PostgreSQL migrations reviewed in CI"], "Head of portfolio tooling"],
+  ["e4a", "2026-02-10", "2026-04-01", ["Built Airflow jobs for daily pricing data loads", "Documented data lineage for the risk reporting tables"], "Data platform lead, risk"],
+];
+pastLog.forEach(([eid, date, approvedAt, texts, approver], i) => {
+  const eng = engagements.find((e) => e.id === eid)!;
+  const ls = texts.map((t) => line(t, "delivery", "engineer-account", "approved-by-worker"));
+  addEntry(`ep${i}`, eid, date, ls);
+  approveCheckpoint({ id: `cpp${i}`, engagementId: eid, reason: "roll-off", openedBy: "system", periodFrom: eng.start, periodTo: eng.end }, ls, approver, approvedAt);
+});
 
 // Everyone else: one or two entries, some already approved.
 const simple: [string, string, string[], boolean][] = [

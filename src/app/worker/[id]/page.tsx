@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 import { engagementsFor, entriesFor, lineTier, rollOffStatus, useStore } from "@/lib/store";
 import { formatDate, monthsBetween } from "@/lib/dates";
 import { Button, ButtonLink, Crumbs, Loading, TierChip, TypeBadge } from "@/components/ui";
@@ -27,17 +27,22 @@ function WorkerSeatLog() {
   const [opening, setOpening] = useState(false);
   const [reason, setReason] = useState<CheckpointReason>("lead-change");
   const { ref: headerRef, past } = useScrolledPast<HTMLElement>();
+  const selected = useSearchParams().get("e");
 
   const w = state.workers.find((x) => x.id === id);
   if (!ready) return <Loading />;
   if (!w) return <p>Person not found.</p>;
-  const eng = engagementsFor(state, w.id)[0];
+  const all = engagementsFor(state, w.id);
+  const current = all[0];
+  const eng = all.find((e) => e.id === selected) ?? current;
+  const isCurrent = eng.id === current.id;
   const entries = entriesFor(state, eng.id);
   const cps = state.checkpoints.filter((c) => c.engagementId === eng.id);
   const pending = cps.find((c) => c.status !== "approved");
   const roll = rollOffStatus(eng.end);
   const rollOffDone = cps.some((c) => c.reason === "roll-off" && c.status === "approved");
-  const needsRollOff = (roll.windowOpen || roll.ended) && !rollOffDone;
+  const needsRollOff = isCurrent && (roll.windowOpen || roll.ended) && !rollOffDone;
+  const approvedHere = entries.flatMap((e) => e.lines).filter((l) => l.status === "client-approved").length;
 
   const timeline = [
     ...entries.map((e) => ({ kind: "entry" as const, date: e.date, e })),
@@ -60,7 +65,7 @@ function WorkerSeatLog() {
           {(needsRollOff || pending?.status === "open") && (
             <ButtonLink href={`/worker/${w.id}/checkpoint${pending ? `?cp=${pending.id}` : ""}`} variant="secondary" className="py-1.5">Review lines</ButtonLink>
           )}
-          <ButtonLink href={`/worker/${w.id}/new`} className="py-1.5">Log your work</ButtonLink>
+          {isCurrent && <ButtonLink href={`/worker/${w.id}/new`} className="py-1.5">Log your work</ButtonLink>}
         </div>
       </CompactTopBar>
 
@@ -74,13 +79,43 @@ function WorkerSeatLog() {
           <p className="text-sm text-ink-3">{formatDate(eng.start)} to {formatDate(eng.end)} · Engagement owner {eng.engagementOwner}</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <ButtonLink href={`/worker/${w.id}/new`}>Log your work</ButtonLink>
+          {isCurrent && <ButtonLink href={`/worker/${w.id}/new`}>Log your work</ButtonLink>}
           <ButtonLink href={`/profile/${w.id}`} variant="secondary">Profile</ButtonLink>
           <ExportButton state={state} workerId={w.id} />
         </div>
       </header>
 
-      {pending?.status === "sent" ? (
+      {all.length > 1 && (
+        <nav aria-label="Engagements" className="flex gap-2 overflow-x-auto pb-1">
+          {all.map((e) => {
+            const active = e.id === eng.id;
+            const cur = e.id === current.id;
+            return (
+              <Link
+                key={e.id}
+                href={cur ? `/worker/${w.id}` : `/worker/${w.id}?e=${e.id}`}
+                aria-current={active ? "page" : undefined}
+                className={`shrink-0 rounded-lg border px-3 py-2 text-sm transition-colors duration-150 ${active ? "border-accent bg-accent-soft" : "border-line hover:bg-surface-2"}`}
+              >
+                <span className={`block font-medium ${active ? "text-accent-soft-ink" : "text-ink"}`}>{e.clientLabel}</span>
+                <span className="block text-xs text-ink-3">{cur ? "Current" : "Ended"} · {formatDate(e.start)} to {formatDate(e.end)}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      )}
+
+      {!isCurrent && (
+        <div className="card flex flex-wrap items-center justify-between gap-3 p-4">
+          <div>
+            <p className="font-medium">Past engagement · ended {formatDate(eng.end)}</p>
+            <p className="text-sm text-ink-2">{approvedHere} {approvedHere === 1 ? "line" : "lines"} approved by the client. This log is closed; new entries go to your current engagement.</p>
+          </div>
+          <ButtonLink href={`/history/${w.id}`} variant="secondary">View signed record</ButtonLink>
+        </div>
+      )}
+
+      {!isCurrent ? null : pending?.status === "sent" ? (
         <div className="card flex flex-wrap items-center justify-between gap-3 border-accent p-4">
           <div>
             <p className="font-medium">Waiting for the client lead</p>
@@ -99,7 +134,7 @@ function WorkerSeatLog() {
         </div>
       )}
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
+      <div className={`grid gap-8 ${isCurrent ? "lg:grid-cols-[1fr_280px]" : ""}`}>
         <section aria-labelledby="log" className="space-y-4">
           <h2 id="log" className="text-xl font-semibold">Seat log</h2>
           <ol className="relative space-y-4 border-l border-line pl-6">
@@ -135,7 +170,7 @@ function WorkerSeatLog() {
           </ol>
         </section>
 
-        <aside className="space-y-4">
+        {isCurrent && <aside className="space-y-4">
           <div className="card space-y-3 p-4">
             <div className="flex items-center justify-between gap-2">
               <label htmlFor="reminder" className="text-sm font-medium">Monthly reminder</label>
@@ -181,7 +216,7 @@ function WorkerSeatLog() {
               </div>
             )}
           </div>
-        </aside>
+        </aside>}
       </div>
     </div>
   );
@@ -192,7 +227,7 @@ export default function SeatLogPage() {
   const { session } = useStore();
   return (
     <Guard allow={(s) => s.role === "manager" || s.personId === id}>
-      {session?.role === "manager" ? <ManagerEngagement workerId={id} /> : <WorkerSeatLog />}
+      {session?.role === "manager" ? <ManagerEngagement workerId={id} /> : <Suspense fallback={null}><WorkerSeatLog /></Suspense>}
     </Guard>
   );
 }

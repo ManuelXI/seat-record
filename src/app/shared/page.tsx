@@ -60,6 +60,7 @@ export default function SharedShowcase() {
                 )}
                 <p className="mt-auto text-xs text-ink-3">
                   {lines.length} client-approved {lines.length === 1 ? "line" : "lines"}
+                  {(() => { const n = new Set(recs.map((r) => r.engagementId)).size; return n > 1 ? ` across ${n} engagements` : ""; })()}
                   {latest && ` · last approved ${formatDate(latest.approvedAt)}`}
                   <span className="ml-2 text-accent">Open record →</span>
                 </p>

@@ -16,9 +16,17 @@ const initial = seed as AppState;
  */
 function migrate(saved: AppState): AppState {
   const seedWorkers = new Map(initial.workers.map((w) => [w.id, w]));
+  const addMissing = <T extends { id: string }>(have: T[], seed: T[]) => {
+    const ids = new Set(have.map((x) => x.id));
+    return [...have, ...seed.filter((x) => !ids.has(x.id))];
+  };
   return {
     ...saved,
     workers: saved.workers.map((w) => ("share" in w ? w : seedWorkers.get(w.id)?.share ? { ...w, share: seedWorkers.get(w.id)!.share } : w)),
+    engagements: addMissing(saved.engagements, initial.engagements),
+    entries: addMissing(saved.entries, initial.entries),
+    checkpoints: addMissing(saved.checkpoints, initial.checkpoints),
+    records: addMissing(saved.records, initial.records),
   };
 }
 
