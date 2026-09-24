@@ -57,8 +57,7 @@ export default function ClientEmail() {
           </p>
           {done && <p className="break-all font-mono text-xs text-ink-3">Signature {done.signature.slice(0, 44)}…</p>}
           <div className="flex flex-wrap gap-2 pt-2">
-            <ButtonLink href={`/profile/${w.id}`}>See {first}&rsquo;s profile</ButtonLink>
-            <ButtonLink href={`/history/${w.id}`} variant="secondary">Seat history</ButtonLink>
+            <ButtonLink href={`/profile/${w.id}`}>Back to {first}&rsquo;s profile (demo)</ButtonLink>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ const REAL = [
   ["Placement list and contract end dates", "Mocked with seed data"],
   ["Extension and testimonial emails to the client", "Mocked as an on-screen email"],
   ["Monthly reminder delivery", "Mocked as an on-screen card"],
+  ["Worker-controlled share links", "Real; demo links live in this browser"],
   ["Storage", "Browser storage for the demo"],
 ];
 
@@ -68,6 +69,7 @@ export default function About() {
           <li>Read contract end dates from the client ops team&rsquo;s placement list.</li>
           <li>Consolidate long selections to about eight lines, each traceable to its entries.</li>
           <li>Deliver the opt-in monthly reminder; hold the signing key in a secrets manager.</li>
+          <li>Store records and share links server-side so a shared link works on any device.</li>
           <li>Feed approved records to Sales for case studies in place of interviews long after roll-off.</li>
         </ul>
       </section>

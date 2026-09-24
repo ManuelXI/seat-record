@@ -31,7 +31,11 @@
         "AWS"
       ],
       "availableFrom": "2026-09-01",
-      "reminderOn": false
+      "reminderOn": false,
+      "share": {
+        "on": true,
+        "token": "k7f3a9c2"
+      }
     },
     {
       "id": "w3",

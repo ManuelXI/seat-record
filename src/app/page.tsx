@@ -8,6 +8,7 @@ import { extractStack } from "@/lib/match";
 import { formatDate } from "@/lib/dates";
 import { MANAGERS } from "@/lib/people";
 import { Loading, TypeBadge } from "@/components/ui";
+import { Landing } from "@/components/Landing";
 
 const EXAMPLES = ["Java developer, risk tech, Kafka a plus", "We have a patient booking product and need people to build it: Python, React, Kotlin"];
 
@@ -18,12 +19,12 @@ export default function Home() {
   const stack = useMemo(() => extractStack(request), [request]);
 
   useEffect(() => {
-    if (!ready) return;
-    if (!session) router.replace("/signin");
-    else if (session.role === "worker") router.replace(`/worker/${session.personId}`);
+    if (ready && session?.role === "worker") router.replace(`/worker/${session.personId}`);
   }, [ready, session, router]);
 
-  if (!ready || !session || session.role !== "manager") return <Loading />;
+  // Signed-out visitors (and the server render) get the explanatory landing page.
+  if (!ready || !session) return <Landing />;
+  if (session.role !== "manager") return <Loading />;
   const me = MANAGERS.find((m) => m.id === session.personId)!;
 
   const rows = state.workers.map((w) => {

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useStore } from "@/lib/store";
 import { MANAGERS } from "@/lib/people";
@@ -21,7 +22,7 @@ export default function SignIn() {
   return (
     <div className="mx-auto max-w-4xl space-y-10">
       <header className="space-y-3">
-        <p className="eyebrow">Demo sign-in · no passwords</p>
+        <p className="eyebrow"><Link href="/" className="hover:text-ink">← About Seat Record</Link> · Demo sign-in, no passwords</p>
         <h1 className="text-4xl font-semibold">Who are you today?</h1>
         <p className="max-w-2xl text-ink-2">Each role sees a different app. Workers own their log and decide what reaches a client. Managers see engagements and can open a checkpoint, but never read or send a worker&rsquo;s lines.</p>
       </header>

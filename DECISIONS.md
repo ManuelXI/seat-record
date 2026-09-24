@@ -16,4 +16,6 @@ One line per decision: what, who decided, and whether AI proposed it. Feeds the 
 | 2026-09-25 | Stack: Next.js, TypeScript, Tailwind; browser storage; Ed25519 via Node crypto | Team, AI proposed | AI proposed |
 | 2026-09-25 | Runtime model `claude-opus-5`, low effort, structured output, cached demo responses, labelled fallback | Team, AI proposed | AI proposed |
 | 2026-09-25 | Separate worker and manager views behind a demo sign-in; client leads have no account; managers never see unshared lines | Team idea, design proposed by AI | AI proposed persona sign-in over real auth |
+| 2026-09-25 | Landing page for judges who open the link cold | Team idea | AI drafted content |
+| 2026-09-25 | Seat history private by default; worker can turn on an unlisted, revocable, noindex share link | Team question, AI recommended | AI proposed the worker-controlled link |
 | 2026-09-25 | Host on Netlify; blocked by exhausted account credits, host still to be decided | Team | AI set up config |

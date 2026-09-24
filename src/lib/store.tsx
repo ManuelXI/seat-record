@@ -27,6 +27,7 @@ interface Store {
   signOut: () => void;
   addEntry: (engagementId: string, lines: Pick<Line, "text" | "band" | "source">[]) => void;
   setReminder: (workerId: string, on: boolean) => void;
+  setShare: (workerId: string, on: boolean, newToken?: boolean) => void;
   openCheckpoint: (engagementId: string, openedBy: Checkpoint["openedBy"], reason: CheckpointReason, note?: string) => Checkpoint;
   sendCheckpoint: (checkpointId: string, lineIds: string[]) => void;
   completeClientReview: (checkpointId: string, approver: string, decisions: ClientDecision[], testimonial?: string) => Promise<SignedRecord>;
@@ -85,6 +86,14 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const setReminder = useCallback<Store["setReminder"]>((workerId, on) => {
     setState((s) => ({ ...s, workers: s.workers.map((w) => (w.id === workerId ? { ...w, reminderOn: on } : w)) }));
+  }, []);
+
+  const setShare = useCallback<Store["setShare"]>((workerId, on, newToken) => {
+    const token = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID().replace(/-/g, "").slice(0, 10) : uid("s"));
+    setState((s) => ({
+      ...s,
+      workers: s.workers.map((w) => (w.id === workerId ? { ...w, share: { on, token: newToken || !w.share ? token() : w.share.token } } : w)),
+    }));
   }, []);
 
   const openCheckpoint = useCallback<Store["openCheckpoint"]>((engagementId, openedBy, reason, note) => {
@@ -171,8 +180,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ state, ready, session, signIn, signOut, addEntry, setReminder, openCheckpoint, sendCheckpoint, completeClientReview, reset }),
-    [state, ready, session, signIn, signOut, addEntry, setReminder, openCheckpoint, sendCheckpoint, completeClientReview, reset],
+    () => ({ state, ready, session, signIn, signOut, addEntry, setReminder, setShare, openCheckpoint, sendCheckpoint, completeClientReview, reset }),
+    [state, ready, session, signIn, signOut, addEntry, setReminder, setShare, openCheckpoint, sendCheckpoint, completeClientReview, reset],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -8,6 +8,7 @@ import { formatDate, monthsBetween } from "@/lib/dates";
 import { Crumbs, Loading, TierChip, TypeBadge } from "@/components/ui";
 import type { Tier } from "@/lib/types";
 import { Guard } from "@/components/Guard";
+import { ShareCard } from "@/components/ShareCard";
 
 const ORDER: Record<Tier, number> = { "client-approved": 0, "manager-witnessed": 1, "engineer-account": 2 };
 
@@ -35,6 +36,12 @@ function Profile() {
           ))}
         </div>
       </div>
+
+      {session?.role === "worker" && session.personId === w.id ? (
+        <ShareCard worker={w} />
+      ) : (
+        <p className="text-sm text-ink-3">{w.share?.on ? `${w.name.split(" ")[0]} has a share link on for their record.` : `${w.name.split(" ")[0]} has not shared their record publicly.`}</p>
+      )}
 
       <article className="card overflow-hidden">
         <header className="flex flex-wrap items-center gap-5 border-b border-line bg-accent-soft px-6 py-6 sm:px-8">

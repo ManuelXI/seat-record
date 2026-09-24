@@ -15,6 +15,8 @@ export interface Worker {
   skills: string[];
   availableFrom: string; // ISO date
   reminderOn: boolean;
+  /** Worker-controlled share link for their client-approved record. Off unless they turn it on. */
+  share?: { on: boolean; token: string };
 }
 
 export interface Engagement {

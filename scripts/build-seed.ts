@@ -21,7 +21,7 @@ const people: [Worker, Omit<Engagement, "workerId">][] = [
     { id: "e1", clientId: "c1", clientLabel: "Global investment bank, risk technology", role: "Backend engineer", stack: ["Java", "Spring Boot", "Kafka", "React"], start: "2025-08-18", end: "2026-10-16", clientLead: "Team lead, risk technology", engagementOwner: "Ama Boateng" },
   ],
   [
-    { id: "w2", name: "Kofi Asante", title: "Software Engineer", type: "contractor", location: "Accra", about: "Contract engineer across payments and fintech backends.", skills: ["Kotlin", "Spring Boot", "PostgreSQL", "AWS"], availableFrom: "2026-09-01", reminderOn: false },
+    { id: "w2", name: "Kofi Asante", title: "Software Engineer", type: "contractor", location: "Accra", about: "Contract engineer across payments and fintech backends.", skills: ["Kotlin", "Spring Boot", "PostgreSQL", "AWS"], availableFrom: "2026-09-01", reminderOn: false, share: { on: true, token: "k7f3a9c2" } },
     { id: "e2", clientId: "c2", clientLabel: "Payments fintech, Lisbon", role: "Backend contractor", stack: ["Kotlin", "Spring Boot", "PostgreSQL", "AWS"], start: "2026-03-02", end: "2026-08-28", clientLead: "Engineering manager, payments", engagementOwner: "Ama Boateng" },
   ],
   [

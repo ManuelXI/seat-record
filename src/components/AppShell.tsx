@@ -12,7 +12,7 @@ import { IconChart, IconClose, IconGrid, IconInfo, IconLog, IconMenu, IconPen, I
 type NavItem = { href: string; label: string; icon: () => React.JSX.Element; match: (p: string) => boolean };
 
 /** Pages that always render as the outside world sees them, even when someone is signed in. */
-const PUBLIC_ONLY = ["/signin", "/client/"];
+const PUBLIC_ONLY = ["/signin", "/client/", "/share/"];
 
 function Brand() {
   return (
@@ -26,7 +26,7 @@ function Brand() {
 /** Slim bar for signed-out pages: sign-in, the client's email, the public seat history. */
 function PublicShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  const label = path.startsWith("/client/") ? "Client lead’s inbox" : path.startsWith("/history/") ? "Public verification page" : null;
+  const label = path.startsWith("/client/") ? "Client lead’s inbox" : path.startsWith("/share/") ? "Shared record" : null;
   return (
     <>
       <header className="sticky top-0 z-20 border-b border-line bg-canvas/90 backdrop-blur">
