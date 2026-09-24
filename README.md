@@ -25,7 +25,7 @@ To run the model live, copy `.env.example` to `.env.local` and set `ANTHROPIC_AP
 | `npm run seed` | Regenerate `src/data/seed.json` with fresh signatures |
 | `npm run eval` | Run the model layer over the evaluation set (needs an API key) |
 
-Use **Reset demo** in the header to return to the seed state.
+Use **Reset demo data** in the sidebar to return to the seed state. Answers to common questions are at `/faq`.
 
 ## Deploy
 
@@ -45,7 +45,7 @@ A manager can never read a worker's unshared lines or send anything to a client.
 
 ## Sharing
 
-A worker's seat history (`/history/:id`) is private to them and Bonarda Works. From **My profile**, the worker can turn on an unlisted share link (`/share/:token`), copy it, or replace it so the old link stops working. Shared pages are marked `noindex`. Kofi's link is on in the seed data: `/share/k7f3a9c2`.
+A worker's seat history (`/history/:id`) is private to them and Bonarda Works. From **My profile**, the worker can turn on an unlisted share link (`/share/:token`), copy it, or replace it so the old link stops working. Shared pages are marked `noindex`. Five seeded workers have sharing on; the demo-only showcase at `/shared` lists them (in the product there is no directory, links are unlisted).
 
 ## The flow
 

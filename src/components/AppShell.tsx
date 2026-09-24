@@ -7,12 +7,12 @@ import { useStore } from "@/lib/store";
 import { MANAGERS } from "@/lib/people";
 import { ThemeToggle } from "./ThemeToggle";
 import { UserSwitcher } from "./UserSwitcher";
-import { IconChart, IconClose, IconGrid, IconInfo, IconLog, IconMenu, IconPen, IconReset, IconSearch, IconSwitch, IconUser } from "./icons";
+import { IconChart, IconClose, IconGrid, IconInfo, IconLog, IconMenu, IconPen, IconReset, IconSearch, IconSwitch, IconUser, IconHelp, IconShare } from "./icons";
 
 type NavItem = { href: string; label: string; icon: () => React.JSX.Element; match: (p: string) => boolean };
 
 /** Pages that always render as the outside world sees them, even when someone is signed in. */
-const PUBLIC_ONLY = ["/signin", "/client/", "/share/"];
+const PUBLIC_ONLY = ["/signin", "/client/", "/share/", "/shared"];
 
 function Brand() {
   return (
@@ -26,14 +26,19 @@ function Brand() {
 /** Slim bar for signed-out pages: sign-in, the client's email, the public seat history. */
 function PublicShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  const label = path.startsWith("/client/") ? "Client lead’s inbox" : path.startsWith("/share/") ? "Shared record" : null;
+  const label = path.startsWith("/client/") ? "Client lead’s inbox" : path.startsWith("/share/") || path === "/shared" ? "Shared record" : null;
   return (
     <>
       <header className="sticky top-0 z-20 border-b border-line bg-canvas/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3 sm:px-6">
           <Brand />
           {label && <span className="hidden rounded-full border border-line px-2.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-ink-3 sm:inline">{label}</span>}
-          <div className="ml-auto"><ThemeToggle /></div>
+          <nav aria-label="Site" className="ml-auto hidden items-center gap-1 text-sm sm:flex">
+            {[["/about", "How it works"], ["/faq", "FAQ"], ["/shared", "Shared records"]].map(([href, label]) => (
+              <Link key={href} href={href} className={`rounded-md px-2.5 py-1.5 ${path.startsWith(href) ? "bg-surface-2 text-ink" : "text-ink-2 hover:text-ink"}`}>{label}</Link>
+            ))}
+          </nav>
+          <div className="ml-auto sm:ml-2"><ThemeToggle /></div>
         </div>
       </header>
       <main className="mx-auto w-full max-w-5xl px-4 pb-24 pt-8 sm:px-6">{children}</main>
@@ -67,6 +72,8 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const reference: NavItem[] = [
     { href: "/eval", label: "Evaluation", icon: IconChart, match: (p) => p.startsWith("/eval") },
     { href: "/about", label: "How it works", icon: IconInfo, match: (p) => p.startsWith("/about") },
+    { href: "/faq", label: "FAQ", icon: IconHelp, match: (p) => p.startsWith("/faq") },
+    { href: "/shared", label: "Shared records", icon: IconShare, match: (p) => p.startsWith("/shared") },
   ];
 
   const Item = ({ item }: { item: NavItem }) => {

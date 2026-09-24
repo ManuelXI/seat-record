@@ -22,7 +22,7 @@ export function Landing() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
-            <Link href="/share/k7f3a9c2" className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-4 py-2.5 font-medium text-ink transition-[background-color,scale] duration-150 hover:bg-surface-2 active:scale-[0.96]">See a shared record</Link>
+            <Link href="/shared" className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-4 py-2.5 font-medium text-ink transition-[background-color,scale] duration-150 hover:bg-surface-2 active:scale-[0.96]">Browse shared records</Link>
           </div>
           <p className="text-sm text-ink-3">Suggested path: sign in as Efua, log an entry, then switch to Ama, her manager.</p>
         </div>
@@ -92,7 +92,7 @@ export function Landing() {
         <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
       </section>
 
-      <p className="text-xs text-ink-3">Built for the Turntabl Future of Work hackathon. Bonarda Works, every person and every client here are fictional.</p>
+      <p className="text-xs text-ink-3">Built for the Turntabl Future of Work hackathon. Bonarda Works, every person and every client here are fictional. Questions? Read the <Link href="/faq" className="text-accent hover:underline">FAQ</Link>.</p>
     </div>
   );
 }

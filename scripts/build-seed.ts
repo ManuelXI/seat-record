@@ -25,7 +25,7 @@ const people: [Worker, Omit<Engagement, "workerId">][] = [
     { id: "e2", clientId: "c2", clientLabel: "Payments fintech, Lisbon", role: "Backend contractor", stack: ["Kotlin", "Spring Boot", "PostgreSQL", "AWS"], start: "2026-03-02", end: "2026-08-28", clientLead: "Engineering manager, payments", engagementOwner: "Ama Boateng" },
   ],
   [
-    { id: "w3", name: "Abena Owusu", title: "Frontend Engineer", type: "employee", location: "Accra", about: "Frontend engineer focused on data-heavy trading screens.", skills: ["TypeScript", "React", "Redux", "Jest"], availableFrom: "2026-12-01", reminderOn: true },
+    { id: "w3", name: "Abena Owusu", title: "Frontend Engineer", type: "employee", location: "Accra", about: "Frontend engineer focused on data-heavy trading screens.", skills: ["TypeScript", "React", "Redux", "Jest"], availableFrom: "2026-12-01", reminderOn: true, share: { on: true, token: "a3b8e1d4" } },
     { id: "e3", clientId: "c3", clientLabel: "Asset manager, London", role: "Frontend engineer", stack: ["TypeScript", "React", "Redux"], start: "2025-11-03", end: "2026-11-27", clientLead: "Head of portfolio tooling", engagementOwner: "Yaw Darko" },
   ],
   [
@@ -37,7 +37,7 @@ const people: [Worker, Omit<Engagement, "workerId">][] = [
     { id: "e5", clientId: "c5", clientLabel: "Internal Bonarda project, sales tooling", role: "Full-stack engineer", stack: ["TypeScript", "Next.js", "PostgreSQL"], start: "2026-06-01", end: "2026-12-18", clientLead: "Product owner, Bonarda Sales", engagementOwner: "Ama Boateng" },
   ],
   [
-    { id: "w6", name: "Yaw Mensimah", title: "Platform Engineer", type: "contractor", location: "Takoradi", about: "Platform contractor who automates the release path.", skills: ["Kubernetes", "Terraform", "AWS", "Go"], availableFrom: "2026-11-02", reminderOn: false },
+    { id: "w6", name: "Yaw Mensimah", title: "Platform Engineer", type: "contractor", location: "Takoradi", about: "Platform contractor who automates the release path.", skills: ["Kubernetes", "Terraform", "AWS", "Go"], availableFrom: "2026-11-02", reminderOn: false, share: { on: true, token: "y6m2c9f1" } },
     { id: "e6", clientId: "c3", clientLabel: "Asset manager, London", role: "Platform engineer", stack: ["Kubernetes", "Terraform", "AWS"], start: "2026-01-12", end: "2026-10-30", clientLead: "Infrastructure lead", engagementOwner: "Yaw Darko" },
   ],
   [
@@ -45,7 +45,7 @@ const people: [Worker, Omit<Engagement, "workerId">][] = [
     { id: "e7", clientId: "c1", clientLabel: "Global investment bank, markets technology", role: "Test automation engineer", stack: ["Playwright", "Java", "JUnit"], start: "2025-10-06", end: "2026-10-23", clientLead: "QA manager, markets", engagementOwner: "Ama Boateng" },
   ],
   [
-    { id: "w8", name: "Nii Armah", title: "Backend Engineer", type: "freelancer", location: "Accra", about: "Freelance backend engineer, Python and Go.", skills: ["Python", "FastAPI", "Go", "PostgreSQL"], availableFrom: "2026-09-28", reminderOn: false },
+    { id: "w8", name: "Nii Armah", title: "Backend Engineer", type: "freelancer", location: "Accra", about: "Freelance backend engineer, Python and Go.", skills: ["Python", "FastAPI", "Go", "PostgreSQL"], availableFrom: "2026-09-28", reminderOn: false, share: { on: true, token: "n8a4r7k2" } },
     { id: "e8", clientId: "c4", clientLabel: "Health technology company, Berlin", role: "Backend engineer", stack: ["Python", "FastAPI", "PostgreSQL"], start: "2026-02-02", end: "2026-09-25", clientLead: "Engineering lead, patient services", engagementOwner: "Yaw Darko" },
   ],
   [
@@ -61,7 +61,7 @@ const people: [Worker, Omit<Engagement, "workerId">][] = [
     { id: "e11", clientId: "c5", clientLabel: "Internal Bonarda project, HR tooling", role: "Frontend engineer", stack: ["React", "TypeScript", "Tailwind"], start: "2026-07-06", end: "2026-10-30", clientLead: "Product owner, Bonarda HR", engagementOwner: "Ama Boateng" },
   ],
   [
-    { id: "w12", name: "Selorm Agbeko", title: "Software Engineer", type: "employee", location: "Accra", about: "Java engineer, recently rolled off a markets engagement.", skills: ["Java", "Spring Boot", "Kafka", "Angular"], availableFrom: "2026-09-22", reminderOn: false },
+    { id: "w12", name: "Selorm Agbeko", title: "Software Engineer", type: "employee", location: "Accra", about: "Java engineer, recently rolled off a markets engagement.", skills: ["Java", "Spring Boot", "Kafka", "Angular"], availableFrom: "2026-09-22", reminderOn: false, share: { on: true, token: "s12g5b3x" } },
     { id: "e12", clientId: "c1", clientLabel: "Global investment bank, markets technology", role: "Backend engineer", stack: ["Java", "Spring Boot", "Angular"], start: "2025-06-02", end: "2026-09-19", clientLead: "Tech lead, markets", engagementOwner: "Ama Boateng" },
   ],
 ];

@@ -51,7 +51,11 @@
         "Jest"
       ],
       "availableFrom": "2026-12-01",
-      "reminderOn": true
+      "reminderOn": true,
+      "share": {
+        "on": true,
+        "token": "a3b8e1d4"
+      }
     },
     {
       "id": "w4",
@@ -99,7 +103,11 @@
         "Go"
       ],
       "availableFrom": "2026-11-02",
-      "reminderOn": false
+      "reminderOn": false,
+      "share": {
+        "on": true,
+        "token": "y6m2c9f1"
+      }
     },
     {
       "id": "w7",
@@ -131,7 +139,11 @@
         "PostgreSQL"
       ],
       "availableFrom": "2026-09-28",
-      "reminderOn": false
+      "reminderOn": false,
+      "share": {
+        "on": true,
+        "token": "n8a4r7k2"
+      }
     },
     {
       "id": "w9",
@@ -195,7 +207,11 @@
         "Angular"
       ],
       "availableFrom": "2026-09-22",
-      "reminderOn": false
+      "reminderOn": false,
+      "share": {
+        "on": true,
+        "token": "s12g5b3x"
+      }
     }
   ],
   "clients": [
