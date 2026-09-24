@@ -1,27 +1,211 @@
 {
   "_note": "Cached model output for the demo's example requests, keyed by normalised request. Line ids are record id plus line index, so they are stable across seed regeneration. Keyword matching still runs on top, so lines approved later in the demo are found too.",
   "java developer who has handled kafka failures and run incident reviews": {
-    "requirements": ["Java backend development", "Handling failures in Kafka event processing", "Running incident reviews"],
+    "requirements": [
+      "Java backend development",
+      "Handling failures in Kafka event processing",
+      "Running incident reviews"
+    ],
     "matches": [
-      { "requirement": 0, "line_id": "rec-cp1#0", "reason": "A Java and Spring Boot backend job." },
-      { "requirement": 0, "line_id": "rec-cpx9#0", "reason": "Spring Boot services run on Java." },
-      { "requirement": 1, "line_id": "rec-cp1#1", "reason": "Retries and dead-letter handling are how Kafka processing recovers from failures." }
+      {
+        "requirement": 0,
+        "line_id": "rec-cp1#0",
+        "reason": "A Java and Spring Boot backend job."
+      },
+      {
+        "requirement": 0,
+        "line_id": "rec-cpx9#0",
+        "reason": "Spring Boot services run on Java."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cp1#1",
+        "reason": "Retries and dead-letter handling are how Kafka processing recovers from failures."
+      }
     ]
   },
   "someone who has automated releases on kubernetes and built react screens for trading or portfolio data": {
-    "requirements": ["Automating releases on Kubernetes", "Building React screens for trading or portfolio data"],
+    "requirements": [
+      "Automating releases on Kubernetes",
+      "Building React screens for trading or portfolio data"
+    ],
     "matches": [
-      { "requirement": 0, "line_id": "rec-cpx3#0", "reason": "Release infrastructure on Terraform-managed Kubernetes." },
-      { "requirement": 0, "line_id": "rec-cpx3#1", "reason": "Removing manual steps is release automation." },
-      { "requirement": 1, "line_id": "rec-cpx0#0", "reason": "React grids for portfolio views." },
-      { "requirement": 1, "line_id": "rec-cpx0#1", "reason": "Tests for trading screens, part of building them." }
+      {
+        "requirement": 0,
+        "line_id": "rec-cpx3#0",
+        "reason": "Release infrastructure on Terraform-managed Kubernetes."
+      },
+      {
+        "requirement": 0,
+        "line_id": "rec-cpx3#1",
+        "reason": "Removing manual steps is release automation."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cpx0#0",
+        "reason": "React grids for portfolio views."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cpx0#1",
+        "reason": "Tests for trading screens, part of building them."
+      }
     ]
   },
   "python api developer for a patient booking product": {
-    "requirements": ["Building Python APIs", "Patient-facing or healthcare systems"],
+    "requirements": [
+      "Building Python APIs",
+      "Patient-facing or healthcare systems"
+    ],
     "matches": [
-      { "requirement": 0, "line_id": "rec-cpx5#0", "reason": "FastAPI is a Python API framework." },
-      { "requirement": 1, "line_id": "rec-cpx5#0", "reason": "Patient scheduling is a patient-facing system." }
+      {
+        "requirement": 0,
+        "line_id": "rec-cpx5#0",
+        "reason": "FastAPI is a Python API framework."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cpx5#0",
+        "reason": "Patient scheduling is a patient-facing system."
+      }
+    ]
+  },
+  "kotlin backend contractor for payments, comfortable with postgresql migrations": {
+    "requirements": [
+      "Kotlin backend services",
+      "Payments or reconciliation systems",
+      "PostgreSQL migrations and schema work"
+    ],
+    "matches": [
+      {
+        "requirement": 0,
+        "line_id": "rec-cp2#0",
+        "reason": "A Kotlin service."
+      },
+      {
+        "requirement": 0,
+        "line_id": "rec-cpp2#0",
+        "reason": "Kotlin services."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cp2#0",
+        "reason": "Payment reconciliation is a payments system."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cp1#0",
+        "reason": "A nightly reconciliation job."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cpp0#0",
+        "reason": "Settlement reporting sits in the payments flow."
+      },
+      {
+        "requirement": 2,
+        "line_id": "rec-cpp2#1",
+        "reason": "PostgreSQL migrations, reviewed in CI."
+      },
+      {
+        "requirement": 2,
+        "line_id": "rec-cpx5#1",
+        "reason": "PostgreSQL schema design."
+      }
+    ]
+  },
+  "data engineer who has built airflow pipelines and documented data lineage": {
+    "requirements": [
+      "Building Airflow pipelines",
+      "Documenting data lineage"
+    ],
+    "matches": [
+      {
+        "requirement": 0,
+        "line_id": "rec-cpp3#0",
+        "reason": "Airflow jobs loading daily data."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cpp3#1",
+        "reason": "Data lineage documentation for reporting tables."
+      }
+    ]
+  },
+  "someone who can mentor newer engineers and raise code review standards": {
+    "requirements": [
+      "Mentoring newer engineers",
+      "Improving code review practice"
+    ],
+    "matches": [
+      {
+        "requirement": 0,
+        "line_id": "rec-cp1#2",
+        "reason": "Paired with newer team members."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cp1#2",
+        "reason": "The pairing was on code review practice."
+      }
+    ]
+  },
+  "frontend engineer with react and testing experience on trading screens": {
+    "requirements": [
+      "React front-end development",
+      "Front-end testing",
+      "Trading or portfolio screens"
+    ],
+    "matches": [
+      {
+        "requirement": 0,
+        "line_id": "rec-cpx0#0",
+        "reason": "React grids."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cpx0#1",
+        "reason": "Component tests with Jest."
+      },
+      {
+        "requirement": 2,
+        "line_id": "rec-cpx0#0",
+        "reason": "Portfolio views."
+      },
+      {
+        "requirement": 2,
+        "line_id": "rec-cpx0#1",
+        "reason": "Trading screens."
+      },
+      {
+        "requirement": 2,
+        "line_id": "rec-cpx9#1",
+        "reason": "Screens for trade exceptions."
+      }
+    ]
+  },
+  "engineer who works well with product owners and qa to get releases out": {
+    "requirements": [
+      "Working with product owners on what to build",
+      "Working with QA on release readiness",
+      "Delivering under release pressure"
+    ],
+    "matches": [
+      {
+        "requirement": 0,
+        "line_id": "rec-cpp1#1",
+        "reason": "Agreed acceptance criteria with the product owner for each release."
+      },
+      {
+        "requirement": 1,
+        "line_id": "rec-cp2#1",
+        "reason": "Shaped the release checklist with the client's QA lead."
+      },
+      {
+        "requirement": 2,
+        "line_id": "rec-cp2#2",
+        "reason": "The client lead describes him as dependable under release pressure."
+      }
     ]
   }
 }

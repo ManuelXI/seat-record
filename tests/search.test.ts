@@ -37,6 +37,11 @@ describe("evidence search", () => {
     expect(splitRequirements("We need someone with Kotlin, PostgreSQL and release checklists")).toEqual(["Kotlin", "PostgreSQL", "release checklists"]);
   });
 
+  it("does not match on a generic term alone", () => {
+    const m = keywordMatches(["Building Python APIs"], lines);
+    expect(m.map((x) => x.lineId)).not.toContain("rec-cpp0#0");
+  });
+
   it("matches on a shared technology name", () => {
     const m = keywordMatches(["Kotlin"], lines);
     expect(m.map((x) => x.lineId)).toContain("rec-cp2#0");

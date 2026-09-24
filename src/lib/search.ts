@@ -21,7 +21,9 @@ const STOP = new Set([
   "building", "used", "using", "product", "team", "some", "any", "also", "plus", "well", "can", "able", "strong", "good", "their", "they",
 ]);
 
-const techLower = new Set(TECH_TERMS.map((t) => t.toLowerCase()));
+// Generic terms are too broad to count as a technology match on their own.
+const GENERIC_TECH = new Set(["api", "apis", "ui", "ux", "qa", "ci", "cd", "http", "https", "json", "xml", "rest"]);
+const techLower = new Set(TECH_TERMS.map((t) => t.toLowerCase()).filter((t) => !GENERIC_TECH.has(t)));
 
 function stem(w: string): string {
   if (w.length > 5 && w.endsWith("ing")) return w.slice(0, -3);

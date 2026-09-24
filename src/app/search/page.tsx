@@ -13,6 +13,11 @@ const EXAMPLES = [
   "Java developer who has handled Kafka failures and run incident reviews",
   "Someone who has automated releases on Kubernetes and built React screens for trading or portfolio data",
   "Python API developer for a patient booking product",
+  "Kotlin backend contractor for payments, comfortable with PostgreSQL migrations",
+  "Data engineer who has built Airflow pipelines and documented data lineage",
+  "Frontend engineer with React and testing experience on trading screens",
+  "Someone who can mentor newer engineers and raise code review standards",
+  "Engineer who works well with product owners and QA to get releases out",
 ];
 
 interface Line { id: string; text: string; tier: Tier; clientWritten?: boolean; workerId: string; engagementId: string; approver: string; approvedAt: string }
@@ -95,7 +100,7 @@ function SearchPage() {
         <div className="flex flex-wrap gap-2 text-xs">
           <span className="text-ink-3">Try:</span>
           {EXAMPLES.map((ex) => (
-            <button key={ex} onClick={() => { setRequest(ex); run(ex); }} className="rounded-full border border-line px-2.5 py-0.5 text-left text-ink-2 hover:bg-surface-2 hover:text-ink">{ex}</button>
+            <button key={ex} onClick={() => { setRequest(ex); run(ex); }} className="rounded-lg border border-line px-2.5 py-1 text-left text-ink-2 transition-colors duration-150 hover:bg-surface-2 hover:text-ink">{ex}</button>
           ))}
         </div>
         <div className="flex flex-wrap items-center gap-3 pt-1">
