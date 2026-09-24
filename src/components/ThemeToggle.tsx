@@ -17,6 +17,10 @@ function readMode(): Mode {
 
 function applyMode(m: Mode) {
   const root = document.documentElement;
+  // Snap between themes: without this every colour transition fires at once and the page smears.
+  const freeze = document.createElement("style");
+  freeze.textContent = "*,*::before,*::after{transition:none!important}";
+  document.head.appendChild(freeze);
   try {
     if (m === "system") localStorage.removeItem(THEME_KEY);
     else localStorage.setItem(THEME_KEY, m);
@@ -24,6 +28,11 @@ function applyMode(m: Mode) {
   if (m === "system") root.removeAttribute("data-theme");
   else root.setAttribute("data-theme", m);
   window.dispatchEvent(new Event(THEME_EVENT));
+  void root.offsetHeight; // force a reflow with transitions off
+  // Remove on the next frame, with a timer as a backstop for throttled background tabs.
+  const release = () => freeze.isConnected && freeze.remove();
+  requestAnimationFrame(release);
+  setTimeout(release, 50);
 }
 
 function subscribeMode(cb: () => void) {

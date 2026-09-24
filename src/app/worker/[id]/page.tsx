@@ -129,9 +129,9 @@ function WorkerSeatLog() {
                 role="switch"
                 aria-checked={w.reminderOn}
                 onClick={() => store.setReminder(w.id, !w.reminderOn)}
-                className={`relative h-6 w-11 rounded-full transition-colors ${w.reminderOn ? "bg-accent" : "bg-surface-3"}`}
+                className={`relative h-6 w-11 rounded-full transition-colors duration-150 ${w.reminderOn ? "bg-accent" : "bg-surface-3"}`}
               >
-                <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-surface-1 shadow transition-all ${w.reminderOn ? "left-[22px]" : "left-0.5"}`} />
+                <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-surface-1 shadow transition-[left] duration-150 ${w.reminderOn ? "left-[22px]" : "left-0.5"}`} />
               </button>
             </div>
             <p className="text-xs text-ink-3">Optional. Memory of a long engagement fades fast.</p>

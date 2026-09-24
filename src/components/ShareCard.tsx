@@ -35,9 +35,9 @@ export function ShareCard({ worker }: { worker: Worker }) {
           aria-checked={on}
           aria-label="Share link"
           onClick={() => setShare(worker.id, !on)}
-          className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${on ? "bg-accent" : "bg-surface-3"}`}
+          className={`relative h-6 w-11 shrink-0 rounded-full transition-colors duration-150 ${on ? "bg-accent" : "bg-surface-3"}`}
         >
-          <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-surface-1 shadow transition-all ${on ? "left-[22px]" : "left-0.5"}`} />
+          <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-surface-1 shadow transition-[left] duration-150 ${on ? "left-[22px]" : "left-0.5"}`} />
         </button>
       </div>
       {on ? (

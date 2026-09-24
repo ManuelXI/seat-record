@@ -1,18 +1,12 @@
 import Link from "next/link";
-import { CheckIcon, TierChip } from "./ui";
+import { TierChip } from "./ui";
+import { HeroDeck } from "./HeroDeck";
 
 const STEPS = [
   { title: "Log it while it’s fresh", body: "Workers write a few lines about their client work whenever they like, with an optional monthly reminder." },
   { title: "Screen it before it leaves", body: "A check in the browser removes client names, systems, people and figures. The model then flags what a word list can’t, and rewrites each line at skill level." },
   { title: "The client approves in an email they already get", body: "At each extension and before roll-off, the lines ride on the extension reply or the testimonial request. Approve, edit or decline, line by line." },
   { title: "Signed, on the profile, kept for good", body: "Approved lines are signed by Bonarda Works and land on the dev profile. Workers keep a copy, and can share an unlisted link." },
-];
-
-const FIGURES_BEFORE = ["Worked on client systems (confidential).", "Developed and maintained features."];
-const FIGURES_AFTER: { text: string; tier: "client-approved" | "manager-witnessed" | "engineer-account" }[] = [
-  { text: "Rebuilt a failing nightly reconciliation job in Java and Spring Boot so it runs unattended", tier: "client-approved" },
-  { text: "Added consumer-side retries and dead-letter handling to Kafka event processing", tier: "client-approved" },
-  { text: "Ran the team’s incident review for a failed overnight run", tier: "manager-witnessed" },
 ];
 
 export function Landing() {
@@ -27,36 +21,13 @@ export function Landing() {
             approve it inside an email they already send.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink hover:bg-accent-hover">Try the demo →</Link>
-            <Link href="/share/k7f3a9c2" className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-4 py-2.5 font-medium text-ink hover:bg-surface-2">See a shared record</Link>
+            <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
+            <Link href="/share/k7f3a9c2" className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-4 py-2.5 font-medium text-ink transition-[background-color,scale] duration-150 hover:bg-surface-2 active:scale-[0.96]">See a shared record</Link>
           </div>
           <p className="text-sm text-ink-3">Suggested path: sign in as Efua, log an entry, then switch to Ama, her manager.</p>
         </div>
 
-        <div className="card overflow-hidden" aria-label="Efua's profile, before and after">
-          <div className="border-b border-line bg-surface-2 px-5 py-3">
-            <p className="font-medium">Backend engineer · Global investment bank, risk technology</p>
-            <p className="text-xs text-ink-3">14 months · Efua&rsquo;s dev profile, Experience section</p>
-          </div>
-          <div className="space-y-2 px-5 py-4">
-            <p className="eyebrow">Before</p>
-            <ul className="list-disc space-y-1 pl-5 text-ink-3 line-through decoration-1">
-              {FIGURES_BEFORE.map((t) => <li key={t}>{t}</li>)}
-            </ul>
-          </div>
-          <div className="space-y-2 border-t border-line px-5 py-4">
-            <p className="eyebrow">With Seat Record</p>
-            <ul className="space-y-2">
-              {FIGURES_AFTER.map((l) => (
-                <li key={l.text} className="grid grid-cols-[1fr_auto] items-start gap-x-3 text-sm">
-                  <span>{l.text}</span>
-                  <TierChip tier={l.tier} />
-                </li>
-              ))}
-            </ul>
-            <p className="flex items-center gap-1.5 pt-1 text-xs text-accent"><CheckIcon className="h-3.5 w-3.5" /> Approved by the client lead, 20 Feb 2026 · signature valid</p>
-          </div>
-        </div>
+        <HeroDeck />
       </section>
 
       <section className="grid gap-6 md:grid-cols-2">
@@ -118,7 +89,7 @@ export function Landing() {
           <h2 className="text-xl font-semibold">See it from each side</h2>
           <p className="text-sm text-ink-2">Workers, managers and client leads each get their own view. No passwords; everything is fictional.</p>
         </div>
-        <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink hover:bg-accent-hover">Try the demo →</Link>
+        <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
       </section>
 
       <p className="text-xs text-ink-3">Built for the Turntabl Future of Work hackathon. Bonarda Works, every person and every client here are fictional.</p>

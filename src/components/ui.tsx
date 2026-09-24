@@ -39,7 +39,7 @@ export function Button({ variant = "primary", className = "", ...props }: BtnPro
   return (
     <button
       {...props}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed ${v} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-[color,background-color,border-color,scale] duration-150 active:scale-[0.96] disabled:cursor-not-allowed disabled:active:scale-100 ${v} ${className}`}
     />
   );
 }
@@ -47,7 +47,7 @@ export function Button({ variant = "primary", className = "", ...props }: BtnPro
 export function ButtonLink({ href, variant = "primary", children, className = "" }: { href: string; variant?: "primary" | "secondary"; children: React.ReactNode; className?: string }) {
   const v = variant === "primary" ? "bg-accent text-accent-ink hover:bg-accent-hover" : "border border-line-strong bg-surface-1 text-ink hover:bg-surface-2";
   return (
-    <Link href={href} className={`inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${v} ${className}`}>
+    <Link href={href} className={`inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-[color,background-color,border-color,scale] duration-150 active:scale-[0.96] ${v} ${className}`}>
       {children}
     </Link>
   );
