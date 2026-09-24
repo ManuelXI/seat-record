@@ -62,7 +62,7 @@ A person can have many engagements. The latest is current and takes new entries;
 
 ## Find people
 
-Managers describe a client request at `/search`. The model splits it into requirements and cites client-approved lines that support each one; keyword matching runs alongside and a manager can filter to people with evidence for every requirement. Results are sorted by availability. Nothing is scored, and a worker's private log is never searched.
+Managers describe a client request at `/search`. The model splits it into requirements and cites client-approved lines that support each one; keyword matching runs alongside and a manager can filter to people with evidence for every requirement. Results are ordered by how many requirements have approved evidence (shown on each card), then availability, with a toggle for soonest available. Nothing is scored, and a worker's private log is never searched.
 
 ## Real and mocked
 

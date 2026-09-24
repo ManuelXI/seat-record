@@ -29,6 +29,7 @@ function SearchPage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<SearchResult | null>(null);
   const [mode, setMode] = useState<"all" | "any">("any");
+  const [sort, setSort] = useState<"coverage" | "availability">("coverage");
 
   // Only client-approved, signed lines are searchable. A worker's private log never enters.
   const lines: Line[] = useMemo(
@@ -70,10 +71,14 @@ function SearchPage() {
       perWorker.set(line.workerId, reqs);
     }
     return [...perWorker.entries()]
-      .map(([workerId, reqs]) => ({ worker: state.workers.find((w) => w.id === workerId)!, reqs }))
-      .filter((p) => p.worker && (mode === "any" || result.requirements.every((_, i) => p.reqs.has(i))))
-      .sort((a, b) => (a.worker.availableFrom < b.worker.availableFrom ? -1 : 1));
-  }, [result, byId, state.workers, mode]);
+      .map(([workerId, reqs]) => ({ worker: state.workers.find((w) => w.id === workerId)!, reqs, covered: reqs.size }))
+      .filter((p) => p.worker && (mode === "any" || p.covered === result.requirements.length))
+      // Coverage is a count the manager can verify line by line: how many requirements have
+      // at least one approved line. It is not a judgement of the person. Availability breaks ties.
+      .sort((a, b) =>
+        sort === "coverage" && b.covered !== a.covered ? b.covered - a.covered : a.worker.availableFrom < b.worker.availableFrom ? -1 : 1,
+      );
+  }, [result, byId, state.workers, mode, sort]);
 
   return (
     <div className="space-y-8">
@@ -82,7 +87,7 @@ function SearchPage() {
         <h1 className="text-3xl font-semibold">Find people by evidence</h1>
         <p className="max-w-2xl text-ink-2">
           Describe what the client needs. Seat Record breaks it into requirements and shows who has client-approved evidence for each one, quoted in full.
-          It never scores or ranks anyone.
+          There are no scores: people are ordered by how many requirements have evidence, a count you can check line by line.
         </p>
       </header>
 
@@ -119,16 +124,24 @@ function SearchPage() {
                 <span key={i} className="rounded-full bg-accent-soft px-2.5 py-0.5 text-sm text-accent-soft-ink">{r}</span>
               ))}
             </div>
+            <div className="flex flex-wrap gap-2">
+            <div role="radiogroup" aria-label="Sort by" className="flex rounded-lg border border-line bg-surface-1 p-0.5 text-sm">
+              {([["coverage", "Most requirements evidenced"], ["availability", "Soonest available"]] as const).map(([v, label]) => (
+                <button key={v} role="radio" aria-checked={sort === v} onClick={() => setSort(v)}
+                  className={`rounded-md px-3 py-1 transition-colors duration-150 ${sort === v ? "bg-surface-3 text-ink" : "text-ink-3 hover:text-ink"}`}>{label}</button>
+              ))}
+            </div>
             <div role="radiogroup" aria-label="Show people with" className="flex rounded-lg border border-line bg-surface-1 p-0.5 text-sm">
               {([["any", "Evidence for any"], ["all", "Evidence for every requirement"]] as const).map(([v, label]) => (
                 <button key={v} role="radio" aria-checked={mode === v} onClick={() => setMode(v)}
                   className={`rounded-md px-3 py-1 transition-colors duration-150 ${mode === v ? "bg-surface-3 text-ink" : "text-ink-3 hover:text-ink"}`}>{label}</button>
               ))}
             </div>
+            </div>
           </div>
           <p className="text-xs text-ink-3">
             {result.origin === "cache" ? "Requirements and matches from a cached model response, plus keyword matches." : result.origin === "live" ? "Requirements and matches from the model, plus keyword matches." : "Model unavailable: requirements split from your text and matched by shared words."}{" "}
-            Sorted by availability.
+            {sort === "coverage" ? "Ordered by how many requirements have approved evidence, then by availability." : "Ordered by availability."}
           </p>
 
           {people.length === 0 ? (
@@ -137,7 +150,7 @@ function SearchPage() {
             </div>
           ) : (
             <ul className="space-y-4">
-              {people.map(({ worker, reqs }) => {
+              {people.map(({ worker, reqs, covered }) => {
                 const eng = engagementsFor(state, worker.id)[0];
                 return (
                   <li key={worker.id} className="card overflow-hidden">
@@ -145,7 +158,12 @@ function SearchPage() {
                       <Link href={`/profile/${worker.id}`} className="font-display text-lg font-semibold hover:text-accent">{worker.name}</Link>
                       <TypeBadge type={worker.type} />
                       <span className="text-sm text-ink-3">Now: {eng.clientLabel}</span>
-                      <span className="ml-auto text-sm text-ink-2">Available {formatDate(worker.availableFrom)}</span>
+                      <span className="ml-auto flex items-center gap-3 text-sm">
+                        <span className={`rounded-full px-2.5 py-0.5 font-medium ${covered === result.requirements.length ? "bg-accent text-accent-ink" : "bg-surface-3 text-ink-2"}`}>
+                          {covered} of {result.requirements.length} requirements evidenced
+                        </span>
+                        <span className="text-ink-2">Available {formatDate(worker.availableFrom)}</span>
+                      </span>
                     </div>
                     <dl className="divide-y divide-line">
                       {result.requirements.map((r, i) => {
