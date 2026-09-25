@@ -30,7 +30,7 @@ Timed to `recordings/seat-record-demo.mp4` (`PACE=2 npm run demo:record`). About
 
 **On screen:** Efua sees Ama's note. Review lines, one line unticked, Approve and send. The **client email**: approve, edit, decline, a testimonial, Confirm, **signed**.
 
-> "Back as Efua, she sees Ama's note. Every unapproved line starts ticked. She unticks one she'd rather keep private, and sends the rest. We never send the client a new message. The lines ride on an email they already get, here the end-of-engagement testimonial request, and the client lead needs no account. They approve most lines, edit one, and decline one. They can add a testimonial, which goes through the same confidentiality screen. On Confirm, Bonarda Works signs the approved lines. That's the credential: a dated approval from the client, that a model can't fake."
+> "Back as Efua, she sees Ama's note. Every unapproved line starts ticked. She unticks one she'd rather keep private, and sends the rest. The client doesn't get a new tool or a new email. Efua's lines are added to an email they already expect, in this case the request for a testimonial at the end of her contract. They don't need an account; they just approve from the email. They approve most lines, edit one, and decline one. They can add a testimonial, which goes through the same confidentiality screen. On Confirm, Bonarda Works signs the approved lines. That's the credential: a dated approval from the client, that a model can't fake."
 
 ## 3:11 to 3:59 · The payoff
 
