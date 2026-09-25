@@ -46,6 +46,14 @@ export async function runDemo(page: Page, pace: Pace) {
     }
   };
 
+  // Smoothly scroll something into the middle of the screen, so the viewer sees it arrive.
+  const glide = async (target: Locator) => {
+    await expect(target).toBeVisible();
+    if (!pace.beat) return;
+    await target.evaluate((el) => el.scrollIntoView({ behavior: "smooth", block: "center" }));
+    await page.waitForTimeout(1_200);
+  };
+
   const main = page.getByRole("main");
   const sidebar = (name: string) => page.getByRole("complementary").getByRole("link", { name, exact: true });
 
@@ -121,7 +129,8 @@ export async function runDemo(page: Page, pace: Pace) {
   await expect(main.getByText("Needs attention")).toBeVisible();
   await beat(2);
   await click(main.getByRole("link", { name: "Engagement", exact: true }).first());
-  await expect(main.getByText(/lines in Efua’s log not yet shared/)).toBeVisible();
+  await beat(2);
+  await glide(main.getByText(/lines in Efua’s log not yet shared/));
   await beat(2);
   await page.getByLabel("Reason").selectOption("lead-change");
   await beat();
