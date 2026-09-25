@@ -18,13 +18,14 @@ export function Landing() {
           <h1 className="text-4xl font-semibold leading-[1.1] sm:text-5xl">A dated client approval is the one work credential a model cannot mint.</h1>
           <p className="max-w-xl text-lg text-ink-2">
             Seat Record captures what employees, contractors and freelancers did inside client teams, strips out anything confidential, and gets the client to
-            approve it inside an email they already send.
+            approve it inside an email they already send. When the next client brief lands, managers search that approved evidence to find who has
+            already done the work.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
             <Link href="/shared" className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-4 py-2.5 font-medium text-ink transition-[background-color,scale] duration-150 hover:bg-surface-2 active:scale-[0.96]">Browse shared records</Link>
           </div>
-          <p className="text-sm text-ink-3">Suggested path: sign in as Efua, log an entry, then switch to Ama, her manager.</p>
+          <p className="text-sm text-ink-3">Suggested path: sign in as Efua, log an entry, then switch to Ama, her manager, and try Find people.</p>
         </div>
 
         <HeroDeck />
