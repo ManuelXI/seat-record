@@ -1,7 +1,5 @@
 # Seat Record: optional submission sections
 
-DRAFT. Read it through and rewrite it in your own words before submitting.
-
 ## Submission details
 
 | Field | Value |

@@ -1,7 +1,5 @@
 # How we used AI, and declaration of AI tools
 
-DRAFT. The one item marked [confirm] becomes true once we have rewritten the summary and script in our own words. Source: [`DECISIONS.md`](../DECISIONS.md).
-
 We used only Anthropic's Claude: Claude Fable 5.1 mostly for research and ideation, and Claude Opus 5.5 in Claude Code for the build. No other AI tools were used.
 
 ## Tools used
@@ -10,7 +8,7 @@ We used only Anthropic's Claude: Claude Fable 5.1 mostly for research and ideati
 |---|---|---|
 | Claude Fable 5.1 (Anthropic) | Research and ideation: condensed public sources into analyst digests, generated and scored candidate ideas, re-ranked them against Turntabl's operating model | Steered the ideation over several rounds: fed in how Turntabl actually works (salaried engineers, client placements, the bench), which forced a full re-rank; chose the problem and the idea; corrected the AI's first reading of Bonarda, which narrowed the persona too far; checked the direction with our Operations client |
 | Claude Opus 5.5 (Anthropic), in Claude Code | Wrote most of the application code, tests, synthetic seed data, page copy, and the illustrative model responses used in the demo | Added features the AI had not proposed (see below); reviewed every screen in the browser and asked for changes over many rounds; checked the tests (40 passing), type-check, lint and build; set the product boundaries listed below |
-| Claude Opus 5.5, in Claude Code | Drafted the summary, demo script and this declaration | [confirm] Rewrote both in our own words and rehearsed them aloud |
+| Claude Opus 5.5, in Claude Code | Drafted the summary, the walkthrough script and this declaration | Directed every change, corrected claims in review, and recorded the narration ourselves |
 | Claude Opus 5 via the Anthropic API (the model the product code calls) | Designed to flag confidential signals a word list misses, rewrite lines at skill level, and turn a client request into requirements matched to approved lines | **Not called in this demo** (see below) |
 
 ## The model is not called in this demo
@@ -87,4 +85,6 @@ All samples are fictional. Rule results are computed from the same code the prod
 
 ## Statement
 
-[confirm] The problem-and-solution summary and the walkthrough script are the team's own words. AI drafted earlier versions, which we reviewed and rewrote.
+AI drafted the summary and walkthrough script. We directed every change, corrected claims in review, and recorded the narration ourselves in our own words.
+
+The full decision log is in [`DECISIONS.md`](../DECISIONS.md).

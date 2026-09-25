@@ -29,7 +29,7 @@ Use **Reset demo data** in the sidebar to return to the seed state. Answers to c
 
 ## Demo check and recording
 
-The walkthrough in `submission/demo-script.md` is automated in `tests/e2e/demo-flow.ts` (Playwright). Each run starts in a fresh browser, so demo data always starts from the seed.
+The recorded walkthrough is automated in `tests/e2e/demo-flow.ts` (Playwright). Each run starts in a fresh browser, so demo data always starts from the seed.
 
 - `npm run e2e` runs the whole demo against the hosted site in about 20 seconds and fails at the first broken step, plus the manager-witnessed flow (`tests/e2e/witness.spec.ts`). Run it before recording and before Demo Day.
 - `npm run demo:record` plays the same demo slowly with a visible cursor and saves a 1920x1200 video named with the date and time, such as `recordings/seat-record-demo-20260925-2100.mp4` (H.264, encoded with macOS AVFoundation through `tests/e2e/encode-mp4.swift`), or `.webm` on other systems. It also writes a matching `chapters-<date-time>.txt` with a timestamp for each section. `PACE=2 npm run demo:record` doubles every pause (about 3.5 minutes).

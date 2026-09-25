@@ -1,9 +1,9 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
 /**
- * The walkthrough from submission/demo-script.md, as one sequence of steps.
+ * The recorded walkthrough, as one sequence of steps.
  * demo.spec.ts runs it twice: fast as a check ("check" project), and slowly with a visible
- * cursor and a saved video ("record" project). Keep this in step with the script.
+ * cursor and a saved video ("record" project). Keep the voiceover in step with it.
  */
 
 export interface Pace {
