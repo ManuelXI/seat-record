@@ -6,7 +6,7 @@ Bonarda Works places employees, contractors and freelancers inside client teams.
 
 Seat Record captures the work while it is fresh and makes it safe to say. Workers log a few lines whenever they like, with an opt-in monthly reminder. A screen in the browser removes client names, systems, figures and people before anything is sent. A model is designed to flag what a word list misses and rewrite each sentence at skill level; the demo shows illustrative responses. A grounding check holds back numbers and outcome claims the worker never wrote. The worker approves every line.
 
-At each extension and before roll-off, the worker's approved lines ride on an email the client already sends: the extension reply or the testimonial request. The client lead approves, edits or declines each line. Approved lines are signed, tiered by evidence, and land on the worker's profile with a verifiable seat history.
+At each extension and before roll-off, the worker's approved lines are added to an email the client already sends: the extension reply or the testimonial request. The client lead approves, edits or declines each line. Approved lines are signed, tiered by evidence, and land on the worker's profile with a verifiable seat history.
 
 When a new engagement comes in, managers search everyone's seat records against the client's requirements and see who has approved evidence for each one.
 
