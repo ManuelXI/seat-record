@@ -57,6 +57,15 @@ export interface Entry {
   date: string;
   lines: Line[];
   managerSaw?: boolean;
+  /** The worker asked their engagement owner to confirm they saw this entry in a 1-on-1. */
+  witness?: WitnessRequest;
+}
+
+export interface WitnessRequest {
+  manager: string;
+  askedOn: string;
+  status: "asked" | "confirmed" | "declined";
+  answeredOn?: string;
 }
 
 export type CheckpointReason = "extension" | "roll-off" | "lead-change" | "manual";

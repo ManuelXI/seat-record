@@ -5,6 +5,7 @@ import seed from "@/data/seed.json";
 import { DEMO_TODAY, ROLL_OFF_WINDOW_WORKING_DAYS, workingDaysBetween } from "./dates";
 import type { AppState, Checkpoint, CheckpointReason, Entry, Line, SignedRecord, Tier } from "./types";
 import type { Session } from "./people";
+import { answerWitness, askWitness, cancelWitness } from "./witness";
 
 const KEY = "seat-record-state-v1";
 const SESSION_KEY = "seat-record-session-v1";
@@ -51,6 +52,9 @@ interface Store {
   openCheckpoint: (engagementId: string, openedBy: Checkpoint["openedBy"], reason: CheckpointReason, note?: string) => Checkpoint;
   sendCheckpoint: (checkpointId: string, lineIds: string[]) => void;
   completeClientReview: (checkpointId: string, approver: string, decisions: ClientDecision[], testimonial?: string) => Promise<SignedRecord>;
+  askWitness: (entryId: string, manager: string) => void;
+  cancelWitness: (entryId: string) => void;
+  answerWitness: (entryId: string, saw: boolean) => void;
   reset: () => void;
 }
 
@@ -194,14 +198,28 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     return record;
   }, [state.checkpoints, state.engagements, state.entries]);
 
+  const askWitnessAction = useCallback<Store["askWitness"]>((entryId, manager) => {
+    setState((s) => ({ ...s, entries: askWitness(s.entries, entryId, manager, DEMO_TODAY) }));
+  }, []);
+  const cancelWitnessAction = useCallback<Store["cancelWitness"]>((entryId) => {
+    setState((s) => ({ ...s, entries: cancelWitness(s.entries, entryId) }));
+  }, []);
+  const answerWitnessAction = useCallback<Store["answerWitness"]>((entryId, saw) => {
+    setState((s) => ({ ...s, entries: answerWitness(s.entries, entryId, saw, DEMO_TODAY) }));
+  }, []);
+
   const reset = useCallback(() => {
     try { localStorage.removeItem(KEY); } catch {}
     setState(initial);
   }, []);
 
   const value = useMemo(
-    () => ({ state, ready, session, signIn, signOut, addEntry, setReminder, setShare, openCheckpoint, sendCheckpoint, completeClientReview, reset }),
-    [state, ready, session, signIn, signOut, addEntry, setReminder, setShare, openCheckpoint, sendCheckpoint, completeClientReview, reset],
+    () => ({
+      state, ready, session, signIn, signOut, addEntry, setReminder, setShare, openCheckpoint, sendCheckpoint, completeClientReview,
+      askWitness: askWitnessAction, cancelWitness: cancelWitnessAction, answerWitness: answerWitnessAction, reset,
+    }),
+    [state, ready, session, signIn, signOut, addEntry, setReminder, setShare, openCheckpoint, sendCheckpoint, completeClientReview,
+      askWitnessAction, cancelWitnessAction, answerWitnessAction, reset],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

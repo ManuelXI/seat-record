@@ -21,3 +21,4 @@ One line per decision: what, who decided, and whether AI proposed it. Feeds the 
 | 2026-09-25 | Host on Netlify; blocked by exhausted account credits | Team | AI set up config |
 | 2026-09-25 | Host on Render's free plan instead; Vercel ruled out | Team | AI listed free options |
 | 2026-09-25 | The model was never called with a key. Demo responses are labelled as illustrative responses written to show what the model returns, not as cached real runs | Team | AI found the unsupported "real runs" claim |
+| 2026-09-26 | Manager-witnessed becomes a real flow: the worker asks their engagement owner to confirm one entry from a 1-on-1; only that entry is shown; the manager confirms or declines | Team | Team asked for it; AI designed it to keep managers out of the private log |

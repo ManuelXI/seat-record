@@ -6,11 +6,13 @@ import { engagementsFor, rollOffStatus, useStore } from "@/lib/store";
 import { formatDate, monthsBetween } from "@/lib/dates";
 import { MANAGERS } from "@/lib/people";
 import type { CheckpointReason } from "@/lib/types";
+import { witnessRequests } from "@/lib/witness";
 import { Button, ButtonLink, Crumbs, TierChip, TypeBadge } from "./ui";
 
 /**
  * What a manager sees for an engagement: status, what the client approved, and the
  * power to open a checkpoint. Never the worker's unshared lines, and never a send button.
+ * The one exception: an entry the worker asks the engagement owner to confirm they saw in a 1-on-1.
  */
 export function ManagerEngagement({ workerId }: { workerId: string }) {
   const store = useStore();
@@ -31,6 +33,7 @@ export function ManagerEngagement({ workerId }: { workerId: string }) {
   const pending = cps.find((c) => c.status !== "approved");
   const roll = rollOffStatus(eng.end);
   const records = state.records.filter((r) => r.engagementId === eng.id).sort((a, b) => (a.approvedAt < b.approvedAt ? 1 : -1));
+  const asks = me && isOwner ? witnessRequests(state.entries, eng.id, me.name) : [];
   const unshared = state.entries.filter((e) => e.engagementId === eng.id).flatMap((e) => e.lines).filter((l) => l.status === "approved-by-worker").length;
 
   const open = () => {
@@ -73,6 +76,29 @@ export function ManagerEngagement({ workerId }: { workerId: string }) {
             </p>
             {pending && <p className="text-sm text-ink-2">Opened by {pending.openedBy === "system" ? "the placement list" : pending.openedBy.replace("-", " ")} for the period since {formatDate(pending.periodFrom)}.{pending.note && ` Note: “${pending.note}”`}</p>}
           </section>
+
+          {asks.length > 0 && (
+            <section className="card space-y-3 border-accent p-5" aria-labelledby="confirm">
+              <div>
+                <h2 id="confirm" className="text-xl font-semibold">Waiting for you to confirm</h2>
+                <p className="text-sm text-ink-2">{first} says you saw {asks.length === 1 ? "this" : "these"} in a 1-on-1. Confirming marks the lines manager-witnessed. You see only what {first} chose to show you.</p>
+              </div>
+              <ul className="space-y-3">
+                {asks.map((e) => (
+                  <li key={e.id} className="rounded-lg border border-line p-4">
+                    <p className="eyebrow mb-2">Logged {formatDate(e.date)} · asked {formatDate(e.witness!.askedOn)}</p>
+                    <ul className="space-y-1.5">
+                      {e.lines.map((l) => <li key={l.id}>{l.text}</li>)}
+                    </ul>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <Button onClick={() => store.answerWitness(e.id, true)}>I saw this</Button>
+                      <Button variant="secondary" onClick={() => store.answerWitness(e.id, false)}>Not this one</Button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section className="space-y-3" aria-labelledby="approved">
             <h2 id="approved" className="text-xl font-semibold">What the client has approved</h2>
@@ -127,7 +153,7 @@ export function ManagerEngagement({ workerId }: { workerId: string }) {
 
           <section className="rounded-xl border border-dashed border-line-strong p-5">
             <p className="font-medium">{unshared} {unshared === 1 ? "line" : "lines"} in {first}&rsquo;s log not yet shared with the client</p>
-            <p className="text-sm text-ink-2">Only {first} can read, select and send these. Seat Record never shows a worker&rsquo;s log to their manager.</p>
+            <p className="text-sm text-ink-2">Only {first} can read, select and send these. Seat Record never shows a worker&rsquo;s log to their manager, except an entry the worker asks them to confirm.</p>
           </section>
         </div>
 

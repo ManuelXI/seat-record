@@ -9,7 +9,10 @@
     "lint": "eslint",
     "seed": "tsx scripts/build-seed.ts",
     "test": "vitest run",
-    "eval": "tsx scripts/eval-model.ts"
+    "eval": "tsx scripts/eval-model.ts",
+    "e2e": "playwright test --project=check",
+    "demo:record": "playwright test --project=record demo.spec.ts",
+    "demo:clip": "playwright test --project=record clips.spec.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.128.0",
@@ -19,6 +22,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^24.13.6",
     "@types/react": "^19",

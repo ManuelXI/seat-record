@@ -99,7 +99,7 @@ export function Landing() {
           <ul className="space-y-3">
             {([
               ["client-approved", "A named client lead approved it on a date. Signed by Bonarda Works."],
-              ["manager-witnessed", "The worker’s account, read by their manager when it was written."],
+              ["manager-witnessed", "The worker’s account, confirmed by their manager, who saw it in a 1-on-1."],
               ["engineer-account", "Dated and self-written, clearly labelled. The default for most contractors."],
             ] as const).map(([tier, text]) => (
               <li key={tier} className="flex items-start gap-3"><TierChip tier={tier} /><span className="text-sm text-ink-2">{text}</span></li>

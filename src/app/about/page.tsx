@@ -62,7 +62,7 @@ export default function About() {
         <h2 className="text-2xl font-semibold">Who sees what</h2>
         <ul className="space-y-2 text-ink-2">
           <li><strong className="text-ink">Worker:</strong> their own log, drafts, profile and history. Only they can send lines to a client, and only they can turn on a share link.</li>
-          <li><strong className="text-ink">Manager:</strong> engagement status, client-approved lines and a count of unshared lines. They can open a checkpoint with a note and search approved evidence. They never see a worker&rsquo;s private log.</li>
+          <li><strong className="text-ink">Manager:</strong> engagement status, client-approved lines and a count of unshared lines. They can open a checkpoint with a note and search approved evidence. They never see a worker&rsquo;s private log, except an entry the worker asks them to confirm from a 1-on-1.</li>
           <li><strong className="text-ink">Client lead:</strong> no account. Only the lines they are asked to approve, inside an email they already receive.</li>
         </ul>
       </section>
@@ -71,7 +71,7 @@ export default function About() {
         <h2 className="text-2xl font-semibold">Evidence tiers</h2>
         <ul className="space-y-2 text-ink-2">
           <li><strong className="text-ink">Client-approved:</strong> a named client lead approved the line on a date; Bonarda Works signed it.</li>
-          <li><strong className="text-ink">Manager-witnessed:</strong> the worker&rsquo;s account, read by a Bonarda manager on the date it was written.</li>
+          <li><strong className="text-ink">Manager-witnessed:</strong> the worker&rsquo;s account, confirmed by their Bonarda manager after the worker asks them to, because they saw it in a 1-on-1.</li>
           <li><strong className="text-ink">Own account:</strong> dated and self-written, clearly labelled. The default for most contractors.</li>
         </ul>
       </section>
