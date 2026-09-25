@@ -56,11 +56,26 @@ export async function runDemo(page: Page, pace: Pace) {
     await page.waitForLoadState("networkidle");
   };
 
-  // 0:00 The problem
-  pace.chapter("The problem: landing page, Efua's profile before Seat Record");
   if (new URL(page.url()).pathname !== "/" || page.url() === "about:blank") await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("A dated client approval");
-  await beat(3);
+
+  // Overview, recording only: hold on the hero until its Step 2 appears (it advances every 7s),
+  // then glide through How it works and the Find people example, and back to the top.
+  if (pace.beat) {
+    pace.chapter("Overview: what Seat Record is, on the landing page");
+    const glideTo = (selector: string) =>
+      page.evaluate((sel) => document.querySelector(sel)?.scrollIntoView({ behavior: "smooth", block: "center" }), selector);
+    await page.waitForTimeout(9_500);
+    await glideTo("#how");
+    await page.waitForTimeout(8_000);
+    await glideTo("#next-brief");
+    await page.waitForTimeout(6_000);
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "smooth" }));
+    await page.waitForTimeout(1_500);
+  }
+
+  // The problem
+  pace.chapter("The problem: Efua's profile before Seat Record");
   await click(page.getByRole("link", { name: /Try the demo/ }).first());
   await click(page.getByText("Sign in as Efua →"));
   await expect(page).toHaveURL(/\/worker\/w1$/);
@@ -69,7 +84,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await expect(main.getByText("Worked on client systems (confidential).").first()).toBeVisible();
   await beat(3);
 
-  // 0:30 Efua logs her work
+  // Efua logs her work
   pace.chapter("Efua logs her work: screen, replacement, illustrative draft, grounding");
   await click(sidebar("My seat log"));
   await beat(2);
@@ -100,7 +115,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await click(page.getByRole("button", { name: /^Approve \d+ lines$/ }));
   await expect(page).toHaveURL(/\/worker\/w1$/);
 
-  // 1:30 Ama opens a checkpoint
+  // Ama opens a checkpoint
   pace.chapter("Ama, her manager, opens a checkpoint with a note");
   await switchTo(/Ama Boateng/);
   await expect(main.getByText("Needs attention")).toBeVisible();
@@ -114,7 +129,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await click(page.getByRole("button", { name: "Open checkpoint" }));
   await expect(page.getByText(/Opened\. Efua will see your note/)).toBeVisible();
 
-  // 2:00 Efua sends, the client approves
+  // Efua sends, the client approves
   pace.chapter("Efua sends her lines; the client lead approves in the email");
   await switchTo(/Efua Mensah/);
   await expect(main.getByText(/Your client lead moves on next month/)).toBeVisible();
@@ -140,7 +155,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await expect(page.getByText("Thank you. Your approval is recorded.")).toBeVisible();
   await beat(2);
 
-  // 2:50 The payoff
+  // The payoff
   pace.chapter("The payoff: profile, seat history, signatures, Find people");
   await click(page.getByRole("link", { name: /Back to Efua/ }));
   await click(page.getByRole("radio", { name: "With Seat Record" }));
@@ -166,7 +181,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await expect(main.getByText("Efua Mensah").first()).toBeVisible();
   await beat(4);
 
-  // 3:30 Close
+  // Close
   pace.chapter("Close: How it works, Evaluation");
   await click(sidebar("How it works"));
   await expect(page.getByRole("heading", { name: "Real and mocked" })).toBeVisible();
