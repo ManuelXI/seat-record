@@ -18,7 +18,9 @@ test("demo script runs end to end", async ({ page }, info) => {
 
   mkdirSync("recordings", { recursive: true });
   // MP4 (H.264) on macOS through AVFoundation; WebM elsewhere.
-  const out = `recordings/seat-record-demo.${process.platform === "darwin" ? "mp4" : "webm"}`;
+  // A new name per run (date and time), so video editors and Finder never mix versions up.
+  const runId = new Date().toISOString().slice(0, 16).replace(/[-:]/g, "").replace("T", "-");
+  const out = `recordings/seat-record-demo-${runId}.${process.platform === "darwin" ? "mp4" : "webm"}`;
   const recorder = await startHdRecording(page, { out, size: { width: 1920, height: 1200 } });
   const started = recorder.startedAt;
   const chapters: string[] = [];
@@ -32,6 +34,6 @@ test("demo script runs end to end", async ({ page }, info) => {
   await runDemo(page, pace);
   chapters.push(`${stamp()}  End`);
 
-  writeFileSync("recordings/chapters.txt", chapters.join("\n") + "\n");
+  writeFileSync(`recordings/chapters-${runId}.txt`, chapters.join("\n") + "\n");
   await recorder.stop();
 });
