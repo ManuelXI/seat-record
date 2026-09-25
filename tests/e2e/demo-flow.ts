@@ -46,12 +46,14 @@ export async function runDemo(page: Page, pace: Pace) {
     }
   };
 
-  // Smoothly scroll something into the middle of the screen, so the viewer sees it arrive.
-  const glide = async (target: Locator) => {
+  // Everything the voiceover talks about goes through show(): it scrolls the element to the middle of the
+  // screen (smoothly when recording) and fails the run if it is not actually in view, so a recording can
+  // never narrate something the viewer cannot see.
+  const show = async (target: Locator) => {
     await expect(target).toBeVisible();
-    if (!pace.beat) return;
-    await target.evaluate((el) => el.scrollIntoView({ behavior: "smooth", block: "center" }));
-    await page.waitForTimeout(1_200);
+    await target.evaluate((el, smooth) => el.scrollIntoView({ behavior: smooth ? "smooth" : "instant", block: "center" }), !!pace.beat);
+    if (pace.beat) await page.waitForTimeout(1_200);
+    await expect(target).toBeInViewport();
   };
 
   const main = page.getByRole("main");
@@ -89,7 +91,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await expect(page).toHaveURL(/\/worker\/w1$/);
   await click(sidebar("My profile"));
   await click(page.getByRole("radio", { name: "Before Seat Record" }));
-  await expect(main.getByText("Worked on client systems (confidential).").first()).toBeVisible();
+  await show(main.getByText("Worked on client systems (confidential).").first());
   await beat(3);
 
   // Efua logs her work
@@ -100,12 +102,14 @@ export async function runDemo(page: Page, pace: Pace) {
   await click(page.getByRole("button", { name: /Client system name/ }));
   const entry = page.locator("textarea");
   await expect(entry).toHaveValue(/Aurora/);
+  await show(page.locator("mark", { hasText: "Aurora" }));
   await beat(2);
   await click(page.getByRole("button", { name: "upstream", exact: true }));
   await expect(entry).toHaveValue(/the upstream ledger feed/);
   await beat();
   await click(page.getByRole("button", { name: "Check and draft lines" }));
-  await expect(page.getByText(/Illustrative response, written to show what the model returns/)).toBeVisible();
+  await show(page.getByText(/Illustrative response, written to show what the model returns/));
+  await show(page.getByText("VaR", { exact: true }).first());
   await beat(2);
   await click(page.getByRole("button", { name: "Use “risk”" }));
 
@@ -116,7 +120,7 @@ export async function runDemo(page: Page, pace: Pace) {
     if ((await lines.nth(i).inputValue()).startsWith("Eliminated")) greyed = lines.nth(i);
   }
   if (!greyed) throw new Error("Expected the greyed 'Eliminated all failures' line");
-  await expect(page.getByText(/Not in your entry/)).toBeVisible();
+  await show(page.getByText(/Not in your entry/));
   await beat();
   await type(greyed, "Removed recurring failures in an overnight process");
   await expect(page.getByText(/Not in your entry/)).toHaveCount(0);
@@ -126,22 +130,22 @@ export async function runDemo(page: Page, pace: Pace) {
   // Ama opens a checkpoint
   pace.chapter("Ama, her manager, opens a checkpoint with a note");
   await switchTo(/Ama Boateng/);
-  await expect(main.getByText("Needs attention")).toBeVisible();
+  await show(main.getByText("Needs attention"));
   await beat(2);
   await click(main.getByRole("link", { name: "Engagement", exact: true }).first());
   await beat(2);
-  await glide(main.getByText(/lines in Efua’s log not yet shared/));
+  await show(main.getByText(/lines in Efua’s log not yet shared/));
   await beat(2);
   await page.getByLabel("Reason").selectOption("lead-change");
   await beat();
   await type(page.getByLabel("Note, visible to Efua"), "Your client lead moves on next month");
   await click(page.getByRole("button", { name: "Open checkpoint" }));
-  await expect(page.getByText(/Opened\. Efua will see your note/)).toBeVisible();
+  await show(page.getByText(/Opened\. Efua will see your note/));
 
   // Efua sends, the client approves
   pace.chapter("Efua sends her lines; the client lead approves in the email");
   await switchTo(/Efua Mensah/);
-  await expect(main.getByText(/Your client lead moves on next month/)).toBeVisible();
+  await show(main.getByText(/Your client lead moves on next month/));
   await beat(2);
   await click(main.getByRole("link", { name: "Review lines" }).first());
   await click(page.getByRole("checkbox", { name: /React risk dashboard/ }));
@@ -149,7 +153,7 @@ export async function runDemo(page: Page, pace: Pace) {
   await click(page.getByRole("button", { name: /^Approve and send/ }));
   await click(page.getByRole("link", { name: "Open client email (mock)" }));
 
-  await expect(page.getByText(/A short testimonial for Efua Mensah/)).toBeVisible();
+  await show(page.getByText(/A short testimonial for Efua Mensah/));
   await beat(2);
   const decide = (text: string, action: "approve" | "edit" | "decline") =>
     click(main.locator("ul > li").filter({ hasText: text }).getByRole("button", { name: action, exact: true }));
@@ -161,21 +165,23 @@ export async function runDemo(page: Page, pace: Pace) {
   await decide("Worked across team boundaries", "decline");
   await type(page.getByLabel(/Anything you would like to add/), "Efua was calm under pressure and left the team in better shape.");
   await click(page.getByRole("button", { name: "Confirm" }));
-  await expect(page.getByText("Thank you. Your approval is recorded.")).toBeVisible();
+  await show(page.getByText("Thank you. Your approval is recorded."));
+  await show(page.getByText(/^Signature /));
   await beat(2);
 
   // The payoff
   pace.chapter("The payoff: profile, seat history, signatures, Find people");
   await click(page.getByRole("link", { name: /Back to Efua/ }));
   await click(page.getByRole("radio", { name: "With Seat Record" }));
-  await expect(main.getByText(/incident review for a failed overnight run/).first()).toBeVisible();
+  await show(main.getByText(/incident review for a failed overnight run/).first());
   await beat(2);
   await click(main.getByRole("link", { name: "Seat history" }).first());
-  await expect(page.getByText("Signature valid").first()).toBeVisible();
+  await show(page.getByText("Signature valid").first());
   await expect(page.getByText("Signature invalid")).toHaveCount(0);
   await beat(2);
   await click(page.getByRole("button", { name: "Try editing a word" }).first());
   await expect(page.getByText("Signature invalid")).toHaveCount(1);
+  await show(page.getByText("Signature invalid"));
   await beat();
   await click(page.getByRole("button", { name: "Undo edit" }));
   await expect(page.getByText("Signature invalid")).toHaveCount(0);
@@ -183,20 +189,19 @@ export async function runDemo(page: Page, pace: Pace) {
   await switchTo(/Ama Boateng/);
   await click(sidebar("Find people"));
   await click(page.getByRole("button", { name: /Java developer who has handled Kafka failures/ }));
-  await expect(page.getByText(/from an illustrative response/)).toBeVisible();
+  await show(page.getByText(/from an illustrative response/));
   await click(page.getByRole("radio", { name: "Evidence for every requirement" }));
   await expect(page.getByText(/of 3 requirements evidenced/)).toHaveCount(1);
-  await expect(page.getByText("3 of 3 requirements evidenced")).toBeVisible();
+  await show(page.getByText("3 of 3 requirements evidenced"));
   await expect(main.getByText("Efua Mensah").first()).toBeVisible();
   await beat(4);
 
   // Close
   pace.chapter("Close: How it works, Evaluation");
   await click(sidebar("How it works"));
-  await expect(page.getByRole("heading", { name: "Real and mocked" })).toBeVisible();
-  await page.getByRole("heading", { name: "Real and mocked" }).scrollIntoViewIfNeeded();
+  await show(page.getByRole("heading", { name: "Real and mocked" }));
   await beat(3);
   await click(sidebar("Evaluation"));
-  await expect(page.getByText(/planted terms caught by rules alone/)).toBeVisible();
+  await show(page.getByText(/planted terms caught by rules alone/));
   await beat(3);
 }
