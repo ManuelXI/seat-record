@@ -52,7 +52,7 @@ const GROUPS: { title: string; items: QA[] }[] = [
       { q: "Why is there a list of shared records if links are unlisted?", a: "The Shared records page exists so you can see shared records in this demo. In the product there is no directory: a record is only visible to people its owner sends the link to." },
       { q: "What is real and what is mocked?", a: <>The screen, grounding check, tiers, signing and share links are real. Client emails, the placement list and reminder delivery are mocked. The full table is on <Link href="/about" className="text-accent hover:underline">How it works</Link>.</> },
       { q: "Why doesn’t a link I created work on another device?", a: "The demo keeps changes in your browser. Records and links in the seed data work anywhere; ones you create while trying the demo live in that browser only." },
-      { q: "How do I start again?", a: "Use Reset demo data in the sidebar, then sign out from the switch-user menu." },
+      { q: "How do I start again?", a: "Use Reset demo data in the sidebar, then Sign out just below it." },
     ],
   },
 ];

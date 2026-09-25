@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useStore } from "@/lib/store";
 import { MANAGERS } from "@/lib/people";
 import { ThemeToggle } from "./ThemeToggle";
 import { UserSwitcher } from "./UserSwitcher";
-import { IconChart, IconClose, IconGrid, IconInfo, IconLog, IconMenu, IconPen, IconReset, IconSearch, IconSwitch, IconUser, IconHelp, IconShare } from "./icons";
+import { IconChart, IconClose, IconGrid, IconInfo, IconLog, IconMenu, IconPen, IconReset, IconSearch, IconSignOut, IconSwitch, IconUser, IconHelp, IconShare } from "./icons";
 
 type NavItem = { href: string; label: string; icon: () => React.JSX.Element; match: (p: string) => boolean };
 
@@ -57,7 +57,8 @@ function PublicShell({ children }: { children: React.ReactNode }) {
 }
 
 function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
-  const { session, state, reset } = useStore();
+  const { session, state, reset, signOut } = useStore();
+  const router = useRouter();
   const path = usePathname();
   const [confirming, setConfirming] = useState(false);
   const [switching, setSwitching] = useState(false);
@@ -129,6 +130,12 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
             <IconReset /> Reset demo data
           </button>
         )}
+        <button
+          onClick={() => { signOut(); onNavigate?.(); router.push("/signin"); }}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-xs text-ink-3 hover:bg-surface-2 hover:text-ink"
+        >
+          <IconSignOut /> Sign out
+        </button>
         <button
           onClick={() => setSwitching(true)}
           aria-haspopup="dialog"

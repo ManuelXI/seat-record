@@ -10,6 +10,7 @@ export const IconInfo = () => (<svg {...base}><circle cx="10" cy="10" r="7" /><p
 export const IconMenu = () => (<svg {...base}><path d="M3.5 6h13M3.5 10h13M3.5 14h13" /></svg>);
 export const IconClose = () => (<svg {...base}><path d="M5 5l10 10M15 5L5 15" /></svg>);
 export const IconSwitch = () => (<svg {...base}><path d="M6 5l-3 3 3 3M3 8h11M14 15l3-3-3-3M17 12H6" /></svg>);
+export const IconSignOut = () => (<svg {...base}><path d="M8 4H5.5A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8M12 6.5 15.5 10 12 13.5M15.5 10H8" /></svg>);
 export const IconReset = () => (<svg {...base}><path d="M4 10a6 6 0 1 0 2-4.5M4 4v3h3" /></svg>);
 export const IconHelp = () => (<svg {...base}><circle cx="10" cy="10" r="7" /><path d="M8 8a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2v.5M10 14v.01" /></svg>);
 export const IconShare = () => (<svg {...base}><circle cx="5.5" cy="10" r="2" /><circle cx="14.5" cy="5" r="2" /><circle cx="14.5" cy="15" r="2" /><path d="M7.3 9l5.4-3M7.3 11l5.4 3" /></svg>);
