@@ -45,8 +45,8 @@
 
 ## Who did what
 
-Most product decisions came out of in-person discussions between the two of us, so the split below is approximate.
+We worked on this together, mostly in person, so most decisions were shared.
 
-- **Emmanuel Mortey:** steered the research and ideation over several rounds, including feeding in how Turntabl works, which forced a full re-rank of the ideas. Drafted the questions for our Operations client. Came up with Find people by evidence. Built the app with Claude Code, and reviewed every screen over many rounds of feedback (layout, the landing page and its two-step hero, sign-out, labelling the illustrative AI responses). Deployed it to Render and drafted the submission documents. See the AI declaration for the full list.
-- **George Hanson:** gave the first round of feedback after ideation and on the first version of the brief page. His review corrected our reading of Bonarda Works, which had narrowed the persona to salaried engineers only, so we kept contractors and freelancers in scope. It also helped settle the lifecycle problem as offboarding and re-engaging people.
-- **Both:** chose Seat Record from the shortlist, worked through the product decisions in person (which emails carry the client's approval, what managers can and cannot see, and keeping the monthly reminder as an opt-in), and reviewed the demo.
+- **Both of us:** chose Seat Record from the shortlist, and worked through the product decisions together: which emails carry the client's approval, what managers can and cannot see, and keeping the monthly reminder as an opt-in.
+- **George Hanson:** shaped the product direction. His review after ideation corrected our reading of Bonarda Works, which had narrowed the persona to salaried engineers only, so contractors and freelancers stayed in scope, and it settled the lifecycle problem as offboarding and re-engaging people. He reviewed the first version of the brief page and the submission documents, and caught two claims that overstated what the product does.
+- **Emmanuel Mortey:** ran the research and ideation with Claude, drafted the questions for our Operations client, built and tested the app with Claude Code, deployed it, recorded the walkthrough, and drafted the submission documents.
