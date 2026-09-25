@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "@/lib/store";
 import { MANAGERS } from "@/lib/people";
 import { ThemeToggle } from "./ThemeToggle";
@@ -156,7 +156,23 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
 
 /** Signed-in layout: fixed sidebar on large screens, a top bar with a drawer on small ones. */
 function SignedInShell({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
+  // The drawer slides in from its @starting-style (Tailwind's starting: variant) as it mounts,
+  // and unmounts once its slide-out has finished.
+  const [phase, setPhase] = useState<"closed" | "open" | "closing">("closed");
+  const open = phase === "open";
+  const shown = phase === "open";
+  const openMenu = () => setPhase("open");
+  const closeMenu = () => {
+    setPhase("closing");
+    setTimeout(() => setPhase((p) => (p === "closing" ? "closed" : p)), 220);
+  };
+  useEffect(() => {
+    if (phase !== "open") return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeMenu(); };
+    addEventListener("keydown", onKey);
+    return () => removeEventListener("keydown", onKey);
+  }, [phase]);
+
   return (
     <div className="lg:flex">
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 border-r border-line bg-surface-1/40 lg:block">
@@ -165,16 +181,24 @@ function SignedInShell({ children }: { children: React.ReactNode }) {
 
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-line bg-canvas/90 px-4 py-3 backdrop-blur lg:hidden">
         <Brand />
-        <button onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open} className="rounded-md p-2 text-ink-2 hover:bg-surface-2">
+        <button onClick={openMenu} aria-label="Open menu" aria-expanded={open} className="rounded-md p-2 text-ink-2 hover:bg-surface-2">
           <IconMenu />
         </button>
       </header>
-      {open && (
+      {phase !== "closed" && (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-          <button aria-label="Close menu" className="absolute inset-0 bg-ink/30" onClick={() => setOpen(false)} />
-          <div className="absolute inset-y-0 left-0 w-72 max-w-[85vw] border-r border-line bg-canvas">
-            <button onClick={() => setOpen(false)} aria-label="Close menu" className="absolute right-3 top-4 rounded-md p-2 text-ink-2 hover:bg-surface-2"><IconClose /></button>
-            <Sidebar onNavigate={() => setOpen(false)} />
+          <button
+            aria-label="Close menu"
+            className={`absolute inset-0 bg-ink/30 transition-opacity motion-reduce:transition-none ${shown ? "opacity-100 duration-250 ease-out starting:opacity-0" : "opacity-0 duration-200 ease-in"}`}
+            onClick={closeMenu}
+          />
+          <div
+            className={`absolute inset-y-0 left-0 w-72 max-w-[85vw] border-r border-line bg-canvas shadow-xl transition-transform motion-reduce:transition-none ${
+              shown ? "translate-x-0 duration-250 ease-[cubic-bezier(0.32,0.72,0,1)] starting:-translate-x-full" : "-translate-x-full duration-200 ease-in"
+            }`}
+          >
+            <button onClick={closeMenu} aria-label="Close menu" className="absolute right-3 top-4 rounded-md p-2 text-ink-2 hover:bg-surface-2"><IconClose /></button>
+            <Sidebar onNavigate={closeMenu} />
           </div>
         </div>
       )}
