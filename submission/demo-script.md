@@ -22,7 +22,7 @@ Each handoff is a role switch: click your name at the bottom of the sidebar and 
 
 **Do:** Click **Log your work**. Type, or click the **Client system name** example: "I rebuilt their overnight VaR batch so it stopped failing on the Aurora ledger feed, and set up contract tests for the three upstream teams."
 
-**Show:** "Aurora" turns red before anything is sent. Tap the **upstream** suggestion; the sentence now reads "the upstream ledger feed". "The suggestions are a fixed list on purpose: nothing reaches a model until the screen is clear." "This check runs in her browser. Raw client text never leaves her laptop."
+**Show:** "Aurora" turns red before anything is sent. Tap the **upstream** suggestion; the sentence now reads "the upstream ledger feed". "The suggestions are a fixed list on purpose: nothing reaches a model until the screen is clear." "This check runs in her browser, so client names, systems, people and figures are caught before anything is sent."
 
 **Show:** Click **Check and draft lines**. The label at the top says this is an illustrative response: the model is not called in the demo. It flags "VaR" with a reason; click **Use "risk"**. The line "Eliminated all failures" is greyed: those words are not in her entry. Edit it to "Removed recurring failures in an overnight process". Click **Approve**.
 
