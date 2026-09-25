@@ -140,7 +140,7 @@ function SearchPage() {
             </div>
           </div>
           <p className="text-xs text-ink-3">
-            {result.origin === "cache" ? "Requirements and matches from a cached model response, plus keyword matches." : result.origin === "live" ? "Requirements and matches from the model, plus keyword matches." : "Model unavailable: requirements split from your text and matched by shared words."}{" "}
+            {result.origin === "cache" ? "Requirements and matches from an illustrative response, written to show what the model returns, plus keyword matches. The model was not called." : result.origin === "live" ? "Requirements and matches from the model, plus keyword matches." : "Model unavailable: requirements split from your text and matched by shared words."}{" "}
             {sort === "coverage" ? "Ordered by how many requirements have approved evidence, then by availability." : "Ordered by availability."}
           </p>
 

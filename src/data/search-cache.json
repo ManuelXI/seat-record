@@ -1,5 +1,5 @@
 {
-  "_note": "Cached model output for the demo's example requests, keyed by normalised request. Line ids are record id plus line index, so they are stable across seed regeneration. Keyword matching still runs on top, so lines approved later in the demo are found too.",
+  "_note": "Illustrative responses written to show what the model returns for the demo's example requests, written during the build rather than recorded from API calls; keyed by normalised request. Line ids are record id plus line index, so they are stable across seed regeneration. Keyword matching still runs on top, so lines approved later in the demo are found too.",
   "java developer who has handled kafka failures and run incident reviews": {
     "requirements": [
       "Java backend development",

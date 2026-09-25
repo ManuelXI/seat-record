@@ -3,12 +3,12 @@ import { RUNTIME_MODEL } from "@/lib/rewrite";
 const REAL = [
   ["Browser screen for protected terms, names, acronyms, figures and identifiers", "Real, tested"],
   ["One-tap replacement suggestions for screened terms", "Real, tested; a fixed list, no model"],
-  ["Model pass: flags domain signals, rewrites at skill level", `Real (${RUNTIME_MODEL}); scripted demo entries use cached responses`],
+  ["Model pass: flags domain signals, rewrites at skill level", `Built (${RUNTIME_MODEL}), not run in this demo; scripted entries show illustrative responses written to show what the model returns`],
   ["Grounding check on drafted lines", "Real, tested"],
   ["Checkpoints, default-all selection, worker approval", "Real"],
   ["Ed25519 signing and verification of approved records", "Real, tested; demo key"],
   ["Tiers, seat history, profile Experience section, export", "Real"],
-  ["Find people: requirements from a request, matched to approved lines", `Real (${RUNTIME_MODEL} plus keyword matching); demo requests cached`],
+  ["Find people: requirements from a request, matched to approved lines", `Built (${RUNTIME_MODEL}), not run in this demo; example requests show illustrative responses written to show what the model returns, keyword matching is real`],
   ["Multiple engagements per person, including internal bench projects", "Real"],
   ["Worker, manager and client views with access rules", "Real; demo sign-in without passwords"],
   ["Placement list and contract end dates", "Mocked with seed data"],
@@ -38,7 +38,7 @@ export default function About() {
           <li><strong className="text-ink">Is:</strong> flagging confidential signals a word list cannot catch, with a reason; rewriting a true, specific sentence into a true, generic one; turning a client request into requirements and pointing at approved lines that support each one.</li>
           <li><strong className="text-ink">Is not:</strong> the first screen or its replacement suggestions, the grounding check, tiers, signing, storage, or the order of search results. Those are plain code with tests.</li>
           <li><strong className="text-ink">Never:</strong> scoring or rating a person. Find people orders by how many requirements have approved evidence, then availability, and shows the count so every position can be checked against the quotes.</li>
-          <li><strong className="text-ink">Guardrails:</strong> only screened text is sent; structured output; server-side refusal fallback; a cached response for every scripted entry; a labelled plain draft if the model is unavailable.</li>
+          <li><strong className="text-ink">Guardrails:</strong> only screened text is sent; structured output; server-side refusal fallback; an illustrative response, written to show what the model returns, for every scripted entry; a labelled plain draft if the model is unavailable.</li>
         </ul>
       </section>
 
@@ -50,7 +50,7 @@ export default function About() {
               {REAL.map(([what, status]) => (
                 <tr key={what}>
                   <td className="px-4 py-2.5">{what}</td>
-                  <td className={`px-4 py-2.5 ${status.startsWith("Mocked") || status.startsWith("Browser") ? "text-ink-3" : "text-accent"}`}>{status}</td>
+                  <td className={`px-4 py-2.5 ${status.startsWith("Mocked") || status.startsWith("Browser") || status.startsWith("Built") ? "text-ink-3" : "text-accent"}`}>{status}</td>
                 </tr>
               ))}
             </tbody>

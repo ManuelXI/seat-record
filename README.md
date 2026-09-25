@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000 for the landing page, then **Try the demo**. No API key is needed for the demo: scripted entries use cached model responses.
+Open http://localhost:3000 for the landing page, then **Try the demo**. No API key is needed for the demo: scripted entries and example requests show illustrative responses written to show what the model returns. They were written during the build, not recorded from the API.
 To run the model live, copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY`.
 
 | Command | What it does |
@@ -29,7 +29,7 @@ Use **Reset demo data** in the sidebar to return to the seed state. Answers to c
 
 ## Deploy
 
-Hosted on Netlify (`netlify.toml`). Netlify builds with `npm run build` and applies its Next.js runtime automatically. To run the model live, set `ANTHROPIC_API_KEY` in the site's environment variables.
+Hosted on Render's free plan at https://seat-record.onrender.com (build `npm install && npm run build`, start `npm start`). The free instance sleeps when idle, so the first visit can take up to a minute. No environment variables are set; to run the model live, set `ANTHROPIC_API_KEY`. Do not set `SIGNING_PRIVATE_KEY_PEM` without also replacing the public key in `src/lib/demo-key.ts`, or verification fails.
 
 ## Roles
 
@@ -69,7 +69,7 @@ Managers describe a client request at `/search`. The model splits it into requir
 | Part | Status |
 |---|---|
 | Browser screen, grounding check, tiers, signing and verification | Real, tested |
-| Model pass (`claude-opus-5`, structured output, server-side refusal fallback) | Real; scripted entries cached |
+| Model pass (`claude-opus-5`, structured output, server-side refusal fallback) | Built, not run in the demo; scripted entries show illustrative responses written to show what the model returns |
 | Checkpoints, selection, profile, history, export | Real |
 | Placement list, client emails, reminder delivery | Mocked |
 | Storage | Browser `localStorage` for the demo |

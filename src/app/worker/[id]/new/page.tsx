@@ -188,7 +188,7 @@ function LogYourWork() {
         <div className="space-y-6">
           {origin && origin !== "live" && (
             <p className="text-xs text-ink-3">
-              {origin === "cache" ? "Using a cached model response for this entry." : "Model unavailable. Showing a basic draft; check each line carefully."}
+              {origin === "cache" ? "Illustrative response, written to show what the model returns for this entry. The model was not called." : "Model unavailable. Showing a basic draft; check each line carefully."}
             </p>
           )}
 

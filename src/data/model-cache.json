@@ -1,5 +1,5 @@
 {
-  "_note": "Cached model responses for the scripted demo entries, keyed by normalised screened text. Written by the team from real runs; used so the in-person demo survives a network failure.",
+  "_note": "Illustrative responses written to show what the model returns for the scripted demo entries, keyed by normalised screened text. They were written during the build, not recorded from API calls, so the demo runs without an API key.",
   "i rebuilt their overnight var batch so it stopped failing on an upstream ledger feed, and set up contract tests for the three upstream teams": {
     "flags": [
       {
