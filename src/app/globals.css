@@ -157,3 +157,6 @@ html, * {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* Hero step progress bar (HeroSteps). */
+@keyframes hero-step-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }

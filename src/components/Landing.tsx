@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TierChip } from "./ui";
 import { HeroDeck } from "./HeroDeck";
+import { HeroSteps } from "./HeroSteps";
 
 const STEPS = [
   { title: "Log it while it’s fresh", body: "Workers write a few lines about their client work whenever they like, with an optional monthly reminder." },
@@ -16,11 +17,7 @@ export function Landing() {
         <div className="space-y-6">
           <p className="eyebrow">Offboarding and re-engaging people · Bonarda Works</p>
           <h1 className="text-4xl font-semibold leading-[1.1] sm:text-5xl">A dated client approval is the one work credential a model cannot mint.</h1>
-          <p className="max-w-xl text-lg text-ink-2">
-            Seat Record captures what employees, contractors and freelancers did inside client teams, strips out anything confidential, and gets the client to
-            approve it inside an email they already send. When the next client brief lands, managers search that approved evidence to find who has
-            already done the work.
-          </p>
+          <HeroSteps />
           <div className="flex flex-wrap gap-3">
             <Link href="/signin" className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-ink transition-[background-color,scale] duration-150 hover:bg-accent-hover active:scale-[0.96]">Try the demo →</Link>
             <Link href="/shared" className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface-1 px-4 py-2.5 font-medium text-ink transition-[background-color,scale] duration-150 hover:bg-surface-2 active:scale-[0.96]">Browse shared records</Link>
@@ -65,7 +62,7 @@ export function Landing() {
       <section className="grid items-center gap-8 md:grid-cols-[1fr_1.1fr]" aria-labelledby="next-brief">
         <div className="space-y-3">
           <p className="eyebrow">When the next brief lands</p>
-          <h2 id="next-brief" className="text-2xl font-semibold">Find people by what they&rsquo;ve actually done</h2>
+          <h2 id="next-brief" className="scroll-mt-24 text-2xl font-semibold">Find people by what they&rsquo;ve actually done</h2>
           <p className="text-ink-2">
             A manager pastes the client&rsquo;s request. Seat Record breaks it into requirements and shows who has client-approved evidence for each one,
             quoted in full and labelled with the engagement it came from. Only approved lines are searched; a worker&rsquo;s private log never is.
