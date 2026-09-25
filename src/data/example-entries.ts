@@ -12,7 +12,7 @@ const PROTECTED: Record<string, ExampleEntry> = {
 };
 
 const MODEL: Record<string, ExampleEntry> = {
-  c1: { label: "Domain term", shows: "Passes the screen, flagged by the model, one line greyed", text: "I rebuilt their overnight VaR batch so it stopped failing on the upstream ledger feed, and set up contract tests for the three upstream teams." },
+  c1: { label: "Domain term", shows: "Passes the screen, flagged by the model (illustrative), one line greyed", text: "I rebuilt their overnight VaR batch so it stopped failing on the upstream ledger feed, and set up contract tests for the three upstream teams." },
   c2: { label: "Clean entry", shows: "Passes every check", text: "I built the payment reconciliation service in Kotlin and paired with the client's QA lead on the release checklist." },
 };
 

@@ -115,7 +115,7 @@ function LogYourWork() {
               className="w-full resize-y rounded-xl border border-line bg-surface-1 px-4 py-3 text-base leading-relaxed text-ink placeholder:text-ink-3"
             />
             <div className="space-y-2">
-              <p className="text-xs text-ink-3">Try an example entry. Each one shows a different check.</p>
+              <p className="text-sm text-ink-2">Start with an example entry; each one shows a different check. This demo does not call the AI model, so examples show illustrative model responses. Your own text still goes through the browser screen, then gets a basic draft without AI.</p>
               <ul className="grid gap-2 sm:grid-cols-2">
                 {examplesFor(client.id).map((ex) => (
                   <li key={ex.label}>
@@ -179,7 +179,7 @@ function LogYourWork() {
                 ))}
               </ul>
             )}
-            <p className="border-t border-line pt-3 text-xs text-ink-3">Only screened text is sent to the model. Your original wording is discarded when you approve.</p>
+            <p className="border-t border-line pt-3 text-xs text-ink-3">In the product, only screened text is sent to the model. Your original wording is discarded when you approve.</p>
           </section>
         </div>
       )}
