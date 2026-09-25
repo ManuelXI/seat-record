@@ -17,6 +17,9 @@ export default defineConfig({
   },
   projects: [
     { name: "check" },
-    { name: "record", use: { video: { mode: "on", size }, launchOptions: { slowMo: 60 } } },
+    // A 1920x1200 viewport for the HD recording (tests/e2e/hd-recorder.ts); demo.spec.ts scales the
+    // root font size by 4/3 so the rem-based layout matches the 1440px check run, only sharper.
+    // Tracing is off because it shares the page's screencast and would pin it at 800px wide.
+    { name: "record", use: { viewport: { width: 1920, height: 1200 }, trace: "off", launchOptions: { slowMo: 60 } } },
   ],
 });

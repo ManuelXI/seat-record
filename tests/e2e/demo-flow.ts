@@ -58,7 +58,7 @@ export async function runDemo(page: Page, pace: Pace) {
 
   // 0:00 The problem
   pace.chapter("The problem: landing page, Efua's profile before Seat Record");
-  await page.goto("/");
+  if (new URL(page.url()).pathname !== "/" || page.url() === "about:blank") await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("A dated client approval");
   await beat(3);
   await click(page.getByRole("link", { name: /Try the demo/ }).first());
