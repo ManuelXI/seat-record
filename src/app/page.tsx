@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { engagementsFor, rollOffStatus, useStore } from "@/lib/store";
 import { formatDate } from "@/lib/dates";
 import { MANAGERS } from "@/lib/people";
+import { witnessRequests } from "@/lib/witness";
 import { Loading, TypeBadge } from "@/components/ui";
 import { Landing } from "@/components/Landing";
 
@@ -29,10 +30,11 @@ export default function Home() {
     const approved = lines.filter((l) => l.status === "client-approved").length;
     const pending = state.checkpoints.find((c) => c.engagementId === eng.id && c.status !== "approved");
     const rollOffDone = state.checkpoints.some((c) => c.engagementId === eng.id && c.reason === "roll-off" && c.status === "approved");
-    return { w, eng, approved, roll: rollOffStatus(eng.end), pending, rollOffDone };
+    const asks = witnessRequests(state.entries, eng.id, me.name).length;
+    return { w, eng, approved, roll: rollOffStatus(eng.end), pending, rollOffDone, asks };
   });
   const mine = rows.filter((r) => r.eng.engagementOwner === me.name);
-  const attention = mine.filter((r) => r.pending || ((r.roll.windowOpen || r.roll.ended) && !r.rollOffDone));
+  const attention = mine.filter((r) => r.asks > 0 || r.pending || ((r.roll.windowOpen || r.roll.ended) && !r.rollOffDone));
 
   const status = (r: (typeof rows)[number]) =>
     r.pending?.status === "sent" ? "With the client lead" : r.pending ? "Checkpoint open, waiting for the worker" : r.roll.ended ? (r.rollOffDone ? "Ended, record approved" : "Ended, no roll-off record yet") : r.roll.windowOpen ? (r.rollOffDone ? "Roll-off approved" : `Roll-off window open, ${r.roll.days} working days`) : `${r.roll.days} working days to contract end`;
@@ -55,6 +57,7 @@ export default function Home() {
                   <div className="flex items-center justify-between gap-2"><span className="font-medium">{r.w.name}</span><TypeBadge type={r.w.type} /></div>
                   <p className="text-sm text-ink-2">{r.eng.clientLabel}</p>
                   <p className="text-sm text-warn">{status(r)}</p>
+                  {r.asks > 0 && <p className="text-sm text-accent">{r.asks} {r.asks === 1 ? "entry" : "entries"} to confirm from a 1-on-1</p>}
                 </Link>
               </li>
             ))}

@@ -19,7 +19,7 @@ const GROUPS: { title: string; items: QA[] }[] = [
       { q: "What stops confidential client detail getting into a record?", a: "Three layers. A check in the browser catches client names, system names, people, figures, tickets and hostnames before anything is sent, with one-tap generic replacements. The model then flags subtler signals, such as domain terms, with a reason. Finally the client lead approves every line, so nothing they object to survives." },
       { q: "What are the replacement suggestions?", a: "When the screen catches something, it offers generic alternatives you can tap, such as “a production bug” for a ticket number or “upstream” for a system name, and adjusts the wording around it. They come from a fixed list, not the AI, because nothing leaves your browser until the screen is clear. You can always write your own instead." },
       { q: "Does my raw text ever reach the AI?", a: "No. Only text that has passed the browser check is sent. Your original wording is discarded when you approve an entry." },
-      { q: "Can my manager read my log?", a: "No. A manager sees engagement status, what the client approved, and a count of lines you have not shared. They can open a checkpoint with a note, but only you choose and send lines." },
+      { q: "Can my manager read my log?", a: "No. A manager sees engagement status, what the client approved, and a count of lines you have not shared. If your manager saw an entry in a 1-on-1, you can ask them to confirm it; only that entry is shown to them. They can open a checkpoint with a note, but only you choose and send lines." },
       { q: "Who can see my record, and can I share it?", a: "Your seat history is private to you and Bonarda Works. From My profile you can turn on an unlisted share link, copy it, or replace it so the old link stops working. Shared pages are not indexed by search engines." },
       { q: "Can the client change what I wrote?", a: "They can approve, edit or decline each line. Declined lines are deleted. Edited lines are what gets signed, so the record reflects what the client actually stands behind." },
       { q: "What if the client lead never replies?", a: "Your lines stay in your record, clearly labelled as your own account, or as manager-witnessed if your manager saw them. A checkpoint can also be opened early, for example before a client lead leaves." },
@@ -40,7 +40,7 @@ const GROUPS: { title: string; items: QA[] }[] = [
   {
     title: "Evidence tiers",
     items: [
-      { q: "What do the three tiers mean?", a: "Client-approved: a named client lead approved the line on a date and Bonarda Works signed it. Manager-witnessed: your own account, read by your manager when you wrote it. Own account: dated and self-written, clearly labelled. Tiers are always shown, so nobody mistakes one for another." },
+      { q: "What do the three tiers mean?", a: "Client-approved: a named client lead approved the line on a date and Bonarda Works signed it. Manager-witnessed: your own account, confirmed by your Bonarda manager, who saw it in a 1-on-1. You ask, they confirm or decline. Own account: dated and self-written, clearly labelled. Tiers are always shown, so nobody mistakes one for another." },
       { q: "What does the signature prove?", a: "That the exact wording, the approver and the date have not changed since Bonarda Works signed them. The seat history and shared pages check each signature live." },
     ],
   },

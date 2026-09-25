@@ -10,7 +10,7 @@
     "seed": "tsx scripts/build-seed.ts",
     "test": "vitest run",
     "eval": "tsx scripts/eval-model.ts",
-    "e2e": "playwright test --project=check demo.spec.ts",
+    "e2e": "playwright test --project=check",
     "demo:record": "playwright test --project=record demo.spec.ts",
     "demo:clip": "playwright test --project=record clips.spec.ts"
   },

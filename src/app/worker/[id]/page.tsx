@@ -5,6 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { engagementsFor, entriesFor, lineTier, rollOffStatus, useStore } from "@/lib/store";
 import { formatDate, monthsBetween } from "@/lib/dates";
+import { canAskWitness } from "@/lib/witness";
 import { Button, ButtonLink, Crumbs, Loading, TierChip, TypeBadge } from "@/components/ui";
 import { ExportButton } from "@/components/ExportButton";
 import type { CheckpointReason } from "@/lib/types";
@@ -43,6 +44,8 @@ function WorkerSeatLog() {
   const rollOffDone = cps.some((c) => c.reason === "roll-off" && c.status === "approved");
   const needsRollOff = isCurrent && (roll.windowOpen || roll.ended) && !rollOffDone;
   const approvedHere = entries.flatMap((e) => e.lines).filter((l) => l.status === "client-approved").length;
+  const owner = eng.engagementOwner;
+  const ownerFirst = owner.split(" ")[0];
 
   const timeline = [
     ...entries.map((e) => ({ kind: "entry" as const, date: e.date, e })),
@@ -151,7 +154,10 @@ function WorkerSeatLog() {
                 <li key={t.e.id} className="relative">
                   <span className="absolute -left-[29px] top-2 h-2 w-2 rounded-full bg-line-strong ring-4 ring-canvas" aria-hidden />
                   <div className="card p-4">
-                    <p className="eyebrow mb-2">{formatDate(t.e.date)}{t.e.managerSaw && " · Manager saw this in a 1-on-1"}</p>
+                    <p className="eyebrow mb-2">
+                      {formatDate(t.e.date)}
+                      {t.e.managerSaw && (t.e.witness?.status === "confirmed" ? ` · ${t.e.witness.manager} confirmed a 1-on-1, ${formatDate(t.e.witness.answeredOn!)}` : " · Manager saw this in a 1-on-1")}
+                    </p>
                     <ul className="space-y-2">
                       {t.e.lines.map((l) => (
                         <li key={l.id} className="grid grid-cols-[1fr_auto] items-start gap-x-3">
@@ -163,6 +169,21 @@ function WorkerSeatLog() {
                         </li>
                       ))}
                     </ul>
+                    {isCurrent && t.e.witness?.status === "asked" && (
+                      <p className="mt-3 flex flex-wrap items-center gap-x-2 border-t border-line pt-3 text-xs text-ink-3">
+                        Waiting for {t.e.witness.manager.split(" ")[0]} to confirm they saw this in a 1-on-1. Only this entry is shown to them.
+                        <button onClick={() => store.cancelWitness(t.e.id)} className="text-accent hover:underline">Withdraw</button>
+                      </p>
+                    )}
+                    {t.e.witness?.status === "declined" && (
+                      <p className="mt-3 border-t border-line pt-3 text-xs text-ink-3">{t.e.witness.manager.split(" ")[0]} could not confirm this one, so it stays your own account.</p>
+                    )}
+                    {isCurrent && canAskWitness(t.e) && (
+                      <p className="mt-3 border-t border-line pt-3 text-xs text-ink-3">
+                        Shown to {ownerFirst} in a 1-on-1?{" "}
+                        <button onClick={() => store.askWitness(t.e.id, owner)} className="text-accent hover:underline">Ask {ownerFirst} to confirm</button>
+                      </p>
+                    )}
                   </div>
                 </li>
               ),
