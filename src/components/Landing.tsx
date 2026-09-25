@@ -59,10 +59,10 @@ export function Landing() {
         </ol>
       </section>
 
-      <section className="grid items-center gap-8 md:grid-cols-[1fr_1.1fr]" aria-labelledby="next-brief">
+      <section id="next-brief" className="grid scroll-mt-28 items-center gap-8 md:grid-cols-[1fr_1.1fr]" aria-labelledby="next-brief-title">
         <div className="space-y-3">
           <p className="eyebrow">When the next brief lands</p>
-          <h2 id="next-brief" className="scroll-mt-24 text-2xl font-semibold">Find people by what they&rsquo;ve actually done</h2>
+          <h2 id="next-brief-title" className="text-2xl font-semibold">Find people by what they&rsquo;ve actually done</h2>
           <p className="text-ink-2">
             A manager pastes the client&rsquo;s request. Seat Record breaks it into requirements and shows who has client-approved evidence for each one,
             quoted in full and labelled with the engagement it came from. Only approved lines are searched; a worker&rsquo;s private log never is.
