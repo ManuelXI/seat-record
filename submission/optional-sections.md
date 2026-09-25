@@ -45,8 +45,7 @@
 
 ## Who did what
 
-We worked on this together, mostly in person, so most decisions were shared.
+We worked on this together, mostly in person, and made the main decisions jointly: the problem, the idea, and how the product should work, including which emails carry the client's approval, what managers can and cannot see, and keeping the monthly reminder as an opt-in. We will present together on Demo Day.
 
-- **Both of us:** chose Seat Record from the shortlist, and worked through the product decisions together: which emails carry the client's approval, what managers can and cannot see, and keeping the monthly reminder as an opt-in.
-- **George Hanson:** shaped the product direction. His review after ideation corrected our reading of Bonarda Works, which had narrowed the persona to salaried engineers only, so contractors and freelancers stayed in scope, and it settled the lifecycle problem as offboarding and re-engaging people. He reviewed the first version of the brief page and the submission documents, and caught two claims that overstated what the product does.
-- **Emmanuel Mortey:** ran the research and ideation with Claude, drafted the questions for our Operations client, built and tested the app with Claude Code, deployed it, recorded the walkthrough, and drafted the submission documents.
+- **George Hanson** shaped the product direction. His review after ideation kept contractors and freelancers in scope and settled the lifecycle problem as offboarding and re-engaging people. He took part in our conversations with our Operations client, Desmond Techie, tested the app and gave feedback that shaped it, and gave notes on the walkthrough video. He also reviewed the brief page and the submission documents, and caught two claims that overstated what the product does.
+- **Emmanuel Mortey** led the hands-on work with Claude: the research, building and deploying the app, recording the walkthrough, and first drafts of the documents.
