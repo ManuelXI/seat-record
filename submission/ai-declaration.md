@@ -9,7 +9,7 @@ We used only Anthropic's Claude: Claude Fable 5.1 mostly for research and ideati
 | Tool | What it did | What the team did or verified |
 |---|---|---|
 | Claude Fable 5.1 (Anthropic) | Research and ideation: condensed public sources into analyst digests, generated and scored candidate ideas, re-ranked them against Turntabl's operating model | Steered the ideation over several rounds: fed in how Turntabl actually works (salaried engineers, client placements, the bench), which forced a full re-rank; chose the problem and the idea; corrected the AI's first reading of Bonarda, which narrowed the persona too far; checked the direction with our Operations client |
-| Claude Opus 5.5 (Anthropic), in Claude Code | Wrote most of the application code, tests, synthetic seed data, page copy, and the illustrative model responses used in the demo | Added features the AI had not proposed (see below); reviewed every screen in the browser and asked for changes over many rounds; checked the tests (34 passing), type-check, lint and build; set the product boundaries listed below |
+| Claude Opus 5.5 (Anthropic), in Claude Code | Wrote most of the application code, tests, synthetic seed data, page copy, and the illustrative model responses used in the demo | Added features the AI had not proposed (see below); reviewed every screen in the browser and asked for changes over many rounds; checked the tests (40 passing), type-check, lint and build; set the product boundaries listed below |
 | Claude Opus 5.5, in Claude Code | Drafted the summary, demo script and this declaration | [confirm] Rewrote both in our own words and rehearsed them aloud |
 | Claude Opus 5 via the Anthropic API (the model the product code calls) | Designed to flag confidential signals a word list misses, rewrite lines at skill level, and turn a client request into requirements matched to approved lines | **Not called in this demo** (see below) |
 
@@ -49,6 +49,7 @@ The AI wrote most of the code. These ideas and changes came from us.
 - **Kept the monthly reminder** as an opt-in when the AI suggested dropping it.
 - **Checkpoints start with every unapproved line ticked.** We questioned the AI's design, which made the worker pick lines one by one.
 - **Seat history private by default**, after we asked who should be able to see it.
+- **Manager-witnessed as a real flow.** We asked for it: a worker asks their manager to confirm one entry they saw in a 1-on-1, and only that entry is shown to them. The AI designed it so managers still never read the private log.
 - **People with more than one engagement,** including internal bench projects, so evidence follows a person across clients.
 
 **Feedback rounds on the interface**
